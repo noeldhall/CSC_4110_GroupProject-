@@ -1,0 +1,8 @@
+Customer_Id 	Full_Name	  Street Adress		City			Phone		Balance		Last_Paid_Amount	Last_Paid_Date
+797721          Noel Hall         16 New Saddle Dr.     Dearborn        	231-201-6481    11230.43        7435                    01/12/2021
+806992          Brett Gloomis     95 Jefferson Lane    	Detroit         	248-521-6167    13563.35        3723                    02/25/2021
+923166          Tyler Groat       9992 3rd Street    	Troy            	313-351-3531    27743.26        32243                   02/14/2021
+232564          Nicholas Foster   7412 Essex St.    	Novi            	313-435-9143    1235.47         26343                   03/03/2021
+713477          John Doe          99 Brooks Drive    	Lansing         	517-252-1651    4144            6346                    03/01/2021
+622476          Jane Doe          7412 Sunny Court   	Chicago         	132-345-3256    3532            2345                    02/28/2021
+
