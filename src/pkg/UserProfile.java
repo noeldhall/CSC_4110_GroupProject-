@@ -10,13 +10,14 @@ public class UserProfile {
 
     boolean login(String id, String pass){
         if(userID == id)
-            if(pass == NULL && password == NULL)
+            if(pass.equals("") && password.equals(""))
             {
                 System.out.println("Type new password: ");
 
                 Scanner scanner = new Scanner(System.in);
                 pass = scanner.nextLine();
-                password = createPassword(pass); // TODO create new password
+                createPassword(pass); // TODO create new password
+                scanner.close();
             }
             else if(password == pass)
                 return true;
@@ -25,7 +26,7 @@ public class UserProfile {
     }
 
     boolean logout(){
-
+    	return true;
     }
 
     boolean createPassword(String pass){          //when user profile is first loggin
