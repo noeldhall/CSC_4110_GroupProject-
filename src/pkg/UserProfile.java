@@ -1,4 +1,5 @@
 package pkg;
+import java.util.Scanner;
 
 public class UserProfile {
     String lastName;
@@ -7,19 +8,42 @@ public class UserProfile {
     String password;
     Roles userRole;
 
-    void login(){
+    boolean login(String id, String pass){
+        if(userID == id)
+            if(pass == NULL && password == NULL)
+            {
+                System.out.println("Type new password: ");
+
+                Scanner scanner = new Scanner(System.in);
+                pass = scanner.nextLine();
+                password = createPassword(pass); // TODO create new password
+            }
+            else if(password == pass)
+                return true;
+
+        return false;
+    }
+
+    boolean logout(){
 
     }
 
-    void logout(){
+    boolean createPassword(String pass){          //when user profile is first loggin
+        if(pass.length() >= 8 && pass.length() <= 16)
+        {
+            password = pass;
+            return true;
+        }
 
+        return false;
     }
 
-    void createPassword(){   //when user profile is first loggin
-
-    }
-
-    public UserProfile(){ //constructor
+    public UserProfile(String ln, String fn, String id, String pass, Roles role){           //constructor
+        lastName = ln;
+        firstName = fn;
+        userID = id;
+        password = pass;
+        userRole = role;
 
     }
 }
