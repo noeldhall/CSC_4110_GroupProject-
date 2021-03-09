@@ -1,0 +1,7 @@
+vendorID	fullName	StreetAdd	City	State	Phone	Balance	LastPaidAmt	lastOrdDate	DiscountStrtDate
+111111		Nick Foster	24406 Wick		Taylor	MI	734-123-4567	500.00	50.00	05/15/1993	11/22/2001
+222222		Brett Gloomis	123 memory lane		chadwick NC	123-456-7890	111.00	20.00	01/11/2001	11/22/2001
+333333		Noel Hall	14811 13th street	Bravo	MI	222-222-2222	450.00	45.00	04/20/1969	06/11/2002
+444444		Tyler Groat	48195 blue lane		Delta	MI	333-334-3434	1000.00	82.50	12/25/2000	05/15/2021
+555555		Fred Flinstone	777 Mystery drive	Cartoon	MI	313-867-5309	9559.45	4000.00	08/28/1977	11/12/2020
+666666		Shaggy Doo	777 Mystery drive	Cartoon	MI	313-867-5309	4559.45	400.00	03/27/1977	07/24/2021
