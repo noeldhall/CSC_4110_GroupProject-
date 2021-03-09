@@ -9,17 +9,17 @@ public class UserProfile {
     Roles userRole;
 
     boolean login(String id, String pass){
-        if(userID == id)
-            if(pass.equals("") && password.equals(""))
+        if(userID.equals(id))
+            if(pass.isEmpty() && password.isEmpty())
             {
                 System.out.println("Type new password: ");
 
                 Scanner scanner = new Scanner(System.in);
                 pass = scanner.nextLine();
                 createPassword(pass); // TODO create new password
-                scanner.close();
+                //scanner.close();
             }
-            else if(password == pass)
+            else if(password.equals(pass))
                 return true;
 
         return false;
@@ -33,6 +33,7 @@ public class UserProfile {
         if(pass.length() >= 8 && pass.length() <= 16)
         {
             password = pass;
+            System.out.println(userID + ", " + password + "!");
             return true;
         }
 
@@ -45,6 +46,7 @@ public class UserProfile {
         userID = id;
         password = pass;
         userRole = role;
+        System.out.println(userID + ", " + password + "!");
 
     }
 }
