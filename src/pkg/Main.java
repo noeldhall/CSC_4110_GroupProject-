@@ -1,4 +1,5 @@
 package pkg;
+import guiPkg.projectGUI;
 
 import java.awt.EventQueue;
 
@@ -16,7 +17,11 @@ public class Main {
 			public void run() {
 				try {
 					Main window = new Main();
+					projectGUI login = new projectGUI();
+					window.frame.add(login.$$$getRootComponent$$$());
 					window.frame.setVisible(true);
+					window.frame.
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,6 +45,7 @@ public class Main {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 /*
         ---DONT DELETE---
