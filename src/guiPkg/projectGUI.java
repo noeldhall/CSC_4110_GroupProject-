@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class projectGUI{
+public class projectGUI {
     private JTextField textField1;
     private JPanel panel1;
     private JTextField textField2;
@@ -22,7 +22,7 @@ public class projectGUI{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panel1.getLayout().
+
             }
         });
     }
