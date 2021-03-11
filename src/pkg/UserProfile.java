@@ -17,10 +17,11 @@ public class UserProfile {
                 Scanner scanner = new Scanner(System.in);
                 pass = scanner.nextLine();
                 createPassword(pass); // TODO create new password
+                //scanner.close();
             }
             else if(password.equals(pass))
                 return true;
-        //System.out.println("Enter a valid username and password.");
+
         return false;
     }
 
