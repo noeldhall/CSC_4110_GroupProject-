@@ -20,7 +20,7 @@ public class Main {
 					projectGUI login = new projectGUI();
 					window.frame.add(login.$$$getRootComponent$$$());
 					window.frame.setVisible(true);
-					window.frame.
+
 
 				} catch (Exception e) {
 					e.printStackTrace();
