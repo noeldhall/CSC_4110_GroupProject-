@@ -1,6 +1,5 @@
-Last	First	User ID	Paswrd	Role
-Foster	Nick	hb7798	echo1	Owner
-Gloomis	Brett	gw1712	bravo1	Purchaser
-Groat	Tyler	gw1234	alpha1	Inventory_Manager
-Hall	Noel	gg2345	zulu1	Accountant
-Smith	Will	hu2331	charle1	System_Administrator
+Foster	Nick	hb7798	echo1	OWNER
+Gloomis	Brett	gw1712	bravo1	PURCHASER
+Groat	Tyler	gw1234	alpha1	INVENTORY_MANAGER
+Hall	Noel	gg2345	zulu1	ACCOUNTANT
+Smith	Will	hu2331	charle1 	ADMIN

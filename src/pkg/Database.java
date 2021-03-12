@@ -6,6 +6,7 @@ import java.util.Vector;
 
 public class Database {
 	Vector<VendorProfile> vendors;
+	Vector<UserProfile> users;
 	private String vendorData;
 	private String userData;
 	private String customerData;
@@ -15,7 +16,9 @@ public class Database {
 		userData = "data\\Login_and_Logout_User_Data.txt";
 		customerData = "data\\Customer Profiles Data.txt";
 		vendors = new Vector<VendorProfile>();
+		users = new Vector<UserProfile>();
 		loadVendorData(vendorData);
+		loadUserData(userData);
 	}
 	
 	private void loadVendorData(String s) {
@@ -38,6 +41,30 @@ public class Database {
 	
 	public void printVendors() {
 		for(VendorProfile vp : vendors) {
+			System.out.println(vp.toString());
+		}
+	}
+
+	private void loadUserData(String s) {
+		DataReader reader = new DataReader(s);
+		try {
+			Vector<String[]> tempData = reader.readFile();
+			for(String[] d : tempData){
+				users.add(new UserProfile(d));
+			}
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("fileNotFound - " + s);
+			System.out.println(e.getMessage());
+		}
+		catch(IOException e) {
+			System.out.println("IOException in Database");
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void printUsers() {
+		for(UserProfile vp : users) {
 			System.out.println(vp.toString());
 		}
 	}

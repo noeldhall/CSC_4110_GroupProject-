@@ -36,6 +36,7 @@ public class Main {
 		initialize();
 		Database db = new Database();
 		db.printVendors();
+		db.printUsers();
 	}
 
 	/**

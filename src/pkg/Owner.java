@@ -7,4 +7,32 @@ public class Owner extends UserProfile implements Management, Suppliers {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void passReset() //reset for any user
+	{
+
+	}
+	public void displayUserList() //show all users
+	{
+
+	}
+	public void assignRoles() //can assign any role
+	{
+
+	}
+	public void searchUserList() //search for any user
+	{
+
+	}
+	public void createUserProfile()
+	{
+
+	}
+	public void UpdateUserProfile()	//can update all
+	{
+
+	}
+	public void DeleteUserProfile() //can delete all
+	{
+
+	}
 }

@@ -1,4 +1,5 @@
 package pkg;
+import java.util.Date;
 import java.util.Scanner;
 
 public class UserProfile {
@@ -29,7 +30,7 @@ public class UserProfile {
     	return true;
     }
 
-    boolean createPassword(String pass){          //when user profile is first loggin
+    boolean createPassword(String pass){          //when user profile is first login
         if(pass.length() >= 8 && pass.length() <= 16)
         {
             password = pass;
@@ -48,5 +49,25 @@ public class UserProfile {
         userRole = role;
         System.out.println(userID + ", " + password + "!");
 
+    }
+    public UserProfile(String[] data) {
+        for(int x = 0; x < data.length; x++) {
+
+            lastName = data[0];
+            firstName = data[1];
+            userID = data[2];
+            password = data[3];
+            userRole = Roles.valueOf(data[4]);
+
+        }
+    }
+    public String toString() {
+        String data = "";
+        data += lastName + "\n";
+        data += firstName + "\n";
+        data += userID + "\n";
+        data += password + "\n";
+        data += userRole + "\n";
+        return data;
     }
 }
