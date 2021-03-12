@@ -1,26 +1,30 @@
 package pkg;
-import guiPkg.projectGUI;
-
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import guiPkg.*;
+import javax.swing.JLayeredPane;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.JComboBox;
 
 public class Main {
-
+	private Database db;
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
+	private static projectGUI login;
+	private static MainMenu menu;
+	private static myPanel p1;
+	private static JLayeredPane layeredPane;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Main window = new Main();
-					projectGUI login = new projectGUI();
-					window.frame.add(login.$$$getRootComponent$$$());
+					//window.frame.add(menu.$$$getRootComponent$$$());
 					window.frame.setVisible(true);
-
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -28,54 +32,42 @@ public class Main {
 			}
 		});
 	}
-//
-	/**
-	 * Create the application.
-	 */
+
 	public Main() {
 		initialize();
-		Database db = new Database();
+		menu = new MainMenu();
+		db = new Database();
 		db.printVendors();
 		db.printUsers();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.getContentPane().setLayout(null);
+		
+		layeredPane = new JLayeredPane();
+		layeredPane.setBounds(10, 11, 414, 239);
+		frame.getContentPane().add(layeredPane);
+		layeredPane.setLayout(new CardLayout(0, 0));
+		
+		login = new projectGUI();
+		layeredPane.add(login, "1");
+		
+		menu = new MainMenu();
+		layeredPane.add(menu, "2");
+		
+		p1 = new myPanel();
+		layeredPane.add(p1, "3");
+		
 	}
-/*
-        ---DONT DELETE---
-		 * This main will be a temporary testing ground for our objects.
-		 * Feel free to delete/ add test code at your leisure here
-		 * This main will not be included in the final project because we'll require GUI implementation
-		 * later down the road.
-		 * -nick
-		---END DONT DELETE---
-
-		Database db = new Database();
-		db.printVendors();
+	
+	public static void swapPanel(JPanel panel) {
+		layeredPane.removeAll();
+		layeredPane.add(panel);
+		layeredPane.repaint();
+		layeredPane.revalidate();
 	}
-
-
-    UserProfile profile = new UserProfile("Nick", "Foster", "111111", "", Roles.OWNER);
-    Scanner in = new Scanner(System.in);
-    String username, password;
-
-	    do {
-        System.out.println("enter username: ");
-        username = in.nextLine();
-
-        System.out.println("Enter password: ");
-        password = in.nextLine();
-    }while(!profile.login(username, password));
-
-	    System.out.println("Good Job Sport!");
-
-	    in.close();
-*/
+	
 }
