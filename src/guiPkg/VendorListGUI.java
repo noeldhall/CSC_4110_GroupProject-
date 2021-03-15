@@ -3,32 +3,31 @@ package guiPkg;
 import java.util.Vector;
 
 import javax.swing.JPanel;
-import javax.swing.JTable;
-
 import pkg.VendorProfile;
-import java.awt.ScrollPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.FlowLayout;
+import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
 
 public class VendorListGUI extends JPanel {
 	private static final long serialVersionUID = 7727161324173086559L;
-	private JTable vendorTable;
-
+	private JTable table;
+	
 	/**
 	 * Create the panel.
 	 */
 	public VendorListGUI(Vector<VendorProfile> data) {
+		setName("Supplier");
 		VendorTableModel model = new VendorTableModel(data);
+		setLayout(new BorderLayout(0, 0));
 		
-		ScrollPane scrollPane = new ScrollPane();
+		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane);
-		
-		vendorTable = new JTable(model);
-		vendorTable.setBorder(new MatteBorder(5, 5, 5, 5, (Color) Color.GRAY));
-		vendorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		add(vendorTable);
-
+		table = new JTable(model);
+		table.setBorder(new EmptyBorder(5, 5, 5, 5));
+		scrollPane.setViewportView(table);
+		table.setFillsViewportHeight(true);
 	}
 
 }

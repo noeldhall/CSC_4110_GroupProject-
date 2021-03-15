@@ -41,16 +41,16 @@ public class VendorTableModel extends AbstractTableModel{
 		// TODO Auto-generated method stub
 		VendorProfile vp = vendorList.get(rowIndex);
 		switch(columnIndex) {
-			case 1:
+			case 0:
 				return vp.getPersonal().getFullName();
-			case 2:
+			case 1:
 				return vp.getPersonal().getPhone();
-			case 3:
+			case 2:
 				return vp.getvAccount().getBalance();
-			case 4:
+			case 3:
 				return vp.getvAccount().getLastPaidAmount();
-			case 5:
-				return vp.getLastOrderDate();
+			case 4:
+				return vp.getLastOrderDate().toGMTString();
 			default:
 				return null;
 		}

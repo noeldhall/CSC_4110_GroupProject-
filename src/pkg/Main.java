@@ -9,14 +9,17 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.BorderLayout;
 
 public class Main {
 	private Database db;
 	private JFrame frame;
 	private static projectGUI login;
 	private static MainMenu menu;
-	private static myPanel p1;
 	private static JLayeredPane layeredPane;
+	private static VendorListGUI vendorTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,8 +38,8 @@ public class Main {
 
 	public Main() {
 		initialize();
-		menu = new MainMenu();
 		db = new Database();
+		vendorTab = new VendorListGUI(Database.vendors);
 		db.printVendors();
 		db.printUsers();
 	}
@@ -45,10 +48,9 @@ public class Main {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(10, 11, 414, 239);
 		frame.getContentPane().add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -70,9 +72,9 @@ public class Main {
 	public static void swapToMain() {
 		layeredPane.removeAll();
 		layeredPane.add(menu);
+		menu.openTab(vendorTab);
 		layeredPane.repaint();
 		layeredPane.revalidate();
-		
 	}
 	
 }
