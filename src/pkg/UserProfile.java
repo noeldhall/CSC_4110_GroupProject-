@@ -1,5 +1,4 @@
 package pkg;
-import java.util.Date;
 import java.util.Scanner;
 
 public class UserProfile {
@@ -9,10 +8,11 @@ public class UserProfile {
     String password;
     Roles userRole;
 
-    boolean login(String id, String pass){
+    public boolean login(String id, String pass){
         if(userID.equals(id))
             if(pass.isEmpty() && password.isEmpty())
             {
+            	//TODO need to move this from console input to GUI
                 System.out.println("Type new password: ");
 
                 Scanner scanner = new Scanner(System.in);

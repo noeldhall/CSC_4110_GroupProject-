@@ -3,6 +3,10 @@ package guiPkg;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
+
+import pkg.Database;
+import pkg.Main;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +17,25 @@ public class projectGUI extends JPanel {
 	private JTextField textField1;
     private JTextField textField2;
     private JButton loginButton;
+    /**
+     * @wbp.nonvisual location=121,19
+     */
+    private final JLabel invalidLbl = new JLabel("Invalid Username or Password");
 
     public projectGUI() {
+    	invalidLbl.setEnabled(false);
         $$$setupUI$$$();
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	if(Database.login(textField1.getText(), textField2.getText())) {
+            		Main.swapToMain();
+            	}
+            	else {
+            		//TODO cant get the invalid label to display for some reason, need to look at this later.
+            		invalidLbl.setVisible(true);
+            		updateUI();
+            	}
             	
             }
         });

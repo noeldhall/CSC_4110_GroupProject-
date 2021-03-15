@@ -58,9 +58,6 @@ public class Main {
 		menu = new MainMenu();
 		layeredPane.add(menu, "2");
 		
-		p1 = new myPanel();
-		layeredPane.add(p1, "3");
-		
 	}
 	
 	public static void swapPanel(JPanel panel) {
@@ -68,6 +65,14 @@ public class Main {
 		layeredPane.add(panel);
 		layeredPane.repaint();
 		layeredPane.revalidate();
+	}
+
+	public static void swapToMain() {
+		layeredPane.removeAll();
+		layeredPane.add(menu);
+		layeredPane.repaint();
+		layeredPane.revalidate();
+		
 	}
 	
 }

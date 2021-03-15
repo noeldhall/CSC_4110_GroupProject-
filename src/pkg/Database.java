@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class Database {
-	Vector<VendorProfile> vendors;
-	Vector<UserProfile> users;
+	static Vector<VendorProfile> vendors;
+	static Vector<UserProfile> users;
 	private String vendorData;
 	private String userData;
 	private String customerData;
@@ -22,6 +22,7 @@ public class Database {
 	}
 	
 	private void loadVendorData(String s) {
+		//reads data in from our Vendor data file (txt files) and fills our Vectors with that data
 		DataReader reader = new DataReader(s);
 		try {
 			Vector<String[]> tempData = reader.readFile();
@@ -40,12 +41,14 @@ public class Database {
 	}
 	
 	public void printVendors() {
+		//prints a list of vendors from our vector - test purposes only
 		for(VendorProfile vp : vendors) {
 			System.out.println(vp.toString());
 		}
 	}
 
 	private void loadUserData(String s) {
+		//reads data in from our User data file (txt files) and fills our Vectors with that data
 		DataReader reader = new DataReader(s);
 		try {
 			Vector<String[]> tempData = reader.readFile();
@@ -64,8 +67,25 @@ public class Database {
 	}
 
 	public void printUsers() {
+		//prints a list of users from our vector - test purposes only
 		for(UserProfile vp : users) {
 			System.out.println(vp.toString());
 		}
+	}
+	
+	public static boolean login(String username, String password) {
+		boolean loginFlag = false;
+		
+		for(UserProfile up : users) {
+			//attempt to find the user for login process
+			loginFlag = up.login(username, password);
+			if(loginFlag == true) {
+				//if the login is ever successful, we can just break, we found our user.
+				break;
+			}
+		}
+		
+		//will return false if no user is found.
+		return loginFlag;
 	}
 }
