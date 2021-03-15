@@ -2,7 +2,7 @@ package pkg;
 
 import java.util.Date;
 
-public class VendorProfile {
+public class VendorProfile implements Comparable<VendorProfile>{
 	String vendorID;
 	PersonalInformation personal;
 	VendorAccount vAccount;
@@ -20,22 +20,67 @@ public class VendorProfile {
 			}
 	}
 	
-	public VendorProfile(String vendorID, PersonalInformation personal, VendorAccount vAccount, Date lastOrderDate, Date discountStartDate) {
+	public VendorProfile(String vendorID, PersonalInformation personal, Date lastOrderDate, Date discountStartDate) {
 		this.vendorID = vendorID;
 		this.personal = personal;
-		this.vAccount = vAccount;
+		vAccount = new VendorAccount();
 		this.lastOrderDate = lastOrderDate;
 		this.discountStartDate = discountStartDate;
 	}
 	
 	public String toString() {
 		String data = "";
-		data += vendorID + "\n";
+		data += vendorID + "\t";
 		data += personal.toString();
 		data += vAccount.toString();
-		data += lastOrderDate.toString() + "\n";
-		data += discountStartDate.toString() + "\n";
+		data += lastOrderDate.toString() + "\t";
+		data += discountStartDate.toString() + "\t";
 		return data;
 	}
 	
+	public int compareTo(VendorProfile o) {
+		// default comparison 
+		return this.vendorID.compareTo(o.vendorID);
+	}
+	
+	public String getVendorID() {
+		return vendorID;
+	}
+
+	public void setVendorID(String vendorID) {
+		this.vendorID = vendorID;
+	}
+
+	public PersonalInformation getPersonal() {
+		return personal;
+	}
+
+	public void setPersonal(PersonalInformation personal) {
+		this.personal = personal;
+	}
+
+	public VendorAccount getvAccount() {
+		return vAccount;
+	}
+
+	public void setvAccount(VendorAccount vAccount) {
+		this.vAccount = vAccount;
+	}
+
+	public Date getLastOrderDate() {
+		return lastOrderDate;
+	}
+
+	public void setLastOrderDate(Date lastOrderDate) {
+		this.lastOrderDate = lastOrderDate;
+	}
+
+	public Date getDiscountStartDate() {
+		return discountStartDate;
+	}
+
+	public void setDiscountStartDate(Date discountStartDate) {
+		this.discountStartDate = discountStartDate;
+	}
+
 }
