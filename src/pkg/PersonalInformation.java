@@ -1,6 +1,6 @@
 package pkg;
 
-public class PersonalInformation {
+public class PersonalInformation implements Comparable<PersonalInformation> {
 	String fullName;
 	String streetAddress;
 	String city;
@@ -16,7 +16,50 @@ public class PersonalInformation {
 	}
 	
 	public String toString() {
-		return fullName + "\n" + streetAddress + "\n" + city + "\n" + state + "\n" + phone + "\n";
+		return fullName + "\t" + streetAddress + "\t" + city + "\t" + state + "\t" + phone + "\t";
 	}
 	
+	public int compareTo(PersonalInformation o) {
+		return this.fullName.compareTo(o.fullName);
+	}
+	
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 }
