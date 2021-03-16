@@ -13,26 +13,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
-public class projectGUI extends JPanel {
+public class loginGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField1;
     private JTextField textField2;
     private JButton loginButton;
 
-    public projectGUI() {
+    public loginGUI() {
     	//invalidLbl.setEnabled(false);
         $$$setupUI$$$();
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             	if(Database.login(textField1.getText(), textField2.getText())) {
-            		Main.swapToMain();
-            	
+            		Main.swapToMain();           	
             	}
             	else {
-            		JOptionPane.showMessageDialog(null, "Please enter a valid username and password.");
-            	}
-            	
+            		JOptionPane.showMessageDialog(null, "Please enter a valid username and password.","Invalid Login",JOptionPane.PLAIN_MESSAGE);
+            	}            	
             }
         });
     }

@@ -1,13 +1,10 @@
 package guiPkg;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
-import pkg.PersonalInformation;
-import pkg.VendorAccount;
 import pkg.VendorProfile;
 
 public class VendorTableModel extends AbstractTableModel{

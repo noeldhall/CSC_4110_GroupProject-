@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import pkg.VendorProfile;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import java.awt.FlowLayout;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 
