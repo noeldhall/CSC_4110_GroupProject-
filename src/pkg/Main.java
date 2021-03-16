@@ -20,6 +20,7 @@ public class Main {
 	private static MainMenu menu;
 	private static JLayeredPane layeredPane;
 	private static VendorListGUI vendorTab;
+	private static ManagerGUI manager;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -46,7 +47,7 @@ public class Main {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -60,6 +61,9 @@ public class Main {
 		menu = new MainMenu();
 		layeredPane.add(menu, "2");
 		
+		manager = new ManagerGUI();
+		
+		
 	}
 	
 	public static void swapPanel(JPanel panel) {
@@ -72,6 +76,7 @@ public class Main {
 	public static void swapToMain() {
 		layeredPane.removeAll();
 		layeredPane.add(menu);
+		menu.openTab(manager);
 		menu.openTab(vendorTab);
 		layeredPane.repaint();
 		layeredPane.revalidate();
