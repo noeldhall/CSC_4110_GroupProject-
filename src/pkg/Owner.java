@@ -35,4 +35,19 @@ public class Owner extends UserProfile implements Management, Suppliers {
 	{
 
 	}
+	
+	public boolean createVendor() {
+		return false;
+	}
+	public boolean updateVendor() {
+		return false;
+	}
+	
+	public boolean deleteVendor() {
+		return false;
+	}
+	
+	public VendorProfile searchVendor() {
+		return new VendorProfile(new String[4]);
+	}
 }
