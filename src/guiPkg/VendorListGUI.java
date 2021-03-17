@@ -8,7 +8,6 @@ import pkg.PersonalInformation;
 import pkg.VendorProfile;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import java.awt.FlowLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;

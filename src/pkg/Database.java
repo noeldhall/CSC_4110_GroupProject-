@@ -2,11 +2,14 @@ package pkg;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class Database {
-	static Vector<VendorProfile> vendors;
-	static Vector<UserProfile> users;
+	public static Vector<VendorProfile> vendors;
+	public static Vector<UserProfile> users;
 	private String vendorData;
 	private String userData;
 	private String customerData;
@@ -82,10 +85,38 @@ public class Database {
 			if(loginFlag == true) {
 				//if the login is ever successful, we can just break, we found our user.
 				break;
-			}
+			}		
 		}
-		
-		//will return false if no user is found.
 		return loginFlag;
+	}
+		
+	public static UserProfile findUser(String userID) {
+		Iterator<UserProfile> userIndex = Database.users.iterator();
+			
+		while(userIndex.hasNext())
+		{	
+			UserProfile jeff = userIndex.next();
+			if(jeff.getUserID().equals(userID))
+			{
+				return jeff;
+			}				
+		}		
+		JOptionPane.showMessageDialog(null, "User profile not found.");			//TODO fix this error		
+		return null;		
+	}
+	
+	public static UserProfile deleteUser(String userID) {
+		Iterator<UserProfile> userIndex = Database.users.iterator();
+			
+		while(userIndex.hasNext())
+		{	
+			UserProfile jeff = userIndex.next();
+			if(jeff.getUserID().equals(userID))
+			{
+				userIndex.remove();
+				return jeff;
+			}			
+		}
+		return null;			
 	}
 }
