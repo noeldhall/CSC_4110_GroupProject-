@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class Database {
 	public static Vector<VendorProfile> vendors;
 	public static Vector<UserProfile> users;
+	public static Vector<CustomerProfile> customers;
 	private String vendorData;
 	private String userData;
 	private String customerData;
@@ -20,8 +21,10 @@ public class Database {
 		customerData = "data\\Customer Profiles Data.txt";
 		vendors = new Vector<VendorProfile>();
 		users = new Vector<UserProfile>();
+		customers=new Vector<CustomerProfile>();
 		loadVendorData(vendorData);
 		loadUserData(userData);
+		loadCustomerData(customerData);
 	}
 	
 	private void loadVendorData(String s) {
@@ -75,6 +78,32 @@ public class Database {
 			System.out.println(vp.toString());
 		}
 	}
+	
+	private void loadCustomerData(String s) {
+		DataReader reader = new DataReader(s);
+		try {
+			Vector<String[]> tempData = reader.readFile();
+			for(String[] d : tempData){
+				customers.add(new CustomerProfile(d));
+			}
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("fileNotFound - " + s);
+			System.out.println(e.getMessage());
+		}
+		catch(IOException e) {
+			System.out.println("IOException in Database");
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void printCustomers() {
+		//prints a list of customers from our vector - test purposes only
+		for(CustomerProfile vp : customers) {
+			System.out.println(vp.toString());
+		}
+	}
+	
 	
 	public static boolean login(String username, String password) {
 		boolean loginFlag = false;

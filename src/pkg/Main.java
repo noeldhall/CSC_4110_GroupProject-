@@ -38,6 +38,7 @@ public class Main {
 		Database.users.add(new UserProfile("winger","Jeff", "fuck","you",Roles.OWNER));
 		db.printVendors();
 		db.printUsers();
+	//	db.printCustomers();
 	}
 
 	private void initialize() {
