@@ -3,6 +3,7 @@ package guiPkg;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 import pkg.VendorProfile;
@@ -47,10 +48,35 @@ public class VendorTableModel extends AbstractTableModel{
 			case 3:
 				return vp.getvAccount().getLastPaidAmount();
 			case 4:
-				return vp.getLastOrderDate().toGMTString();
+				if(vp.getLastOrderDate() != null) {
+					return vp.getLastOrderDate().toString();
+				}
+				return new String("");
 			default:
 				return null;
 		}
 	}
 
+	public void addRow(VendorProfile p) {
+		vendorList.add(p);
+		this.fireTableDataChanged();
+	}
+	
+	public void removeRow(int index) {
+		//TODO need to make sure only delete where balance is 0
+		if(index != -1) {
+			if(vendorList.elementAt(index).getvAccount().getBalance() == 0) {
+				if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a vendor will also delete all purchase orders associated with that vendor. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
+					vendorList.remove(index);
+					this.fireTableDataChanged();
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Error - Account has a remaining balance. Cannot delete if non-zero.", "Deletion Error", JOptionPane.OK_OPTION);
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Error - must select an account with a balance of 0 for deletion operation", "Deletion Error", JOptionPane.OK_OPTION);
+		}
+	}
 }

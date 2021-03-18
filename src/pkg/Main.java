@@ -35,7 +35,6 @@ public class Main {
 		initialize();
 		db = new Database();
 		vendorTab = new VendorListGUI(Database.vendors);
-		Database.users.add(new UserProfile("winger","Jeff", "fuck","you",Roles.OWNER));
 		db.printVendors();
 		db.printUsers();
 	}

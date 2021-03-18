@@ -4,10 +4,10 @@ public class PersonalInformation implements Comparable<PersonalInformation> {
 	String fullName;
 	String streetAddress;
 	String city;
-	String state;
+	States state;
 	String phone;
 	
-	public PersonalInformation(String fullName, String streetAddress, String city, String state, String phone) {
+	public PersonalInformation(String fullName, String streetAddress, String city, States state, String phone) {
 		this.fullName = fullName;
 		this.streetAddress = streetAddress;
 		this.city = city;
@@ -48,10 +48,10 @@ public class PersonalInformation implements Comparable<PersonalInformation> {
 	}
 
 	public String getState() {
-		return state;
+		return state.toString();
 	}
 
-	public void setState(String state) {
+	public void setState(States state) {
 		this.state = state;
 	}
 

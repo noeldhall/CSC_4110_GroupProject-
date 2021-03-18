@@ -49,7 +49,5 @@ public class UserTableModel extends AbstractTableModel{
 				return null;
 		}
 	}
-	
-
 
 }

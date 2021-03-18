@@ -119,4 +119,35 @@ public class Database {
 		}
 		return null;			
 	}
+	
+	public static int generateVendorID() {
+		int uniInt = 1;
+		for(VendorProfile vp: vendors) {
+			if(uniInt == Integer.parseInt(vp.getVendorID())) {
+				uniInt++;
+			}
+			else {
+				return uniInt;
+			}
+		}
+		return 0;
+	}
+	
+	public VendorProfile searchVendorID(String id) {
+		for(VendorProfile vp : vendors) {
+			if(vp.vendorID.equals(id)) {
+				return vp;
+			}
+		}
+		return null;
+	}
+	
+	public VendorProfile searchVendorName(String name) {
+		for(VendorProfile vp : vendors) {
+			if(vp.personal.fullName.equals(name)) {
+				return vp;
+			}
+		}
+		return null;
+	}
 }

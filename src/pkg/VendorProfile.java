@@ -13,19 +13,22 @@ public class VendorProfile implements Comparable<VendorProfile>{
 	public VendorProfile(String[] data) {
 			for(int x = 0; x < data.length; x++) {
 				vendorID = data[0];
-				personal = new PersonalInformation(data[1], data[2], data[3], data[4], data[5]);
+				personal = new PersonalInformation(data[1], data[2], data[3], States.valueOf(data[4]), data[5]);
 				vAccount = new VendorAccount(Double.parseDouble(data[6]), Double.parseDouble(data[7]));
 				lastOrderDate = new Date(data[8]);
 				discountStartDate = new Date(data[9]);
 			}
 	}
 	
-	public VendorProfile(String vendorID, PersonalInformation personal, Date lastOrderDate, Date discountStartDate) {
-		this.vendorID = vendorID;
+	public VendorProfile(PersonalInformation personal) {
+		//TODO test vendorID autogen
+		vendorID = formatID(Database.generateVendorID());
 		this.personal = personal;
 		vAccount = new VendorAccount();
-		this.lastOrderDate = lastOrderDate;
-		this.discountStartDate = discountStartDate;
+		lastOrderDate = null;
+		discountStartDate = null;
+		//TODO init date to null maybe?
+		//TODO init date to null maybe?
 	}
 	
 	public String toString() {
@@ -45,10 +48,6 @@ public class VendorProfile implements Comparable<VendorProfile>{
 	
 	public String getVendorID() {
 		return vendorID;
-	}
-
-	public void setVendorID(String vendorID) {
-		this.vendorID = vendorID;
 	}
 
 	public PersonalInformation getPersonal() {
@@ -82,5 +81,13 @@ public class VendorProfile implements Comparable<VendorProfile>{
 	public void setDiscountStartDate(Date discountStartDate) {
 		this.discountStartDate = discountStartDate;
 	}
-
+	
+	private String formatID(int val) {
+		//convert our integer value
+		String id = Integer.toString(val);
+		for(int x = id.length(); x < 6; x++) {
+			id = "0" + id;
+		}
+		return id;
+	}
 }
