@@ -145,7 +145,7 @@ public class Database {
 	
 	public static VendorProfile searchVendorName(String name) {
 		for(VendorProfile vp : vendors) {
-			if(vp.personal.fullName.trim().equals(name)) {
+			if(vp.personal.fullName.trim().equalsIgnoreCase(name)) {
 				return vp;
 			}
 		}
@@ -183,6 +183,7 @@ public class Database {
 		}
 		return false;
 	}
+
 	public static boolean searchIDMatch(String ID) {
 		for(UserProfile vp : users) {
 			if(vp.userID.equals(ID)) {

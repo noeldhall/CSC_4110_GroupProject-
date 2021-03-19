@@ -34,7 +34,11 @@ public class VendorTableModel extends AbstractTableModel{
 		// returns the number of columns in our table
 		return columnNames.length;
 	}
-
+	
+	public VendorProfile getRow(int rowIndex) {
+		return vendorList.get(rowIndex);
+	}
+	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub

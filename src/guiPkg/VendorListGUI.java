@@ -3,6 +3,8 @@ package guiPkg;
 import java.util.Vector;
 
 import javax.swing.JPanel;
+
+import pkg.Database;
 import pkg.PersonalInformation;
 import pkg.VendorProfile;
 import javax.swing.JTable;
@@ -10,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -18,6 +22,8 @@ import javax.swing.RowFilter;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class VendorListGUI extends JPanel {
 	private static final long serialVersionUID = 7727161324173086559L;
@@ -80,7 +86,34 @@ public class VendorListGUI extends JPanel {
 					public void changedUpdate(DocumentEvent e) {
 						newFilter();
 					}
-                });
+        });
+        
+		searchField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				table.clearSelection();
+				searchField.setText("");
+			}
+		});
+        
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if(!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
+					System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
+					VendorProfile vp = Database.searchVendorName(((String)table.getValueAt(table.getSelectedRow(), 0)).trim());
+					if(vp != null) {
+						VendorProfileGUI profile = new VendorProfileGUI();
+						profile.setFields(vp);
+						if(JOptionPane.showConfirmDialog(null, profile, "Vendor Profile", JOptionPane.OK_CANCEL_OPTION) == 0) {
+							//TODO object not updating for some reason, need to fix.
+							vp = profile.getProfile();
+							model.fireTableDataChanged();
+						}
+					}
+				}
+			}
+        });
 		
 		add(addVendorBtn);
 		add(deleteVendorBtn);

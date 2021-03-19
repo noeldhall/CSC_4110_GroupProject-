@@ -31,7 +31,7 @@ public class UserTableModel extends AbstractTableModel{
 		// returns the number of columns in our table
 		return columnNames.length;
 	}
-
+	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
