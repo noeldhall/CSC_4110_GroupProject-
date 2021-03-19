@@ -1,5 +1,9 @@
 package pkg;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 public class UserProfile {
     String lastName;
@@ -83,7 +87,9 @@ public class UserProfile {
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		if(lastName.length() <= 15)
+			this.lastName = lastName;
+		else JOptionPane.showMessageDialog(null, "Last name must be less than 15 charachters.");
 	}
 
 	public String getFirstName() {
@@ -91,7 +97,9 @@ public class UserProfile {
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		if(firstName.length() <= 15)
+			this.firstName = firstName;
+		else JOptionPane.showMessageDialog(null, "First name must be less than 15 charachters.");
 	}
 
 	public String getUserID() {
@@ -99,7 +107,10 @@ public class UserProfile {
 	}
 
 	public void setUserID(String userID) {
-		this.userID = userID;
+		if(userID.matches("[A-Za-z0-9]+") && userID.length() <= 6)
+			this.userID = userID;
+		else JOptionPane.showMessageDialog(null, "UserID must be less than 6 charachters and alphanumeric.");
+		
 	}
 
 	public String getPassword() {
@@ -107,7 +118,11 @@ public class UserProfile {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
+        Matcher matcher = pattern.matcher(password);
+		if(matcher.find())
+			this.password = password;
+		else JOptionPane.showMessageDialog(null, "Password must be a combination of alpha numeric and special characters and minimum 8 and maximum 16 characters.");
 	}
 
 	public Roles getUserRole() {

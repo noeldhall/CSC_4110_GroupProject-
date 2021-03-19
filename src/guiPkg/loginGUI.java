@@ -13,15 +13,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class loginGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField1;
     private JTextField textField2;
     private JButton loginButton;
+    private JButton btnNewButton;
 
     public loginGUI() {
     	//invalidLbl.setEnabled(false);
+    	
         $$$setupUI$$$();
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -29,8 +33,6 @@ public class loginGUI extends JPanel {
             	UserProfile up = Database.login(textField1.getText(), textField2.getText());
             	if( up != null) {
             		Database.currentUser = up;
-            		textField1.setText("");
-            		textField2.setText("");
             		Main.swapToMain(up.getUserRole());
             	}
             	else {
@@ -41,32 +43,80 @@ public class loginGUI extends JPanel {
     }
     
     private void $$$setupUI$$$() {
-        setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         setBackground(new Color(-16711684));
         
         textField1 = new JTextField();
-        add(textField1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         
         textField2 = new JTextField();
-        add(textField2, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         
         loginButton = new JButton();
         loginButton.setText("Login");
-        
-        add(loginButton, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
+        label1.setHorizontalAlignment(SwingConstants.CENTER);
         Font label1Font = this.$$$getFont$$$(null, -1, 16, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setForeground(new Color(-16777216));
         label1.setText("Username:");
-        add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_SOUTH, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
+        label2.setHorizontalAlignment(SwingConstants.CENTER);
         label2.setEnabled(true);
         Font label2Font = this.$$$getFont$$$(null, -1, 16, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
         label2.setForeground(new Color(-16777216));
         label2.setText("Password:");
-        add(label2, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_SOUTH, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        
+        btnNewButton = new JButton("Exit");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.exit(0);
+        	}
+        });
+        GroupLayout groupLayout = new GroupLayout(this);
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(199)
+        					.addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addGap(49))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(200)
+        					.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addGap(50))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(150)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(textField2, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        						.addComponent(textField1, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(197)
+        					.addComponent(loginButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addGap(46))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(200)
+        					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addGap(49)))
+        			.addGap(230))
+        );
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(21)
+        			.addComponent(label1, GroupLayout.PREFERRED_SIZE, 11, Short.MAX_VALUE)
+        			.addGap(18)
+        			.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 17, Short.MAX_VALUE)
+        			.addGap(28)
+        			.addComponent(label2, GroupLayout.PREFERRED_SIZE, 11, Short.MAX_VALUE)
+        			.addGap(18)
+        			.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 17, Short.MAX_VALUE)
+        			.addGap(18)
+        			.addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
+        			.addGap(72)
+        			.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
+        			.addGap(111))
+        );
+        setLayout(groupLayout);
     }
 
     /**

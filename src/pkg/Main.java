@@ -62,12 +62,8 @@ public class Main {
 		
 		manager = new ManagerGUI();
 		supplierTab = new VendorSearchGUI();
-<<<<<<< Upstream, based on origin/master
-		
-=======
 
->>>>>>> eb9f3fd vzd
-		
+	
 	}
 	
 	public static void swapPanel(JPanel panel) {
@@ -121,11 +117,7 @@ public class Main {
 		layeredPane.add(login);
 		layeredPane.repaint();
 		layeredPane.revalidate();
-<<<<<<< Upstream, based on origin/master
-
-=======
 		
->>>>>>> eb9f3fd vzd
 		Database.currentUser = null;
 	}
 }

@@ -26,7 +26,6 @@ public class UpdateUserGUI extends JPanel {
 	private JTextField firstNametxtField;
 	private JTextField LastNametxtField;
 	private JTextField UserIDtxtField;
-	private JTextField PasstxtField;
 
 	/**
 	 * Create the panel.
@@ -56,13 +55,6 @@ public class UpdateUserGUI extends JPanel {
 		
 		UserIDtxtField.setText(Database.findUser(userIDMan.getText()).getUserID());
 		
-		JLabel lblNewLabel_3 = new JLabel("Password:");
-		
-		PasstxtField = new JTextField();
-		PasstxtField.setColumns(10);
-		
-		PasstxtField.setText(Database.findUser(userIDMan.getText()).getPassword());
-		
 		JLabel lblNewLabel_4 = new JLabel("Role:");
 		
 		JComboBox RolecomboBox = new JComboBox();
@@ -75,12 +67,10 @@ public class UpdateUserGUI extends JPanel {
 				String firstName = firstNametxtField.getText();
 				String lastName = LastNametxtField.getText();
 				String userID = UserIDtxtField.getText();
-				String password = PasstxtField.getText();
 				Object selectedRole = RolecomboBox.getSelectedItem();
 				
 				Database.findUser(userIDMan.getText()).setFirstName(firstName);
 				Database.findUser(userIDMan.getText()).setLastName(lastName);
-				Database.findUser(userIDMan.getText()).setPassword(password);
 				Database.findUser(userIDMan.getText()).setUserRole((Roles) selectedRole);
 				Database.findUser(userIDMan.getText()).setUserID(userID);
 				JOptionPane.showMessageDialog(null, "User profile has been updated.");				
@@ -104,27 +94,23 @@ public class UpdateUserGUI extends JPanel {
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addComponent(lblNewLabel)
-								.addComponent(lblNewLabel_3)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblNewLabel_2)
 									.addGap(10)))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(PasstxtField, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(firstNametxtField, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-											.addGap(18)
-											.addComponent(lblNewLabel_1))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(UserIDtxtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(lblNewLabel_4)))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(RolecomboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(LastNametxtField, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))))
+									.addComponent(firstNametxtField, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(lblNewLabel_1))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(UserIDtxtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblNewLabel_4)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(RolecomboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(LastNametxtField, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(187)
 							.addComponent(UpdateUserbtn)))
@@ -139,11 +125,7 @@ public class UpdateUserGUI extends JPanel {
 						.addComponent(firstNametxtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1)
 						.addComponent(LastNametxtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(27)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(PasstxtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(30)
+					.addGap(77)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2)
 						.addComponent(UserIDtxtField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)

@@ -22,6 +22,8 @@ public class MainMenu extends JPanel {
 		tabs.addTab(panel.getName(),null, panel,null);
 	}
 	
-	
+	public void clearTabs() {
+		tabs.removeAll();
+	}
 
 }

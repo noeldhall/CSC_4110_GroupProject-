@@ -55,23 +55,28 @@ public class CreateUserGUI extends JPanel {
 		
 		JComboBox RolecomboBox = new JComboBox();
 		RolecomboBox.setModel(new DefaultComboBoxModel(Roles.values()));
-			
+		if(Database.currentUser.getUserRole() == Roles.ADMIN)
+		{
+			RolecomboBox.removeItemAt(1);
+			RolecomboBox.removeItemAt(1);
+		}
 		JButton AddUserbtn = new JButton("Add User");
 		AddUserbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String firstName = firstNametxtField.getText();
-				String lastName = LastNametxtField.getText();
-				String userID = UserIDtxtField.getText();
-				String password = PasstxtField.getText();
-				Object selectedRole = RolecomboBox.getSelectedItem();
+				UserProfile newUser = new UserProfile();
+				newUser.setFirstName(firstNametxtField.getText());
+				newUser.setLastName(LastNametxtField.getText());
+				newUser.setUserID(UserIDtxtField.getText());
+				newUser.setPassword(PasstxtField.getText());
+				newUser.setUserRole((Roles) RolecomboBox.getSelectedItem());
 				
-				if(Database.searchIDMatch(userID))
+				if(Database.searchIDMatch(newUser.getUserID()))
 				{
 					JOptionPane.showMessageDialog(null, "User profile already exists.");
 				}
 				else
 				{
-					Database.users.add(new UserProfile(lastName, firstName, userID, password, (Roles) selectedRole));
+					Database.users.add(newUser);
 					JOptionPane.showMessageDialog(null, "User profile has been created.");
 				}
 			}
