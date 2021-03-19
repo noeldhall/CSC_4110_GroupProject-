@@ -152,5 +152,12 @@ public class Database {
 		return null;
 	}
 	
-	
+	public static boolean searchIDMatch(String ID) {
+		for(UserProfile vp : users) {
+			if(vp.userID.equals(ID)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

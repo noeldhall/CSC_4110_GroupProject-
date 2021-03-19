@@ -15,8 +15,11 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import pkg.Database;
+import pkg.Main;
+import pkg.PersonalInformation;
 import pkg.Roles;
 import pkg.UserProfile;
+import pkg.VendorProfile;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,7 +29,7 @@ public class ManagerGUI extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField UserIDtxtField;
+	public JTextField UserIDtxtField;
 	private JTextField textField_1;
 	private JTextField txtPassReset;
 	private JButton btnNewButton;
@@ -40,9 +43,9 @@ public class ManagerGUI extends JPanel{
 		setBackground(Color.CYAN);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 190, 212, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{26, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{26, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel = new JLabel("Enter User ID:");
@@ -100,17 +103,11 @@ public class ManagerGUI extends JPanel{
 		JButton btnCreateProfile = new JButton("Create User Profile");
 		btnCreateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String firstName = JOptionPane.showInputDialog(null, "Enter first name:");
-				String lastName = JOptionPane.showInputDialog(null, "Enter last name:");
-				String userID = JOptionPane.showInputDialog(null, "Enter user ID:");
-				String password = JOptionPane.showInputDialog(null, "Enter password:");
-				Object[] possibleValues = Roles.values();
-				Object selectedValue = JOptionPane.showInputDialog(null, "Assign a role:", "Input", JOptionPane.INFORMATION_MESSAGE, null, 
-						possibleValues, possibleValues[0]);
-				
-				Database.users.add(new UserProfile(lastName, firstName, userID, password, (Roles) selectedValue));
+				CreateUserGUI makeUserProfilePanel = new CreateUserGUI(UserIDtxtField);
+				JOptionPane.showMessageDialog(null, makeUserProfilePanel, "Create User Profile", JOptionPane.CLOSED_OPTION);
 			}
 		});
+		
 		GridBagConstraints gbc_btnCreateProfile = new GridBagConstraints();
 		gbc_btnCreateProfile.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCreateProfile.insets = new Insets(0, 0, 5, 5);
@@ -119,6 +116,12 @@ public class ManagerGUI extends JPanel{
 		add(btnCreateProfile, gbc_btnCreateProfile);
 		
 		JButton btnNewButton_3 = new JButton("Update User Profile");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateUserGUI updateUserProfilePanel = new UpdateUserGUI(UserIDtxtField);
+				JOptionPane.showMessageDialog(null, updateUserProfilePanel, "Update User Profile", JOptionPane.CLOSED_OPTION);
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
@@ -189,6 +192,18 @@ public class ManagerGUI extends JPanel{
 		gbc_btnDeleteUser.gridx = 1;
 		gbc_btnDeleteUser.gridy = 8;
 		add(btnDeleteUser, gbc_btnDeleteUser);
+		
+		JButton btnNewButton_2 = new JButton("Log out");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_2.gridx = 3;
+		gbc_btnNewButton_2.gridy = 10;
+		add(btnNewButton_2, gbc_btnNewButton_2);
 
 	}
 }
