@@ -37,6 +37,7 @@ public class Main {
 		vendorTab = new VendorListGUI(Database.vendors);
 		db.printVendors();
 		db.printUsers();
+	//	db.printCustomers();
 	}
 
 	private void initialize() {
