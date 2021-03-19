@@ -43,7 +43,7 @@ public class Main {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Group 5 Term Project");
 		
 		frame.setBounds(480, 270, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
