@@ -33,7 +33,7 @@ public class Main {
 		});
 	}
 
-	public Main() {
+	public Main() {		
 		initialize();
 		db = new Database();
 		vendorTab = new VendorListGUI(Database.vendors);
@@ -62,7 +62,11 @@ public class Main {
 		
 		manager = new ManagerGUI();
 		supplierTab = new VendorSearchGUI();
+<<<<<<< Upstream, based on origin/master
 		
+=======
+
+>>>>>>> eb9f3fd vzd
 		
 	}
 	
@@ -117,7 +121,11 @@ public class Main {
 		layeredPane.add(login);
 		layeredPane.repaint();
 		layeredPane.revalidate();
+<<<<<<< Upstream, based on origin/master
 
+=======
+		
+>>>>>>> eb9f3fd vzd
 		Database.currentUser = null;
 	}
 }
