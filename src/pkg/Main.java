@@ -16,6 +16,7 @@ public class Main {
 	private static VendorListGUI vendorTab;
 	private static ManagerGUI manager;
 	private static VendorSearchGUI supplierTab;
+	private static DefaultLoginGUI defaultLogin;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -73,6 +74,9 @@ public class Main {
 	}
 
 	public static void swapToMain(Roles role) {
+		manager = new ManagerGUI();
+		menu = new MainMenu();
+		login = new loginGUI();
 		layeredPane.removeAll();
 		layeredPane.add(menu);
 		
@@ -85,14 +89,19 @@ public class Main {
 			menu.openTab(manager);
 			break;
 		case INVENTORY_MANAGER:
-			menu.openTab(manager);
+			defaultLogin = new DefaultLoginGUI();
+			swapPanel(defaultLogin);
 			break;
 		case PURCHASER:
 			menu.openTab(supplierTab);
 			break;
 		case ACCOUNTANT:
+			defaultLogin = new DefaultLoginGUI();
+			swapPanel(defaultLogin);
 			break;
 		case SALES_PERSON:
+			defaultLogin = new DefaultLoginGUI();
+			swapPanel(defaultLogin);
 			break;
 		default:
 			break;
@@ -103,9 +112,12 @@ public class Main {
 	}
 	
 	public static void swapToLogin() {
+		menu.clearTabs();
 		layeredPane.removeAll();
 		layeredPane.add(login);
 		layeredPane.repaint();
 		layeredPane.revalidate();
+
+		Database.currentUser = null;
 	}
 }
