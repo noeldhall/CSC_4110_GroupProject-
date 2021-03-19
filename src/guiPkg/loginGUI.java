@@ -7,6 +7,7 @@ import javax.swing.text.StyleContext;
 
 import pkg.Database;
 import pkg.Main;
+import pkg.UserProfile;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,8 +26,10 @@ public class loginGUI extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	if(Database.login(textField1.getText(), textField2.getText())) {
-            		Main.swapToMain();           	
+            	UserProfile up = Database.login(textField1.getText(), textField2.getText());
+            	if( up != null) {
+            		Database.currentUser = up;
+            		Main.swapToMain(up.getUserRole());
             	}
             	else {
             		JOptionPane.showMessageDialog(null, "Please enter a valid username and password.","Invalid Login",JOptionPane.PLAIN_MESSAGE);

@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
+import pkg.Database;
 import pkg.VendorProfile;
 
 public class VendorTableModel extends AbstractTableModel{
@@ -58,8 +59,13 @@ public class VendorTableModel extends AbstractTableModel{
 	}
 
 	public void addRow(VendorProfile p) {
-		vendorList.add(p);
-		this.fireTableDataChanged();
+		if(Database.searchVendorName(p.getPersonal().getFullName()) != null) {
+			vendorList.add(p);
+			this.fireTableDataChanged();
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Integrity Constraint Violation - Duplicate Vendor Name - row rejected", "insert Error", JOptionPane.OK_OPTION);
+		}
 	}
 	
 	public void removeRow(int index) {

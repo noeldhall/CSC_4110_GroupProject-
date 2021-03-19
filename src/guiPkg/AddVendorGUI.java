@@ -27,6 +27,7 @@ public class AddVendorGUI extends JPanel {
 		JLabel stateLbl = new JLabel("State:");
 		JLabel phoneLbl = new JLabel("Phone Number:");
 		
+		//init data
 		nameTxtBox = new JTextField();
 		nameTxtBox.setColumns(10);
 		streetTxtBox = new JTextField();

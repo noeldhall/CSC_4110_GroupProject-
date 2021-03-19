@@ -35,8 +35,8 @@ public class Main {
 		initialize();
 		db = new Database();
 		vendorTab = new VendorListGUI(Database.vendors);
-		db.printVendors();
-		db.printUsers();
+		Database.printVendors();
+		Database.printUsers();
 	//	db.printCustomers();
 	}
 
@@ -69,11 +69,32 @@ public class Main {
 		layeredPane.revalidate();
 	}
 
-	public static void swapToMain() {
+	public static void swapToMain(Roles role) {
 		layeredPane.removeAll();
 		layeredPane.add(menu);
-		menu.openTab(manager);
-		menu.openTab(vendorTab);
+		
+		switch(role) {
+		case OWNER:
+			menu.openTab(manager);
+			menu.openTab(vendorTab);
+			break;
+		case ADMIN:
+			menu.openTab(manager);
+			break;
+		case INVENTORY_MANAGER:
+			menu.openTab(manager);
+			break;
+		case PURCHASER:
+			menu.openTab(vendorTab);
+			break;
+		case ACCOUNTANT:
+			break;
+		case SALES_PERSON:
+			break;
+		default:
+			break;
+		}
+
 		layeredPane.repaint();
 		layeredPane.revalidate();
 	}

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Database {
 	public static Vector<VendorProfile> vendors;
 	public static Vector<UserProfile> users;
-	public static Vector<CustomerProfile> customers;
+	public static UserProfile currentUser;
 	private String vendorData;
 	private String userData;
 	private String customerData;
@@ -21,10 +21,8 @@ public class Database {
 		customerData = "data\\Customer Profiles Data.txt";
 		vendors = new Vector<VendorProfile>();
 		users = new Vector<UserProfile>();
-		customers=new Vector<CustomerProfile>();
 		loadVendorData(vendorData);
 		loadUserData(userData);
-		loadCustomerData(customerData);
 	}
 	
 	private void loadVendorData(String s) {
@@ -46,7 +44,7 @@ public class Database {
 		}
 	}
 	
-	public void printVendors() {
+	public static void printVendors() {
 		//prints a list of vendors from our vector - test purposes only
 		for(VendorProfile vp : vendors) {
 			System.out.println(vp.toString());
@@ -72,40 +70,14 @@ public class Database {
 		}
 	}
 
-	public void printUsers() {
+	public static void printUsers() {
 		//prints a list of users from our vector - test purposes only
 		for(UserProfile vp : users) {
 			System.out.println(vp.toString());
 		}
 	}
 	
-	private void loadCustomerData(String s) {
-		DataReader reader = new DataReader(s);
-		try {
-			Vector<String[]> tempData = reader.readFile();
-			for(String[] d : tempData){
-				customers.add(new CustomerProfile(d));
-			}
-		}
-		catch(FileNotFoundException e) {
-			System.out.println("fileNotFound - " + s);
-			System.out.println(e.getMessage());
-		}
-		catch(IOException e) {
-			System.out.println("IOException in Database");
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	public void printCustomers() {
-		//prints a list of customers from our vector - test purposes only
-		for(CustomerProfile vp : customers) {
-			System.out.println(vp.toString());
-		}
-	}
-	
-	
-	public static boolean login(String username, String password) {
+	public static UserProfile login(String username, String password) {
 		boolean loginFlag = false;
 		
 		for(UserProfile up : users) {
@@ -113,10 +85,10 @@ public class Database {
 			loginFlag = up.login(username, password);
 			if(loginFlag == true) {
 				//if the login is ever successful, we can just break, we found our user.
-				break;
+				return up;
 			}		
 		}
-		return loginFlag;
+		return null;
 	}
 		
 	public static UserProfile findUser(String userID) {
@@ -162,7 +134,7 @@ public class Database {
 		return 0;
 	}
 	
-	public VendorProfile searchVendorID(String id) {
+	public static VendorProfile searchVendorID(String id) {
 		for(VendorProfile vp : vendors) {
 			if(vp.vendorID.equals(id)) {
 				return vp;
@@ -171,7 +143,7 @@ public class Database {
 		return null;
 	}
 	
-	public VendorProfile searchVendorName(String name) {
+	public static VendorProfile searchVendorName(String name) {
 		for(VendorProfile vp : vendors) {
 			if(vp.personal.fullName.equals(name)) {
 				return vp;
@@ -179,4 +151,6 @@ public class Database {
 		}
 		return null;
 	}
+	
+	
 }

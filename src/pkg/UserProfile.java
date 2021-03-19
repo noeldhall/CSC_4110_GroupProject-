@@ -8,17 +8,15 @@ public class UserProfile {
     String password;
     Roles userRole;
 
+    public UserProfile() {
+    	
+    }
+    
     public boolean login(String id, String pass){
         if(userID.equals(id))
             if(pass.isEmpty() && password.isEmpty())
             {
-            	//TODO need to move this from console input to GUI
-                System.out.println("Type new password: ");
-
-                Scanner scanner = new Scanner(System.in);
-                pass = scanner.nextLine();
                 createPassword(pass); // TODO create new password
-                //scanner.close();
             }
             else if(password.equals(pass))
                 return true;
