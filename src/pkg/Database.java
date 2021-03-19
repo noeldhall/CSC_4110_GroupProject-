@@ -164,6 +164,7 @@ public class Database {
 	}
 
 	public static boolean deleteVendor(VendorProfile p) {
+		//find and delete a vendor profile based on a passed in vendor profile
 		if(p.getvAccount().getBalance() == 0) {
 			for(VendorProfile profile: vendors) {
 				if(p.compareTo(profile) == 0) {
