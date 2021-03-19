@@ -59,12 +59,8 @@ public class VendorTableModel extends AbstractTableModel{
 	}
 
 	public void addRow(VendorProfile p) {
-		if(Database.searchVendorName(p.getPersonal().getFullName()) != null) {
-			vendorList.add(p);
+		if(Database.insertVendor(p)) {
 			this.fireTableDataChanged();
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Integrity Constraint Violation - Duplicate Vendor Name - row rejected", "insert Error", JOptionPane.OK_OPTION);
 		}
 	}
 	

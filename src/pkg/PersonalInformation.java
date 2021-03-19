@@ -7,6 +7,9 @@ public class PersonalInformation implements Comparable<PersonalInformation> {
 	States state;
 	String phone;
 	
+	public PersonalInformation() {
+		
+	}
 	public PersonalInformation(String fullName, String streetAddress, String city, States state, String phone) {
 		this.fullName = fullName;
 		this.streetAddress = streetAddress;

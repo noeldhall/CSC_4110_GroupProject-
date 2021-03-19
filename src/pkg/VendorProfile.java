@@ -9,6 +9,10 @@ public class VendorProfile implements Comparable<VendorProfile>{
 	Date lastOrderDate;
 	Date  discountStartDate;
 	
+	public VendorProfile() {
+		
+	}
+	
 	@SuppressWarnings("deprecation")
 	public VendorProfile(String[] data) {
 			for(int x = 0; x < data.length; x++) {

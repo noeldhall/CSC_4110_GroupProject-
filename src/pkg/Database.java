@@ -145,12 +145,42 @@ public class Database {
 	
 	public static VendorProfile searchVendorName(String name) {
 		for(VendorProfile vp : vendors) {
-			if(vp.personal.fullName.equals(name)) {
+			if(vp.personal.fullName.trim().equals(name)) {
 				return vp;
 			}
 		}
 		return null;
 	}
 	
+	public static boolean insertVendor(VendorProfile p) {
+		if(Database.searchVendorName(p.getPersonal().getFullName()) == null) {
+			vendors.add(p);
+			return true;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Integrity Constraint Violation - Duplicate Vendor Name - row rejected", "insert Error", JOptionPane.OK_OPTION);
+			return false;
+		}
+	}
+	
+	public static boolean deleteVendor(VendorProfile p) {
+		if(p.getvAccount().getBalance() == 0) {
+			for(VendorProfile profile: vendors) {
+				if(p.compareTo(profile) == 0) {
+					if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a vendor will also delete all purchase orders associated with that vendor. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
+						vendors.remove(profile);
+						return true;
+					}
+					else {
+						break;
+					}
+				}
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Error - Account has a remaining balance. Cannot delete if non-zero.", "Deletion Error", JOptionPane.OK_OPTION);
+		}
+		return false;
+	}
 	
 }

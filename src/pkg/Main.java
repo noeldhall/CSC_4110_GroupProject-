@@ -15,6 +15,7 @@ public class Main {
 	private static JLayeredPane layeredPane;
 	private static VendorListGUI vendorTab;
 	private static ManagerGUI manager;
+	private static VendorSearchGUI supplierTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -46,6 +47,7 @@ public class Main {
 		frame.setBounds(480, 270, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frame.setResizable(false);
 		
 		layeredPane = new JLayeredPane();
 		frame.getContentPane().add(layeredPane);
@@ -58,6 +60,7 @@ public class Main {
 		layeredPane.add(menu, "2");
 		
 		manager = new ManagerGUI();
+		supplierTab = new VendorSearchGUI();
 		
 		
 	}
@@ -85,7 +88,7 @@ public class Main {
 			menu.openTab(manager);
 			break;
 		case PURCHASER:
-			menu.openTab(vendorTab);
+			menu.openTab(supplierTab);
 			break;
 		case ACCOUNTANT:
 			break;
