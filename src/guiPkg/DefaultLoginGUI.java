@@ -9,6 +9,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pkg.Database;
+import pkg.Main;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DefaultLoginGUI extends JPanel {
 	private JTextField textField;
@@ -25,14 +30,24 @@ public class DefaultLoginGUI extends JPanel {
 		textField.setText(Database.currentUser.getUserRole().toString());
 		textField.setEditable(false);
 		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Log out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(40)
-					.addComponent(lblNewLabel)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnNewButton)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(109, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -42,7 +57,9 @@ public class DefaultLoginGUI extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(162, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+					.addComponent(btnNewButton)
+					.addGap(52))
 		);
 		setLayout(groupLayout);
 

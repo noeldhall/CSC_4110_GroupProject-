@@ -5,6 +5,7 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import pkg.Database;
+import pkg.Main;
 import pkg.PersonalInformation;
 import pkg.VendorProfile;
 import javax.swing.JTable;
@@ -114,6 +115,14 @@ public class VendorListGUI extends JPanel {
 				}
 			}
         });
+		
+		JButton Logoutbtn = new JButton("Log out");
+		Logoutbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
+		add(Logoutbtn);
 		
 		add(addVendorBtn);
 		add(deleteVendorBtn);

@@ -33,14 +33,16 @@ public class UserProfile {
     }
 
     public boolean createPassword(String pass){          //when user profile is first login
-        if(pass.length() >= 8 && pass.length() <= 16)
+    	pass = JOptionPane.showInputDialog(null, "Enter a new password:");
+       // if(pass.length() >= 8 && pass.length() <= 16)
         {
-            password = pass;
+        	setPassword(pass);
+            //password = pass;
             System.out.println(userID + ", " + password);
             return true;
         }
 
-        return false;
+       // return false;
     }
     
     public boolean changeRole(Object object){          
