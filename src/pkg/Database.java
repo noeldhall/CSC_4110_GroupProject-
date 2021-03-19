@@ -162,7 +162,14 @@ public class Database {
 			return false;
 		}
 	}
-	
+	public static boolean searchIDMatch(String ID) {
+		for(UserProfile vp : users) {
+			if(vp.userID.equals(ID)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public static boolean deleteVendor(VendorProfile p) {
 		if(p.getvAccount().getBalance() == 0) {
 			for(VendorProfile profile: vendors) {
@@ -182,5 +189,12 @@ public class Database {
 		}
 		return false;
 	}
-	
+	public static boolean searchIDMatch(String ID) {
+		for(UserProfile vp : users) {
+			if(vp.userID.equals(ID)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

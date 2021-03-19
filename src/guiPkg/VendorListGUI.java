@@ -3,8 +3,6 @@ package guiPkg;
 import java.util.Vector;
 
 import javax.swing.JPanel;
-
-import pkg.Database;
 import pkg.PersonalInformation;
 import pkg.VendorProfile;
 import javax.swing.JTable;
@@ -17,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
-
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

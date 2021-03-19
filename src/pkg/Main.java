@@ -102,4 +102,10 @@ public class Main {
 		layeredPane.revalidate();
 	}
 	
+	public static void swapToLogin() {
+		layeredPane.removeAll();
+		layeredPane.add(login);
+		layeredPane.repaint();
+		layeredPane.revalidate();
+	}
 }

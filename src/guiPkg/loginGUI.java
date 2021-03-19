@@ -29,6 +29,8 @@ public class loginGUI extends JPanel {
             	UserProfile up = Database.login(textField1.getText(), textField2.getText());
             	if( up != null) {
             		Database.currentUser = up;
+            		textField1.setText("");
+            		textField2.setText("");
             		Main.swapToMain(up.getUserRole());
             	}
             	else {
