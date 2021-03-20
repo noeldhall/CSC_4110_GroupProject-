@@ -72,10 +72,10 @@ public class Database {
 		}
 	}
 	
-	public void printCustomers() {
+	public static void printCustomers() {
 		//prints a list of customers from our vector - test purposes only
-		for(CustomerProfile vp : customers) {
-			System.out.println(vp.toString());
+		for(CustomerProfile cp : customers) {
+			System.out.println(cp.toString());
 		}
 	}
 

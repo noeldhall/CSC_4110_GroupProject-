@@ -32,7 +32,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 /**
- * @author Noel Hall
  *
  */
 public class CustomerListGUI extends JPanel {
@@ -43,7 +42,7 @@ public class CustomerListGUI extends JPanel {
 	
 	public CustomerListGUI(Vector<CustomerProfile> data) {
 		//---basic settings---
-		setName("Supplier");
+		setName("Customer");
 		
 		//VARIABLE DECLARATION AND INITIALIZATION
 		final CustomerTableModel model = new CustomerTableModel(data);
@@ -59,7 +58,7 @@ public class CustomerListGUI extends JPanel {
 		searchField = new JTextField();
 		searchField.setColumns(10);
 		
-		//make our table
+		//make table
 		table.setAutoCreateRowSorter(true);
 		scrollPane.setViewportView(table);
 		table.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -111,10 +110,8 @@ public class CustomerListGUI extends JPanel {
 					CustomerProfile cp = Database.searchCustomerName(((String)table.getValueAt(table.getSelectedRow(), 0)).trim());
 					if(cp != null) {
 						CustomerProfileGUI profile = new CustomerProfileGUI();
-						//TODO: implement setFields in Customer Profile GUI
 						profile.setFields(cp);
-						if(JOptionPane.showConfirmDialog(null, profile, "Vendor Profile", JOptionPane.OK_CANCEL_OPTION) == 0) {
-							//TODO: implement getProfile in Custommer Profile GUI
+						if(JOptionPane.showConfirmDialog(null, profile, "Customer Profile", JOptionPane.OK_CANCEL_OPTION) == 0) {
 							cp = profile.getProfile();
 							model.fireTableDataChanged();
 						}

@@ -38,7 +38,7 @@ public class UserTableGUI extends JPanel {
 		scrollPane.setViewportView(table);
 		table.setFillsViewportHeight(true);
 		
-		TableRowSorter<TableModel> search = new TableRowSorter<>(table.getModel());
+		final TableRowSorter<TableModel> search = new TableRowSorter<>(table.getModel());
 		JLabel lblNewLabel = new JLabel("Search:");
 		table.setRowSorter(search);
 		SearchtxtField = new JTextField();

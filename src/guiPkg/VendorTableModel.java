@@ -85,4 +85,6 @@ public class VendorTableModel extends AbstractTableModel{
 			JOptionPane.showMessageDialog(null, "Error - must select an account with a balance of 0 for deletion operation", "Deletion Error", JOptionPane.OK_OPTION);
 		}
 	}
+	
+	
 }

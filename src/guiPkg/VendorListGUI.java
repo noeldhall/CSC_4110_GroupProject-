@@ -40,7 +40,7 @@ public class VendorListGUI extends JPanel {
 		setName("Supplier");
 		
 		//VARIABLE DECLARATION AND INITIALIZATION
-		VendorTableModel model = new VendorTableModel(data);
+		final VendorTableModel model = new VendorTableModel(data);
 		JScrollPane scrollPane = new JScrollPane();
 		JButton addVendorBtn = new JButton("New Vendor");
 		JButton deleteVendorBtn = new JButton("Delete Vendor");

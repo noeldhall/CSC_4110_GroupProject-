@@ -53,7 +53,7 @@ public class CreateUserGUI extends JPanel {
 		
 		JLabel lblNewLabel_4 = new JLabel("Role:");
 		
-		JComboBox RolecomboBox = new JComboBox();
+		final JComboBox RolecomboBox = new JComboBox();
 		RolecomboBox.setModel(new DefaultComboBoxModel(Roles.values()));
 		if(Database.currentUser.getUserRole() == Roles.ADMIN)
 		{

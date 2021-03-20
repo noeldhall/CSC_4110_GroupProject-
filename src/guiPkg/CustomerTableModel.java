@@ -11,7 +11,6 @@ import java.util.Vector;
 
 import pkg.CustomerProfile;
 import pkg.Database;
-import pkg.VendorProfile;
 
 /**
  * @author Noel Hall
@@ -20,10 +19,10 @@ import pkg.VendorProfile;
 public class CustomerTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = 4254378981778670210L;
-	private final String[] columnNames = new String[] { "Name", "phone number", "balance", "last paid amount", "last order date"};
+	private final String[] columnNames = new String[] { "Name", "phone number", "balance", "last paid amount"};
 	private final Vector<CustomerProfile> customerList;
 	@SuppressWarnings("rawtypes")
-	private final Class[] columnClass = new Class[] { String.class, String.class, Double.class, Double.class, Date.class};
+	private final Class[] columnClass = new Class[] { String.class, String.class, Double.class, Double.class};
 	
 	
 	public CustomerTableModel(Vector<CustomerProfile> data) {
@@ -53,11 +52,6 @@ public class CustomerTableModel extends AbstractTableModel {
 				return cp.getCustomerAccount().getBalance();
 			case 3:
 				return cp.getCustomerAccount().getLastPaidAmount();
-			case 4:
-				if(cp.getLastOrderDate() != null) {
-					return cp.getLastOrderDate().toString();
-				}
-				return new String("");
 			default:
 				return null;
 		}
@@ -74,7 +68,7 @@ public class CustomerTableModel extends AbstractTableModel {
 		//TODO need to make sure only delete where balance is 0
 		if(index != -1) {
 			if(customerList.elementAt(index).getCustomerAccount().getBalance() == 0) {
-				if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a vendor will also delete all purchase orders associated with that vendor. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
+				if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a customer will also delete all invoices associated with that customer. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
 					customerList.remove(index);
 					this.fireTableDataChanged();
 				}

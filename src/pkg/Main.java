@@ -18,7 +18,7 @@ public class Main {
 	private static VendorSearchGUI supplierTab;
 	private static DefaultLoginGUI defaultLogin;
 	private static CustomerListGUI customerTab;
-	private static CustomerSearchGUI cTab;
+	private static CustomerSearchGUI customerSearchTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,9 +39,10 @@ public class Main {
 		initialize();
 		db = new Database();
 		vendorTab = new VendorListGUI(Database.vendors);
+		customerTab=new CustomerListGUI(Database.customers);
 		Database.printVendors();
 		Database.printUsers();
-	//	db.printCustomers();
+		Database.printCustomers();
 	}
 
 	private void initialize() {
@@ -64,6 +65,7 @@ public class Main {
 		
 		manager = new ManagerGUI();
 		supplierTab = new VendorSearchGUI();
+		customerSearchTab=new CustomerSearchGUI(); 
 
 	
 	}
@@ -87,6 +89,7 @@ public class Main {
 			menu.openTab(manager);
 			menu.openTab(vendorTab);
 			menu.openTab(customerTab);
+			menu.openTab(customerSearchTab);
 			break;
 		case ADMIN:
 			menu.openTab(manager);

@@ -30,7 +30,7 @@ public class UpdateUserGUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public UpdateUserGUI(JTextField userIDMan) {
+	public UpdateUserGUI(final JTextField userIDMan) {
 		setBackground(Color.CYAN);
 		//ManagerGUI userIDMan = new ManagerGUI();
 		
@@ -57,7 +57,7 @@ public class UpdateUserGUI extends JPanel {
 		
 		JLabel lblNewLabel_4 = new JLabel("Role:");
 		
-		JComboBox RolecomboBox = new JComboBox();
+		final JComboBox RolecomboBox = new JComboBox();
 		RolecomboBox.setModel(new DefaultComboBoxModel(Roles.values()));
 		RolecomboBox.setSelectedItem(Database.findUser(userIDMan.getText()).getUserRole());
 			

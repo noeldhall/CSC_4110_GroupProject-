@@ -26,7 +26,7 @@ public class VendorSearchGUI extends JPanel {
 		JButton deleteVendorBtn = new JButton("Delete Vendor");
 		JButton searchIDBtn = new JButton("Search by ID");
 		JButton searchNameBtn = new JButton("Search by Name");
-		VendorProfileGUI subPanel = new VendorProfileGUI();
+		final VendorProfileGUI subPanel = new VendorProfileGUI();
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(

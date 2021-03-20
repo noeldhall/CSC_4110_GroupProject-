@@ -27,6 +27,15 @@ public class CustomerProfile implements Comparable<CustomerProfile>{
 		
 	}
 	
+	public String toString() {
+		String data = "";
+		data += customerId + "\t";
+		data += customerInfo.toString();
+		data += customerAccount.toString();
+		data += lastOrderDate.toString() + "\t";
+		return data;
+	}
+	
 	private String formatID(int val) {
 		String id = Integer.toString(val);
 		for(int x = id.length(); x < 6; x++) {
