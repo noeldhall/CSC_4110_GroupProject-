@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class Database {
 	public static Vector<VendorProfile> vendors;
 	public static Vector<UserProfile> users;
+	public static Vector<CustomerProfile> customers;
 	public static UserProfile currentUser;
 	private String vendorData;
 	private String userData;
@@ -21,8 +22,10 @@ public class Database {
 		customerData = "data\\Customer Profiles Data.txt";
 		vendors = new Vector<VendorProfile>();
 		users = new Vector<UserProfile>();
+		customers=new Vector<CustomerProfile>();
 		loadVendorData(vendorData);
 		loadUserData(userData);
+		loadCustomerData(customerData);
 	}
 	
 	private void loadVendorData(String s) {
@@ -47,6 +50,31 @@ public class Database {
 	public static void printVendors() {
 		//prints a list of vendors from our vector - test purposes only
 		for(VendorProfile vp : vendors) {
+			System.out.println(vp.toString());
+		}
+	}
+
+	private void loadCustomerData(String s) {
+		DataReader reader = new DataReader(s);
+		try {
+			Vector<String[]> tempData = reader.readFile();
+			for(String[] d : tempData){
+				customers.add(new CustomerProfile(d));
+			}
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("fileNotFound - " + s);
+			System.out.println(e.getMessage());
+		}
+		catch(IOException e) {
+			System.out.println("IOException in Database");
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void printCustomers() {
+		//prints a list of customers from our vector - test purposes only
+		for(CustomerProfile vp : customers) {
 			System.out.println(vp.toString());
 		}
 	}
@@ -134,6 +162,20 @@ public class Database {
 		return 0;
 	}
 	
+	public static int generateCustomerID() {
+		int uniInt = generateVendorID()+1;
+		
+		for (CustomerProfile cp:customers)
+		{
+			if(uniInt==Integer.parseInt(cp.getCustomerId())) {
+				uniInt++;
+			}
+			else 
+				return uniInt;
+		}
+		return 0;
+	}
+	
 	public static VendorProfile searchVendorID(String id) {
 		for(VendorProfile vp : vendors) {
 			if(vp.vendorID.equals(id)) {
@@ -189,6 +231,56 @@ public class Database {
 			if(vp.userID.equals(ID)) {
 				return true;
 			}
+		}
+		return false;
+	}
+	
+	public static CustomerProfile searchCustomerID(String id) {
+		for(CustomerProfile cp : customers) {
+			if(cp.customerId.equals(id)) {
+				return cp;
+			}
+		}
+		return null;
+	}
+	
+	public static CustomerProfile searchCustomerName(String name) {
+		for(CustomerProfile cp : customers) {
+			if(cp.customerInfo.customerName.trim().equalsIgnoreCase(name)) {
+				return cp;
+			}
+		}
+		return null;
+	}
+	
+	public static boolean insertCustomer(CustomerProfile p) {
+		if(Database.searchVendorName(p.getCustomerInfo().getCustomerName()) == null) {
+			customers.add(p);
+			return true;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Integrity Constraint Violation - Duplicate Customer Name - row rejected", "insert Error", JOptionPane.OK_OPTION);
+			return false;
+		}
+	}
+	
+	public static boolean deleteCustomer(CustomerProfile p) {
+		//find and delete a vendor profile based on a passed in vendor profile
+		if(p.getCustomerAccount().getBalance() == 0) {
+			for(CustomerProfile profile: customers) {
+				if(p.compareTo(profile) == 0) {
+					if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a customer will also delete all invoices associated with that vendor. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
+						customers.remove(profile);
+						return true;
+					}
+					else {
+						break;
+					}
+				}
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Error - Account has a remaining balance. Cannot delete if non-zero.", "Deletion Error", JOptionPane.OK_OPTION);
 		}
 		return false;
 	}

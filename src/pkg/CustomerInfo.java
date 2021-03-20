@@ -1,16 +1,17 @@
 package pkg;
 
-public class CustomerInfo{
-	 private String customerName;
+public class CustomerInfo implements Comparable<CustomerInfo>{
+	 String customerName;
 	private String streetAddress;
 	private String city;
-	private String state;
+	private States state;
 	private String phone;
 	
-	public CustomerInfo(String cN, String sA, String c, String p) {
+	public CustomerInfo(String cN, String sA, String c,States s, String p) {
 		customerName=cN;
 		streetAddress=sA;
 		city=c;
+		state=s;
 		phone=p;
 	}
 	
@@ -24,6 +25,10 @@ public class CustomerInfo{
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	
+	public int compareTo(CustomerInfo c) {
+		return this.customerName.compareTo(c.customerName);
 	}
 
 	public String getStreetAddress() {
@@ -42,11 +47,11 @@ public class CustomerInfo{
 		this.city = city;
 	}
 
-	public String getState() {
+	public States getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(States state) {
 		this.state = state;
 	}
 

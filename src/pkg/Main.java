@@ -17,6 +17,8 @@ public class Main {
 	private static ManagerGUI manager;
 	private static VendorSearchGUI supplierTab;
 	private static DefaultLoginGUI defaultLogin;
+	private static CustomerListGUI customerTab;
+	private static CustomerSearchGUI cTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -84,6 +86,7 @@ public class Main {
 		case OWNER:
 			menu.openTab(manager);
 			menu.openTab(vendorTab);
+			menu.openTab(customerTab);
 			break;
 		case ADMIN:
 			menu.openTab(manager);
