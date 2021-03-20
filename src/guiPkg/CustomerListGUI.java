@@ -68,8 +68,14 @@ public class CustomerListGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				AddCustomerGUI makeCustomerPanel = new AddCustomerGUI();
 				if(JOptionPane.showConfirmDialog(null, makeCustomerPanel, "Create Customer", JOptionPane.OK_CANCEL_OPTION) == 0) {
+					if(Database.searchCustomerName(makeCustomerPanel.getName())!=null)
+					{
+						JOptionPane.showMessageDialog(null, "Customer profile already exists.");
+					}
+					else {
 					model.addRow(new CustomerProfile(new CustomerInfo(makeCustomerPanel.getName(), makeCustomerPanel.getStreet(), makeCustomerPanel.getCity(), makeCustomerPanel.getState(), makeCustomerPanel.getPhone())));
-				}
+					}
+					}
 			}
 		});
 		
