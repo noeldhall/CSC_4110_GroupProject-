@@ -10,6 +10,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pkg.CustomerProfile;
 import pkg.Database;
+import pkg.Main;
 import pkg.CustomerInfo;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,13 @@ public class CustomerSearchGUI extends JPanel {
 		JButton searchNameBtn = new JButton("Search by Name");
 		final CustomerProfileGUI subPanel = new CustomerProfileGUI();
 		
+		JButton btnNewButton = new JButton("Log out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -39,16 +47,19 @@ public class CustomerSearchGUI extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(subPanel, 0, 0, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(subPanel, 0, 0, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnNewButton))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(addCustomerBtn, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(deleteCustomerBtn, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(searchNameBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(searchNameBtn, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
 										.addComponent(searchIDBtn, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))))))
-					.addContainerGap(17, Short.MAX_VALUE))
+					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -63,7 +74,9 @@ public class CustomerSearchGUI extends JPanel {
 						.addComponent(customerLbl, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(searchNameBtn))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(subPanel, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(subPanel, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+						.addComponent(btnNewButton))
 					.addContainerGap())
 		);
 		setLayout(groupLayout);
