@@ -60,6 +60,11 @@ public class UpdateUserGUI extends JPanel {
 		final JComboBox RolecomboBox = new JComboBox();
 		RolecomboBox.setModel(new DefaultComboBoxModel(Roles.values()));
 		RolecomboBox.setSelectedItem(Database.findUser(userIDMan.getText()).getUserRole());
+		if(Database.currentUser.getUserRole() == Roles.ADMIN)
+		{
+			RolecomboBox.removeItemAt(1);
+			RolecomboBox.removeItemAt(1);
+		}
 			
 		JButton UpdateUserbtn = new JButton("Update Profile");
 		UpdateUserbtn.addActionListener(new ActionListener() {
