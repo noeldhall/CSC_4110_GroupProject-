@@ -69,10 +69,15 @@ public class CreateUserGUI extends JPanel {
 				newUser.setUserID(UserIDtxtField.getText());
 				newUser.setPassword(PasstxtField.getText());
 				newUser.setUserRole((Roles) RolecomboBox.getSelectedItem());
+				newUser.setLogCheck("false");
 				
 				if(Database.searchIDMatch(newUser.getUserID()))
 				{
 					JOptionPane.showMessageDialog(null, "User profile already exists.");
+				}
+				else if (newUser.getFirstName() == null || newUser.getLastName() == null || newUser.getPassword() == null || newUser.getUserID() == null)
+				{
+					JOptionPane.showMessageDialog(null, "User profile not created.");
 				}
 				else
 				{

@@ -40,6 +40,7 @@ public class ManagerGUI extends JPanel{
 	 * Create the panel.
 	 */
 	public ManagerGUI() {
+		setForeground(Color.CYAN);
 
 		setName("Manager");
 		setBackground(Color.CYAN);
@@ -90,19 +91,28 @@ public class ManagerGUI extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(Database.currentUser.getUserRole() == Roles.ADMIN && Database.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
 				{
-					if(Database.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText()))
-						JOptionPane.showMessageDialog(null, "User password has been reset!");
+					if(Database.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText())) {}
+						
 				}
 				else if(Database.currentUser.getUserRole() == Roles.OWNER) 
 				{
-					if(Database.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText()))
-						JOptionPane.showMessageDialog(null, "User password has been reset!");
+					if(Database.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText())) {}
+						
 				}
 				else JOptionPane.showMessageDialog(null, "You cannot alter an owner's profile.");
 			}
 		});
 		
 		txtPassReset = new JTextField();
+		txtPassReset.setEditable(false);
+		txtPassReset.setBorder(null);
+		txtPassReset.setRequestFocusEnabled(false);
+		txtPassReset.setSelectedTextColor(Color.CYAN);
+		txtPassReset.setSelectionColor(Color.CYAN);
+		txtPassReset.setCaretColor(Color.CYAN);
+		txtPassReset.setDisabledTextColor(Color.CYAN);
+		txtPassReset.setForeground(Color.CYAN);
+		txtPassReset.setBackground(Color.CYAN);
 		txtPassReset.setColumns(10);
 		
 		JButton btnDeleteUser = new JButton("Delete User Profile");

@@ -74,11 +74,18 @@ public class UpdateUserGUI extends JPanel {
 				String userID = UserIDtxtField.getText();
 				Object selectedRole = RolecomboBox.getSelectedItem();
 				
-				Database.findUser(userIDMan.getText()).setFirstName(firstName);
-				Database.findUser(userIDMan.getText()).setLastName(lastName);
-				Database.findUser(userIDMan.getText()).setUserRole((Roles) selectedRole);
-				Database.findUser(userIDMan.getText()).setUserID(userID);
-				JOptionPane.showMessageDialog(null, "User profile has been updated.");				
+//				if (firstName == null || lastName == null || userID == null)
+//				{
+//					JOptionPane.showMessageDialog(null, "User profile not updated.");
+//				}
+//				else
+				//{
+					Database.findUser(userIDMan.getText()).setFirstName(firstName);
+					Database.findUser(userIDMan.getText()).setLastName(lastName);
+					Database.findUser(userIDMan.getText()).setUserRole((Roles) selectedRole);
+					Database.findUser(userIDMan.getText()).setUserID(userID);
+					JOptionPane.showMessageDialog(null, "User profile has been updated.");	
+				//}
 			}
 		});
 		
