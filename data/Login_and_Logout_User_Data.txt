@@ -1,6 +1,6 @@
-a	a	a	a	OWNER
-Foster	Nick	hb7798	echo1	OWNER
-Gloomis	Brett	gw1712	bravo1	PURCHASER
-Groat	Tyler	gw1234	alpha1	INVENTORY_MANAGER
-Hall	Noel	gg2345	zulu1	ACCOUNTANT
-Smith	Will	hu2331	charle1	ADMIN
+a	a	a	a	OWNER	true
+Foster	Nick	hb7798	echo1	OWNER	true
+Gloomis	Brett	gw1712	bravo1	PURCHASER	true
+Groat	Tyler	gw1234	alpha1	INVENTORY_MANAGER	true
+Hall	Noel	gg2345	zulu1	ACCOUNTANT	true
+Smith	Will	hu2331	charle1	ADMIN	true

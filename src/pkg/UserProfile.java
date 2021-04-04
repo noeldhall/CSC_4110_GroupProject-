@@ -11,6 +11,7 @@ public class UserProfile {
     String userID;
     String password;
     Roles userRole;
+    String logCheck;
 
     public UserProfile() {
     	
@@ -35,7 +36,13 @@ public class UserProfile {
     public boolean createPassword(String pass){          //when user profile is first login
     	pass = JOptionPane.showInputDialog(null, "Enter a new password:");
        // if(pass.length() >= 8 && pass.length() <= 16)
-        {
+//    	if(password == pass)
+//		{
+//			JOptionPane.showMessageDialog(null, "User password can not be same as origional.");
+//			return true;
+//		}
+//    	else
+    	{
         	setPassword(pass);
             //password = pass;
             System.out.println(userID + ", " + password);
@@ -56,12 +63,13 @@ public class UserProfile {
         return true;
     }
 
-    public UserProfile(String ln, String fn, String id, String pass, Roles role){           //constructor
+    public UserProfile(String ln, String fn, String id, String pass, Roles role, String check){           //constructor
         lastName = ln;
         firstName = fn;
         userID = id;
         password = pass;
         userRole = role;
+        logCheck = check;
         System.out.println(userID + ", " + password + "!");
 
     }
@@ -71,6 +79,7 @@ public class UserProfile {
         userID = up.userID;
         password = up.password;
         userRole = up.userRole;
+        logCheck = up.logCheck;
         System.out.println(userID + ", " + password + "!");
     }
     public UserProfile(String[] data) {
@@ -81,7 +90,7 @@ public class UserProfile {
             userID = data[2];
             password = data[3];
             userRole = Roles.valueOf(data[4]);
-
+            logCheck = data[5];
         }
     }
     public String getLastName() {
@@ -119,11 +128,25 @@ public class UserProfile {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String pass) {
 		Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
-        Matcher matcher = pattern.matcher(password);
+        Matcher matcher = pattern.matcher(pass);
 		if(matcher.find())
-			this.password = password;
+		{
+			if(this.password == pass)
+			{
+				JOptionPane.showMessageDialog(null, "User password can not be same as origional.");
+			}
+			else 
+			{
+				System.out.println(this.password);
+				System.out.println(pass);
+				this.password = pass;
+				this.logCheck = "true";
+				
+				JOptionPane.showMessageDialog(null, "User password has been set!");
+			}
+		}
 		else JOptionPane.showMessageDialog(null, "Password must be a combination of alpha numeric and special characters and minimum 8 and maximum 16 characters.");
 	}
 
@@ -134,6 +157,14 @@ public class UserProfile {
 	public void setUserRole(Roles userRole) {
 		this.userRole = userRole;
 	}
+	
+	public String getLogCheck() {
+		return logCheck;
+	}
+	
+	public void setLogCheck(String logCheck) {
+		this.logCheck = logCheck;
+	}
 
 	public String toString() {
         String data = "";
@@ -142,6 +173,7 @@ public class UserProfile {
         data += userID + "\n";
         data += password + "\n";
         data += userRole + "\n";
+        data += logCheck + "\n";
         return data;
     }
 }

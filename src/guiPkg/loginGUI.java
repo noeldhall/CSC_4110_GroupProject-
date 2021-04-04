@@ -31,8 +31,14 @@ public class loginGUI extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
             	UserProfile up = Database.login(textField1.getText(), textField2.getText());
+            	
             	if( up != null) {
             		Database.currentUser = up;
+            		
+            		while(up.getLogCheck() == "false")
+            		{
+            			up.createPassword("temp");
+            		}
             		Main.swapToMain(up.getUserRole());
             	}
             	else {
