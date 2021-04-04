@@ -19,6 +19,12 @@ public class CustomerProfile implements Comparable<CustomerProfile>{
 	}
 	
 
+	public CustomerProfile(CustomerProfile customer) {
+		this.customerId=customer.getCustomerId();
+		this.customerAccount=customer.getCustomerAccount();
+		this.customerInfo=customer.getCustomerInfo();
+		this.lastOrderDate=customer.getLastOrderDate();
+	}
 	public CustomerProfile(CustomerInfo customer) {
 		customerId = formatID(Database.generateCustomerID());
 		this.customerInfo = customer;

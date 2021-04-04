@@ -75,6 +75,10 @@ public class CustomerListGUI extends JPanel {
 					else if(makeCustomerPanel.getName().length()==0||makeCustomerPanel.getCity().length()==0||makeCustomerPanel.getStreet().length()==0||makeCustomerPanel.getCity().length()==0) {
 						JOptionPane.showMessageDialog(null, "Error - Empty fields in Customer Profile creation.");
 						}
+					else if(makeCustomerPanel.getPhone().matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")==false)
+					{
+						JOptionPane.showMessageDialog(null, "Error - Invalid Phone number.");
+					}
 					else 
 						model.addRow(new CustomerProfile(new CustomerInfo(makeCustomerPanel.getName(), makeCustomerPanel.getStreet(), makeCustomerPanel.getCity(), makeCustomerPanel.getState(), makeCustomerPanel.getPhone())));
 					
@@ -121,8 +125,14 @@ public class CustomerListGUI extends JPanel {
 						CustomerProfileGUI profile = new CustomerProfileGUI();
 						profile.setFields(cp);
 						if(JOptionPane.showConfirmDialog(null, profile, "Customer Profile", JOptionPane.OK_CANCEL_OPTION) == 0) {
-							cp = profile.getProfile();
+							 cp =new CustomerProfile( profile.getProfile());
+					//		CustomerProfile cp2 =new CustomerProfile( profile.getProfile());
+				//			cp.setCustomerId(cp2.getCustomerId());
+					//		cp.setCustomerAccount(cp2.getCustomerAccount());
+						//	cp.setCustomerInfo(cp2.getCustomerInfo());
 							model.fireTableDataChanged();
+							profile.setFields(cp);
+							//table.setSelectedRow();
 						}
 					}
 				}
@@ -141,6 +151,18 @@ public class CustomerListGUI extends JPanel {
 		add(deleteCustomerBtn);
 		add(searchField);
 		add(scrollPane);
+	}
+	
+	private boolean checkPhone(String s) {
+		boolean b=true
+				;
+				for (int i=0;i<s.length();i++)
+				{
+					if(Character.isDigit(s.charAt(i))==false)
+						b=false;
+					return b;
+				}
+		return b;
 	}
 	
 	private void newFilter() {

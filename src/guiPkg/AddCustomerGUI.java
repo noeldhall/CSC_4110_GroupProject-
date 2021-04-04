@@ -24,7 +24,7 @@ public class AddCustomerGUI extends JPanel {
 		JLabel streetLbl = new JLabel("Street Address:");
 		JLabel cityLbl = new JLabel("City:");
 		JLabel stateLbl = new JLabel("State:");
-		JLabel phoneLbl = new JLabel("Phone Number:");
+		JLabel phoneLbl = new JLabel("Phone Number (with dashes):");
 		
 		//init data
 		nameTxtBox = new JTextField();

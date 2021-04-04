@@ -7,7 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
+
+import java.util.Date;
+
 import javax.swing.DefaultComboBoxModel;
+
+import pkg.CustomerInfo;
 import pkg.CustomerProfile;
 import pkg.States;
 
@@ -172,7 +177,17 @@ public class CustomerProfileGUI extends JPanel {
 	}
 	
 	public CustomerProfile getProfile() {
-		return this.profile;
+		profile.setCustomerId(idTxtBox.getText());
+		//CustomerInfo cI=new CustomerInfo(nameTxtBox.getText(),streetTxtBox.getText(),cityTxtBox.getText(),stateBox.getSelectedItem(),);
+		profile.getCustomerInfo().setCustomerName(nameTxtBox.getText());
+		profile.getCustomerInfo().setStreetAddress(streetTxtBox.getText());
+		profile.getCustomerInfo().setCity(cityTxtBox.getText());
+		profile.getCustomerInfo().setState((States)stateBox.getSelectedItem());
+		profile.getCustomerAccount().setBalance(Double.parseDouble(balanceTxtBox.getText()));
+		profile.getCustomerAccount().setLastPaidAmount(Double.parseDouble(lastPaidTxtBox.getText()));
+		//TODO:Implement a way to update last order date properly, perhaps a button on Customer ProfileGUI
+	//	profile.setLastOrderDate(Date.parse(TOOL_TIP_TEXT_KEY));
+		return profile;
 	}
 	
 	public JTextField getNameTxtBox() {
