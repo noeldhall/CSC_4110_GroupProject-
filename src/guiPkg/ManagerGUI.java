@@ -66,7 +66,7 @@ public class ManagerGUI extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				CreateUserGUI makeUserProfilePanel = new CreateUserGUI(UserIDtxtField);
 				JOptionPane.showMessageDialog(null, makeUserProfilePanel, "Create User Profile", JOptionPane.CLOSED_OPTION);
-			}
+			} 
 		});
 		
 		JButton btnNewButton_3 = new JButton("Update User Profile");
