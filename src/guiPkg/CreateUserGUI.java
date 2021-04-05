@@ -67,7 +67,7 @@ public class CreateUserGUI extends JPanel {
 				newUser.setFirstName(firstNametxtField.getText());
 				newUser.setLastName(LastNametxtField.getText());
 				newUser.setUserID(UserIDtxtField.getText());
-				newUser.setPassword(PasstxtField.getText());
+				newUser.setPassword(PasstxtField.getText() + "");
 				newUser.setUserRole((Roles) RolecomboBox.getSelectedItem());
 				newUser.setLogCheck("false");
 				

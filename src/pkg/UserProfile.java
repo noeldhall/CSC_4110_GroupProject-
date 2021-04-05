@@ -14,14 +14,19 @@ public class UserProfile {
     String logCheck;
 
     public UserProfile() {
-    	
+    	 lastName = "";
+         firstName = "";
+         userID = "";
+         password = "";
+         userRole = Roles.EMPTY;
+         logCheck = "";
     }
     
     public boolean login(String id, String pass){
         if(userID.equals(id))
             if(pass.isEmpty() && password.isEmpty())
             {
-                createPassword(pass); // TODO create new password
+                createPassword(pass);
             }
             else if(password.equals(pass))
                 return true;
@@ -35,21 +40,11 @@ public class UserProfile {
 
     public boolean createPassword(String pass){          //when user profile is first login
     	pass = JOptionPane.showInputDialog(null, "Enter a new password:");
-       // if(pass.length() >= 8 && pass.length() <= 16)
-//    	if(password == pass)
-//		{
-//			JOptionPane.showMessageDialog(null, "User password can not be same as origional.");
-//			return true;
-//		}
-//    	else
-    	{
-        	setPassword(pass);
-            //password = pass;
-            System.out.println(userID + ", " + password);
-            return true;
-        }
 
-       // return false;
+        setPassword(pass);
+        System.out.println(userID + ", " + password);
+        return true;
+
     }
     
     public boolean changeRole(Object object){          
@@ -133,7 +128,7 @@ public class UserProfile {
         Matcher matcher = pattern.matcher(pass);
 		if(matcher.find())
 		{
-			if(this.password == pass)
+			if(this.password.equals(pass))
 			{
 				JOptionPane.showMessageDialog(null, "User password can not be same as origional.");
 			}
