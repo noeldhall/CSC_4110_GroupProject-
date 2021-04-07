@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 public class UserDataModel extends AbstractTableModel {
+	
 	static DatabaseII<UserProfile> userList;
 	public static UserProfile currentUser;
 	private static final long serialVersionUID = 4254378981778670206L;

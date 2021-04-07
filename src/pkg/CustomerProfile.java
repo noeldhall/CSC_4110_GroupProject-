@@ -2,7 +2,7 @@ package pkg;
 
 import java.util.Date;
 
-public class CustomerProfile implements Comparable<CustomerProfile>, Profile{
+public class CustomerProfile implements Comparable<CustomerProfile>, Data{
 	String customerId;
 	Date lastOrderDate;
 	CustomerInfo customerInfo;

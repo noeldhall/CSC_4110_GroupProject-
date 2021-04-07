@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-public class UserProfile implements Profile {
+public class UserProfile implements Data {
     String lastName;
     String firstName;
     String userID;

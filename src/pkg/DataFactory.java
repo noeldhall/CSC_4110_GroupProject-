@@ -2,8 +2,8 @@ package pkg;
 
 //Authored by Nicholas Foster
 
-public class ProfileFactory {
-	public static Profile makeProfile(String type, String[] data) {
+public class DataFactory {
+	public static Data makeDataObject(String type, String[] data) {
 		if(type.equals("VendorProfile")) {
 			return new VendorProfile(data);
 		}

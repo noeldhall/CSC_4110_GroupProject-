@@ -8,7 +8,7 @@ import java.util.Vector;
 //4-6-2021 2am
 // Generic Database object that loads data from our datafiles
 
-public class DatabaseII<T extends Profile>{
+public class DatabaseII<T extends Data>{
 	protected Class<T> dataType;
 	protected Vector<T> dao;
 	private String dataLocation;
@@ -26,7 +26,7 @@ public class DatabaseII<T extends Profile>{
 		try {
 			Vector<String[]> tempData = reader.readFile();
 			for(String[] data : tempData){
-				dao.add((T) ProfileFactory.makeProfile(dataType.getSimpleName(), data));
+				dao.add((T) DataFactory.makeDataObject(dataType.getSimpleName(), data));
 			}
 		}
 		catch(FileNotFoundException e) {

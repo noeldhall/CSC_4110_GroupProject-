@@ -196,6 +196,7 @@ public class VendorProfileGUI extends JPanel {
 	
 	public VendorProfile getProfile() {
 		VendorProfile vp = new VendorProfile();
+		vp.setVendorID(idTxtBox.getText());
 		vp.setvAccount(new VendorAccount(Double.parseDouble(balanceTxtBox.getText()), Double.parseDouble(lastPaidTxtBox.getText())));
 		vp.setPersonal(new PersonalInformation(nameTxtBox.getText(), streetTxtBox.getText(), cityTxtBox.getText(), (States) stateBox.getSelectedItem(), phoneTxtBox.getText()));
 		vp.setDiscountStartDate(new Date(seasonalDateTxtBox.getText()));

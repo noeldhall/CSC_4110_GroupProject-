@@ -4,7 +4,7 @@ import java.util.Date;
 
 //Authored by Nicholas Foster
 
-public class VendorProfile implements Comparable<VendorProfile>, Profile{
+public class VendorProfile implements Comparable<VendorProfile>, Data{
 	String vendorID;
 	PersonalInformation personal;
 	VendorAccount vAccount;
@@ -55,7 +55,11 @@ public class VendorProfile implements Comparable<VendorProfile>, Profile{
 	public String getVendorID() {
 		return vendorID;
 	}
-
+	
+	public void setVendorID(String id) {
+		this.vendorID = id;
+	}
+	
 	public PersonalInformation getPersonal() {
 		return personal;
 	}
@@ -100,13 +104,12 @@ public class VendorProfile implements Comparable<VendorProfile>, Profile{
 	@SuppressWarnings("deprecation")
 	public void updateProfile(VendorProfile profile) {
 		//ensure we're updating the correct profile first
-		if(vendorID == profile.getVendorID()) {
+		if(vendorID.equals(profile.getVendorID())) {
 			personal.setPersonal(profile.getPersonal());
 			vAccount.setvAccount(profile.getvAccount());
 			lastOrderDate.setDate(profile.getLastOrderDate().getDate());
 			discountStartDate.setDate(profile.getDiscountStartDate().getDate());
 		}
-		
 	}
 	
 }

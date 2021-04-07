@@ -2,7 +2,7 @@ package pkg;
 
 //Authored by Nicholas Foster
 
-public interface Profile {
+public interface Data {
 	//there is no need for contents, this is just to manipulate java
 	//for the factory pattern
 	//theoretically we'd put abstract methods here for implementation but there are no
