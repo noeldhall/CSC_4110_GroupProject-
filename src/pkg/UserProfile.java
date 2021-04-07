@@ -1,5 +1,4 @@
 package pkg;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,10 +33,6 @@ public class UserProfile implements Profile {
         return false;
     }
 
-    boolean logout(){
-    	return true;
-    }
-
     public boolean createPassword(String pass){          //when user profile is first login
     	pass = JOptionPane.showInputDialog(null, "Enter a new password:");
 
@@ -66,7 +61,6 @@ public class UserProfile implements Profile {
         userRole = role;
         logCheck = check;
         System.out.println(userID + ", " + password + "!");
-
     }
     public UserProfile(UserProfile up){           //constructor
         lastName = up.lastName;
