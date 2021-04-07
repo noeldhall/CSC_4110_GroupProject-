@@ -11,6 +11,7 @@ public class Main {
 	private Database db;
 	public static final VendorDataModel vendorDAO = new VendorDataModel(VendorProfile.class, "data\\Feature3_dummyData.txt");
 	public static final UserDataModel userDAO = new UserDataModel(UserProfile.class, "data\\Login_and_Logout_User_Data.txt");
+	public static final ItemDataModel itemDAO = new ItemDataModel(Item.class, "data\\Items_profile_dummy_data.txt");
 	private JFrame frame;
 	private static loginGUI login;
 	private static MainMenu menu;
