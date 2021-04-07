@@ -6,6 +6,7 @@ import java.util.Vector;
 
 //Authored by Nicholas Foster
 //4-6-2021 2am
+// Generic Database object that loads data from our datafiles
 
 public class DatabaseII<T extends Profile>{
 	protected Class<T> dataType;
