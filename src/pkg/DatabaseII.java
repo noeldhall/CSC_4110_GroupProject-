@@ -22,6 +22,7 @@ public class DatabaseII<T extends Data>{
 
 	@SuppressWarnings("unchecked")
 	private void loadData() {
+		//reads data in from our data file (txt files) and fills our Vectors with that data
 		DataReader reader = new DataReader(dataLocation);
 		try {
 			Vector<String[]> tempData = reader.readFile();
