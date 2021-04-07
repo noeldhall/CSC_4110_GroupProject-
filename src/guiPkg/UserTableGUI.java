@@ -1,12 +1,8 @@
 package guiPkg;
 
-import java.awt.BorderLayout;
 import java.util.Vector;
-//import org.apache.commons.dbutils.DbUtils;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import java.lang.Class;
 import javax.swing.RowFilter;
 
 import javax.swing.JPanel;
