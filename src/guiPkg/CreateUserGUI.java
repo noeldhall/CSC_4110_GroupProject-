@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 
 import pkg.Database;
 import pkg.Roles;
+import pkg.UserDataModel;
 import pkg.UserProfile;
 
 import javax.swing.JButton;
@@ -71,7 +72,7 @@ public class CreateUserGUI extends JPanel {
 				newUser.setUserRole((Roles) RolecomboBox.getSelectedItem());
 				newUser.setLogCheck("false");
 				
-				if(Database.searchIDMatch(newUser.getUserID()))
+				if(UserDataModel.searchIDMatch(newUser.getUserID()))
 				{
 					JOptionPane.showMessageDialog(null, "User profile already exists.");
 				}

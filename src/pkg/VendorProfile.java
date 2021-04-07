@@ -2,7 +2,9 @@ package pkg;
 
 import java.util.Date;
 
-public class VendorProfile implements Comparable<VendorProfile>{
+//Authored by Nicholas Foster
+
+public class VendorProfile implements Comparable<VendorProfile>, Profile{
 	String vendorID;
 	PersonalInformation personal;
 	VendorAccount vAccount;
@@ -26,7 +28,7 @@ public class VendorProfile implements Comparable<VendorProfile>{
 	
 	public VendorProfile(PersonalInformation personal) {
 		//TODO test vendorID autogen
-		vendorID = formatID(Database.generateVendorID());
+		vendorID = formatID(VendorDataModel.generateVendorID());
 		this.personal = personal;
 		vAccount = new VendorAccount();
 		lastOrderDate = null;
@@ -66,7 +68,7 @@ public class VendorProfile implements Comparable<VendorProfile>{
 		return vAccount;
 	}
 
-	public void setvAccount(VendorAccount vAccount) {
+	public void setvAccount(VendorAccount vAccount){
 		this.vAccount = vAccount;
 	}
 
@@ -94,4 +96,17 @@ public class VendorProfile implements Comparable<VendorProfile>{
 		}
 		return id;
 	}
+
+	@SuppressWarnings("deprecation")
+	public void updateProfile(VendorProfile profile) {
+		//ensure we're updating the correct profile first
+		if(vendorID == profile.getVendorID()) {
+			personal.setPersonal(profile.getPersonal());
+			vAccount.setvAccount(profile.getvAccount());
+			lastOrderDate.setDate(profile.getLastOrderDate().getDate());
+			discountStartDate.setDate(profile.getDiscountStartDate().getDate());
+		}
+		
+	}
+	
 }

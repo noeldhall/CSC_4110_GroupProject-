@@ -18,6 +18,7 @@ import pkg.Database;
 import pkg.Main;
 import pkg.PersonalInformation;
 import pkg.Roles;
+import pkg.UserDataModel;
 import pkg.UserProfile;
 import pkg.VendorProfile;
 
@@ -72,7 +73,7 @@ public class ManagerGUI extends JPanel{
 		JButton btnNewButton_3 = new JButton("Update User Profile");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Database.currentUser.getUserRole() == Roles.ADMIN && Database.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
+				if(Database.currentUser.getUserRole() == Roles.ADMIN && UserDataModel.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
 				{
 					UpdateUserGUI updateUserProfilePanel = new UpdateUserGUI(UserIDtxtField);
 					JOptionPane.showMessageDialog(null, updateUserProfilePanel, "Update User Profile", JOptionPane.CLOSED_OPTION);
@@ -89,14 +90,14 @@ public class ManagerGUI extends JPanel{
 		JButton PassResetbtn = new JButton("Reset Password");
 		PassResetbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Database.currentUser.getUserRole() == Roles.ADMIN && Database.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
+				if(UserDataModel.currentUser.getUserRole() == Roles.ADMIN && UserDataModel.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
 				{
-					if(Database.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText())) {}
+					if(UserDataModel.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText())) {}
 						
 				}
-				else if(Database.currentUser.getUserRole() == Roles.OWNER) 
+				else if(UserDataModel.currentUser.getUserRole() == Roles.OWNER) 
 				{
-					if(Database.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText())) {}
+					if(UserDataModel.findUser(UserIDtxtField.getText()).createPassword(txtPassReset.getText())) {}
 						
 				}
 				else JOptionPane.showMessageDialog(null, "You cannot alter an owner's profile.");
@@ -118,14 +119,14 @@ public class ManagerGUI extends JPanel{
 		JButton btnDeleteUser = new JButton("Delete User Profile");
 		btnDeleteUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Database.currentUser.getUserRole() == Roles.ADMIN && Database.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
+				if(UserDataModel.currentUser.getUserRole() == Roles.ADMIN && UserDataModel.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
 				{
-					if(Database.findUser(UserIDtxtField.getText()).deleteProfile())
+					if(UserDataModel.findUser(UserIDtxtField.getText()).deleteProfile())
 						JOptionPane.showMessageDialog(null, "User profile has been deleted.");		
 				}
-				else if(Database.currentUser.getUserRole() == Roles.OWNER)
+				else if(UserDataModel.currentUser.getUserRole() == Roles.OWNER)
 				{
-					if(Database.findUser(UserIDtxtField.getText()).deleteProfile())
+					if(UserDataModel.findUser(UserIDtxtField.getText()).deleteProfile())
 						JOptionPane.showMessageDialog(null, "User profile has been deleted.");
 				}
 				else JOptionPane.showMessageDialog(null, "You cannot alter an owner's profile.");

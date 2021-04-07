@@ -2,7 +2,7 @@ package pkg;
 
 import java.util.Date;
 
-public class CustomerProfile implements Comparable<CustomerProfile>{
+public class CustomerProfile implements Comparable<CustomerProfile>, Profile{
 	String customerId;
 	Date lastOrderDate;
 	CustomerInfo customerInfo;
@@ -77,6 +77,4 @@ public class CustomerProfile implements Comparable<CustomerProfile>{
 	public void setCustomerAccount(CustomerAccount customerAccount) {
 		this.customerAccount = customerAccount;
 	}
-	
-	
 }

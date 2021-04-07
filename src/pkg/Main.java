@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 
 public class Main {
 	private Database db;
+	public static final VendorDataModel vendorDAO = new VendorDataModel(VendorProfile.class, "data\\Feature3_dummyData.txt");
+	public static final UserDataModel userDAO = new UserDataModel(UserProfile.class, "data\\Login_and_Logout_User_Data.txt");
 	private JFrame frame;
 	private static loginGUI login;
 	private static MainMenu menu;
@@ -38,6 +40,7 @@ public class Main {
 	public Main() {		
 		initialize();
 		db = new Database();
+		System.out.println("finprint");
 		vendorTab = new VendorListGUI(Database.vendors);
 		customerTab=new CustomerListGUI(Database.customers);
 		Database.printVendors();

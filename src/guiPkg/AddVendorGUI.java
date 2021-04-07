@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import pkg.States;
 
+//Authored by Nicholas Foster
+
 @SuppressWarnings("serial")
 public class AddVendorGUI extends JPanel {
 	private JTextField nameTxtBox;

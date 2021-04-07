@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
+import pkg.UserDataModel;
 import pkg.UserProfile;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -31,7 +32,7 @@ public class UserTableGUI extends JPanel {
 	 * Create the panel.
 	 */
 	public UserTableGUI(Vector<UserProfile> data) {
-		UserTableModel model = new UserTableModel(data);
+		UserDataModel model = new UserDataModel(UserProfile.class, "data\\Login_and_Logout_User_Data.txt");
 		JScrollPane scrollPane = new JScrollPane();
 		table = new JTable(model);
 		table.setBorder(new EmptyBorder(5, 5, 5, 5));

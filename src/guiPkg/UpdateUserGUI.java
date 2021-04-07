@@ -9,9 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
-import pkg.Database;
 import pkg.Roles;
+import pkg.UserDataModel;
 import pkg.UserProfile;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -39,28 +38,28 @@ public class UpdateUserGUI extends JPanel {
 		firstNametxtField = new JTextField();
 		firstNametxtField.setColumns(10);
 		
-		firstNametxtField.setText(Database.findUser(userIDMan.getText()).getFirstName());
+		firstNametxtField.setText(UserDataModel.findUser(userIDMan.getText()).getFirstName());
 		
 		JLabel lblNewLabel_1 = new JLabel("LastName:");
 		
 		LastNametxtField = new JTextField();
 		LastNametxtField.setColumns(10);
 		
-		LastNametxtField.setText(Database.findUser(userIDMan.getText()).getLastName());
+		LastNametxtField.setText(UserDataModel.findUser(userIDMan.getText()).getLastName());
 		
 		JLabel lblNewLabel_2 = new JLabel("User ID:");
 		
 		UserIDtxtField = new JTextField();
 		UserIDtxtField.setColumns(10);
 		
-		UserIDtxtField.setText(Database.findUser(userIDMan.getText()).getUserID());
+		UserIDtxtField.setText(UserDataModel.findUser(userIDMan.getText()).getUserID());
 		
 		JLabel lblNewLabel_4 = new JLabel("Role:");
 		
 		final JComboBox RolecomboBox = new JComboBox();
 		RolecomboBox.setModel(new DefaultComboBoxModel(Roles.values()));
-		RolecomboBox.setSelectedItem(Database.findUser(userIDMan.getText()).getUserRole());
-		if(Database.currentUser.getUserRole() == Roles.ADMIN)
+		RolecomboBox.setSelectedItem(UserDataModel.findUser(userIDMan.getText()).getUserRole());
+		if(UserDataModel.currentUser.getUserRole() == Roles.ADMIN)
 		{
 			RolecomboBox.removeItemAt(1);
 			RolecomboBox.removeItemAt(1);
@@ -80,10 +79,10 @@ public class UpdateUserGUI extends JPanel {
 //				}
 //				else
 				//{
-					Database.findUser(userIDMan.getText()).setFirstName(firstName);
-					Database.findUser(userIDMan.getText()).setLastName(lastName);
-					Database.findUser(userIDMan.getText()).setUserRole((Roles) selectedRole);
-					Database.findUser(userIDMan.getText()).setUserID(userID);
+					UserDataModel.findUser(userIDMan.getText()).setFirstName(firstName);
+					UserDataModel.findUser(userIDMan.getText()).setLastName(lastName);
+					UserDataModel.findUser(userIDMan.getText()).setUserRole((Roles) selectedRole);
+					UserDataModel.findUser(userIDMan.getText()).setUserID(userID);
 					JOptionPane.showMessageDialog(null, "User profile has been updated.");	
 				//}
 			}

@@ -7,6 +7,7 @@ import javax.swing.text.StyleContext;
 
 import pkg.Database;
 import pkg.Main;
+import pkg.UserDataModel;
 import pkg.UserProfile;
 
 import java.awt.*;
@@ -30,10 +31,10 @@ public class loginGUI extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	UserProfile up = Database.login(textField1.getText(), textField2.getText());
+            	UserProfile up = UserDataModel.login(textField1.getText(), textField2.getText());
             	
             	if( up != null) {
-            		Database.currentUser = up;
+            		UserDataModel.currentUser = up;
             		
             		while(up.getLogCheck() == "false")
             		{

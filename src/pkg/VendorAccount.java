@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Nicholas Foster
+
 public class VendorAccount implements Comparable<VendorAccount>{
 	double balance;
 	double lastPaidAmount;
@@ -44,5 +46,10 @@ public class VendorAccount implements Comparable<VendorAccount>{
 
 	public void setLastPaidAmount(double lastPaidAmount) {
 		this.lastPaidAmount = lastPaidAmount;
+	}
+
+	public void setvAccount(VendorAccount acc) {
+		setBalance(acc.getBalance());
+		setLastPaidAmount(acc.getLastPaidAmount());
 	}
 }

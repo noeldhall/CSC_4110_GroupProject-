@@ -1,12 +1,10 @@
 package guiPkg;
 
 import java.util.Vector;
-
 import javax.swing.JPanel;
-
-import pkg.Database;
 import pkg.Main;
 import pkg.PersonalInformation;
+import pkg.VendorDataModel;
 import pkg.VendorProfile;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -26,11 +24,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+//Authored by Nicholas Foster
 public class VendorListGUI extends JPanel {
 	private static final long serialVersionUID = 7727161324173086559L;
 	private JTable table;
 	private JTextField searchField;
-	private TableRowSorter<VendorTableModel> sorter;
+	private TableRowSorter<VendorDataModel> sorter;
 	
 	/**
 	 * Create the panel.
@@ -40,11 +39,11 @@ public class VendorListGUI extends JPanel {
 		setName("Supplier");
 		
 		//VARIABLE DECLARATION AND INITIALIZATION
-		final VendorTableModel model = new VendorTableModel(data);
+		VendorDataModel model = Main.vendorDAO;
 		JScrollPane scrollPane = new JScrollPane();
 		JButton addVendorBtn = new JButton("New Vendor");
 		JButton deleteVendorBtn = new JButton("Delete Vendor");
-		sorter = new TableRowSorter<VendorTableModel>(model);
+		sorter = new TableRowSorter<VendorDataModel>(model);
 		table = new JTable(model);
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -63,7 +62,13 @@ public class VendorListGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				AddVendorGUI makeVendorPanel = new AddVendorGUI();
 				if(JOptionPane.showConfirmDialog(null, makeVendorPanel, "Create Vendor", JOptionPane.OK_CANCEL_OPTION) == 0) {
-					model.addRow(new VendorProfile(new PersonalInformation(makeVendorPanel.getName(), makeVendorPanel.getStreet(), makeVendorPanel.getCity(), makeVendorPanel.getState(), makeVendorPanel.getPhone())));
+					try {
+						model.addRow(new VendorProfile(new PersonalInformation(makeVendorPanel.getName(), makeVendorPanel.getStreet(), makeVendorPanel.getCity(), makeVendorPanel.getState(), makeVendorPanel.getPhone())));
+						System.out.println("row successfully added");
+					}
+					catch(IllegalArgumentException err) {
+						JOptionPane.showMessageDialog(null, err.getMessage(), "Data error", JOptionPane.OK_OPTION);
+					}
 				}
 			}
 		});
@@ -100,15 +105,16 @@ public class VendorListGUI extends JPanel {
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
+				//Listener that detects item selection
 				if(!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
-					System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
-					VendorProfile vp = Database.searchVendorName(((String)table.getValueAt(table.getSelectedRow(), 0)).trim());
+					VendorProfile vp = VendorDataModel.getDatabase().elementAt(table.getSelectedRow());
 					if(vp != null) {
 						VendorProfileGUI profile = new VendorProfileGUI();
 						profile.setFields(vp);
 						if(JOptionPane.showConfirmDialog(null, profile, "Vendor Profile", JOptionPane.OK_CANCEL_OPTION) == 0) {
 							//TODO object not updating for some reason, need to fix.
-							vp = profile.getProfile();
+							System.out.println(profile.getProfile().toString());
+							VendorDataModel.updateVendor(profile.getProfile(), table.getSelectedRow());
 							model.fireTableDataChanged();
 						}
 					}
@@ -131,7 +137,7 @@ public class VendorListGUI extends JPanel {
 	}
 	
 	private void newFilter() {
-	    RowFilter<VendorTableModel, Object> rf = null;
+	    RowFilter<VendorDataModel, Object> rf = null;
 	    //If current expression doesn't parse, don't update.
 	    try {
 	        rf = RowFilter.regexFilter("(?i).*" + searchField.getText() +".*", 0);

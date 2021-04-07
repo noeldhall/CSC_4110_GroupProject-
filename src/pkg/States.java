@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Nicholas Foster
+
 public enum States {
 	AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA,
 	HI, ID, IL, IN, IA, KS, KY, LA, ME, MD,

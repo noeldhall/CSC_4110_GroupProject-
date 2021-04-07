@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-public class UserProfile {
+public class UserProfile implements Profile {
     String lastName;
     String firstName;
     String userID;
@@ -54,7 +54,7 @@ public class UserProfile {
     
     public boolean deleteProfile(){          
 
-        Database.deleteUser(userID);
+    	UserDataModel.deleteUser(userID);
         return true;
     }
 
