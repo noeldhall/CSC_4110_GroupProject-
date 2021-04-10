@@ -18,6 +18,10 @@ import pkg.States;
 
 
 public class CustomerProfileGUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -517349445900714487L;
 	private CustomerProfile profile;
 	private JTextField nameTxtBox;
 	private JTextField streetTxtBox;
@@ -185,10 +189,10 @@ public class CustomerProfileGUI extends JPanel {
 		profile.getCustomerInfo().setState((States)stateBox.getSelectedItem());
 		profile.getCustomerAccount().setBalance(Double.parseDouble(balanceTxtBox.getText()));
 		profile.getCustomerAccount().setLastPaidAmount(Double.parseDouble(lastPaidTxtBox.getText()));
-		//TODO:Implement a way to update last order date properly, perhaps a button on Customer ProfileGUI
+		//TODO:Implement a way to update last order date properly, perhaps a button on 
 	//	profile.setLastOrderDate(Date.parse(TOOL_TIP_TEXT_KEY));
 		return profile;
-	}
+	}                               
 	
 	public JTextField getNameTxtBox() {
 		return nameTxtBox;

@@ -7,6 +7,10 @@ public class CustomerInfo implements Comparable<CustomerInfo>{
 	private States state;
 	private String phone;
 	
+	public CustomerInfo() {
+		
+	}
+	
 	public CustomerInfo(String cN, String sA, String c,States s, String p) {
 		customerName=cN;
 		streetAddress=sA;

@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 
 import java.util.Vector;
 
-import pkg.Database;
 import pkg.Main;
+import pkg.CustomerDataModel;
 import pkg.CustomerInfo;
 import pkg.CustomerProfile;
 import javax.swing.JTable;
@@ -38,18 +38,18 @@ public class CustomerListGUI extends JPanel {
 	private static final long serialVersionUID = 7727161324173086580L;
 	private JTable table;
 	private JTextField searchField;
-	private TableRowSorter<CustomerTableModel> sorter;
+	private TableRowSorter<CustomerDataModel> sorter;
 	
 	public CustomerListGUI(Vector<CustomerProfile> data) {
 		//---basic settings---
 		setName("Customer");
 		
 		//VARIABLE DECLARATION AND INITIALIZATION
-		final CustomerTableModel model = new CustomerTableModel(data);
+		final CustomerDataModel model = Main.customerDAO;
 		JScrollPane scrollPane = new JScrollPane();
 		JButton addCustomerBtn = new JButton("New Customer");
 		JButton deleteCustomerBtn = new JButton("Delete Customer");
-		sorter = new TableRowSorter<CustomerTableModel>(model);
+		sorter = new TableRowSorter<CustomerDataModel>(model);
 		table = new JTable(model);
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -68,7 +68,7 @@ public class CustomerListGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				AddCustomerGUI makeCustomerPanel = new AddCustomerGUI();
 				if(JOptionPane.showConfirmDialog(null, makeCustomerPanel, "Create Customer", JOptionPane.OK_CANCEL_OPTION) == 0) {
-					if(Database.searchCustomerName(makeCustomerPanel.getName())!=null)
+					if(CustomerDataModel.searchCustomerName(makeCustomerPanel.getName())!=null)
 					{
 						JOptionPane.showMessageDialog(null, "Error - Customer profile already exists.");
 					}
@@ -120,7 +120,8 @@ public class CustomerListGUI extends JPanel {
 			public void valueChanged(ListSelectionEvent e) {
 				if(!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
 					System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
-					CustomerProfile cp = Database.searchCustomerName(((String)table.getValueAt(table.getSelectedRow(), 0)).trim());
+					CustomerProfile cp = CustomerDataModel.getDatabase().elementAt(table.getSelectedRow());
+					
 					if(cp != null) {
 						CustomerProfileGUI profile = new CustomerProfileGUI();
 						profile.setFields(cp);
@@ -153,20 +154,10 @@ public class CustomerListGUI extends JPanel {
 		add(scrollPane);
 	}
 	
-	private boolean checkPhone(String s) {
-		boolean b=true
-				;
-				for (int i=0;i<s.length();i++)
-				{
-					if(Character.isDigit(s.charAt(i))==false)
-						b=false;
-					return b;
-				}
-		return b;
-	}
+
 	
 	private void newFilter() {
-	    RowFilter<CustomerTableModel, Object> rf = null;
+	    RowFilter<CustomerDataModel, Object> rf = null;
 	    //If current expression doesn't parse, don't update.
 	    try {
 	        rf = RowFilter.regexFilter("(?i).*" + searchField.getText() +".*", 0);

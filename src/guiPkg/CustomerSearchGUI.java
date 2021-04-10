@@ -9,8 +9,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import pkg.CustomerProfile;
-import pkg.Database;
 import pkg.Main;
+import pkg.CustomerDataModel;
 import pkg.CustomerInfo;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -86,7 +86,7 @@ public class CustomerSearchGUI extends JPanel {
 				AddCustomerGUI makeCustomerPanel = new AddCustomerGUI();
 				if(JOptionPane.showConfirmDialog(null, makeCustomerPanel, "Create Customer", JOptionPane.OK_CANCEL_OPTION) == 0) {
 					CustomerProfile cp = new CustomerProfile(new CustomerInfo(makeCustomerPanel.getName(), makeCustomerPanel.getStreet(), makeCustomerPanel.getCity(), makeCustomerPanel.getState(), makeCustomerPanel.getPhone()));
-					Database.insertCustomer(cp);
+						CustomerDataModel.insertCustomer(cp);
 					subPanel.setFields(cp);
 				}
 			}
@@ -95,7 +95,7 @@ public class CustomerSearchGUI extends JPanel {
 		deleteCustomerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(subPanel.getProfile() != null) {
-					Database.deleteCustomer(subPanel.getProfile());
+					CustomerDataModel.deleteCustomer(subPanel.getProfile());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Error - Must have a profile selected to delete. Please note only customers with a balance of $0.00 are eligible for deletion.", "Deletion Error", JOptionPane.OK_OPTION);
@@ -106,7 +106,7 @@ public class CustomerSearchGUI extends JPanel {
 		searchIDBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id = JOptionPane.showInputDialog(null, "Please Input a Customer ID to search for:");
-				CustomerProfile cp = Database.searchCustomerID(id);
+				CustomerProfile cp = CustomerDataModel.searchCustomerID(id);
 				if(cp != null) {
 					subPanel.setFields(cp);
 				}
@@ -119,7 +119,7 @@ public class CustomerSearchGUI extends JPanel {
 		searchNameBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = JOptionPane.showInputDialog(null, "Please Input a Customer Name to search for:");
-				CustomerProfile vp = Database.searchCustomerName(name);
+				CustomerProfile vp = CustomerDataModel.searchCustomerName(name);
 				if(vp != null) {
 					subPanel.setFields(vp);
 				}
