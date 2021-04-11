@@ -8,6 +8,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
@@ -36,9 +39,9 @@ public class CustomerProfileGUI extends JPanel {
 		JLabel nameLbl = new JLabel("Full Customer Name:");
 		JLabel streetLbl = new JLabel("Street Address:");
 		JLabel customerId = new JLabel("Customer ID:");
-		JLabel balanceLbl = new JLabel("Account Balance:");
-		JLabel lastPaidLbl = new JLabel("Last Paid Amount:");
-		JLabel orderDateLbl = new JLabel("Last Order Date:");
+		JLabel balanceLbl = new JLabel("Account Balance ($):");
+		JLabel lastPaidLbl = new JLabel("Last Paid Amount ($):");
+		JLabel orderDateLbl = new JLabel("Last Order Date (mm/dd/yyyy):");
 		JLabel cityLbl = new JLabel("City:");
 		
 		nameTxtBox = new JTextField();
@@ -176,11 +179,14 @@ public class CustomerProfileGUI extends JPanel {
 		stateBox.setSelectedItem((profile.getCustomerInfo().getState()));
 		balanceTxtBox.setText(Double.toString(profile.getCustomerAccount().getBalance()));
 		lastPaidTxtBox.setText(Double.toString(profile.getCustomerAccount().getLastPaidAmount()));
-		if(profile.getLastOrderDate()!=null)
-		orderDateTxtBox.setText(profile.getLastOrderDate().toString());
+		if(profile.getLastOrderDate()!=null) {
+			SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
+			String date=dateFormat.format(profile.getLastOrderDate());
+		orderDateTxtBox.setText(date);
+		}
 	}
 	
-	public CustomerProfile getProfile() {
+	public CustomerProfile getProfile() throws ParseException {
 		profile.setCustomerId(idTxtBox.getText());
 		//CustomerInfo cI=new CustomerInfo(nameTxtBox.getText(),streetTxtBox.getText(),cityTxtBox.getText(),stateBox.getSelectedItem(),);
 		profile.getCustomerInfo().setCustomerName(nameTxtBox.getText());
@@ -189,6 +195,11 @@ public class CustomerProfileGUI extends JPanel {
 		profile.getCustomerInfo().setState((States)stateBox.getSelectedItem());
 		profile.getCustomerAccount().setBalance(Double.parseDouble(balanceTxtBox.getText()));
 		profile.getCustomerAccount().setLastPaidAmount(Double.parseDouble(lastPaidTxtBox.getText()));
+		if(orderDateTxtBox.getText().length()!=0&&orderDateTxtBox.getText().toString().matches("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$")) {
+		DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+         Date newOrderDate = dF.parse(orderDateTxtBox.getText().toString());
+         profile.setLastOrderDate(newOrderDate);
+		}
 		//TODO:Implement a way to update last order date properly, perhaps a button on 
 	//	profile.setLastOrderDate(Date.parse(TOOL_TIP_TEXT_KEY));
 		return profile;

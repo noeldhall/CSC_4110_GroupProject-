@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import java.util.Date;
 import java.util.Vector;
 
 import pkg.Main;
@@ -30,6 +31,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -119,20 +123,31 @@ public class CustomerListGUI extends JPanel {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if(!e.getValueIsAdjusting() && table.getSelectedRow() != -1) {
-					System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
+				//	System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
 					CustomerProfile cp = CustomerDataModel.getDatabase().elementAt(table.getSelectedRow());
-					
+					SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
+					String currentOrderDate=null;
+					if (cp.getLastOrderDate()!=null)
+ 					 currentOrderDate=dateFormat.format(cp.getLastOrderDate());
 					if(cp != null) {
 						CustomerProfileGUI profile = new CustomerProfileGUI();
+						
 						profile.setFields(cp);
 						if(JOptionPane.showConfirmDialog(null, profile, "Customer Profile", JOptionPane.OK_CANCEL_OPTION) == 0) {
-							 cp =new CustomerProfile( profile.getProfile());
-					//		CustomerProfile cp2 =new CustomerProfile( profile.getProfile());
-				//			cp.setCustomerId(cp2.getCustomerId());
-					//		cp.setCustomerAccount(cp2.getCustomerAccount());
-						//	cp.setCustomerInfo(cp2.getCustomerInfo());
-							model.fireTableDataChanged();
-							profile.setFields(cp);
+							String lastOrderDate=profile.getOrderDateTxtBox().getText().toString();
+							try {
+								if (checkUpdateInputs(profile.getProfile(),lastOrderDate,currentOrderDate)==true) {
+								cp =new CustomerProfile( profile.getProfile());
+//		CustomerProfile cp2 =new CustomerProfile( profile.getProfile());
+//			cp.setCustomerId(cp2.getCustomerId());
+//		cp.setCustomerAccount(cp2.getCustomerAccount());
+//	cp.setCustomerInfo(cp2.getCustomerInfo());
+								model.fireTableDataChanged();
+								profile.setFields(cp);
+								}
+							} catch (ParseException e1) {
+								e1.printStackTrace();
+							}
 							//table.setSelectedRow();
 						}
 					}
@@ -165,5 +180,49 @@ public class CustomerListGUI extends JPanel {
 	        return;
 	    }
 	    sorter.setRowFilter(rf);
+	}
+	
+	private boolean checkUpdateInputs(CustomerProfile c,String s,String s2) throws ParseException {
+
+		if (c.getCustomerInfo().getCustomerName().length()==0|| c.getCustomerInfo().getStreetAddress().length()==0||c.getCustomerInfo().getCity().length()==0||c.getCustomerInfo().getPhone().length()==0) {
+			JOptionPane.showMessageDialog(null, "Error - Empty fields in Customer Profile update.");
+			return false;
+		}
+		else if((Double.toString(c.getCustomerAccount().getBalance())!=null)&&(Double.toString(c.getCustomerAccount().getBalance()).matches("^[0-9]*\\.?[0-9]*$"))==false) {
+			JOptionPane.showMessageDialog(null, "Error - Empty or invalid balance in Customer Profile update.");
+			return false;
+		}
+		else if((Double.toString(c.getCustomerAccount().getLastPaidAmount()).matches("^[0-9]*\\.?[0-9]*$"))==false&&c.getCustomerAccount().getLastPaidAmount()!=0) {
+			JOptionPane.showMessageDialog(null, "Error - Empty or invalid last paid amount in Customer Profile update.");
+			return false;
+		}
+		if(s.length()!=0) {
+		if(s.matches("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$")) {
+	        DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+            Date newOrderDate = dF.parse(s);
+            Date presentOrderDate;
+            if(s2!=null&&s2!="") {
+             presentOrderDate=dF.parse(s2);
+            }
+            else {
+            	presentOrderDate=new Date();
+            }
+            Date currentDate=new Date();
+            SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
+				String currentDateString=dateFormat.format(currentDate);
+				currentDate=dF.parse(currentDateString);
+            if(newOrderDate.compareTo(currentDate)!=0&&newOrderDate.compareTo(presentOrderDate)!=0)
+            {
+    			JOptionPane.showMessageDialog(null, "Error - Past or invalid last order date in Customer Profile update, must be in \"mm/dd/yyyy\" format.");
+    			return false;
+            }
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Error - Past or invalid last order date in Customer Profile update, must be in \"mm/dd/yyyy\" format.");
+			return false;
+		}
+
+		}
+		return true;
 	}
 }
