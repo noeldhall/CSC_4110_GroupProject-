@@ -23,6 +23,7 @@ public class Main {
 	private static DefaultLoginGUI defaultLogin;
 	private static CustomerListGUI customerTab;
 	private static CustomerSearchGUI customerSearchTab;
+	private static ItemListGUI itemTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,9 +46,11 @@ public class Main {
 		System.out.println("finprint");
 		vendorTab = new VendorListGUI(Database.vendors);
 		customerTab=new CustomerListGUI(Database.customers);
+		itemTab=new ItemListGUI(itemDAO.getDatabase());
 		Database.printVendors();
 		Database.printUsers();
 		Database.printCustomers();
+//		itemDAO.printItems();
 	}
 
 	private void initialize() {
@@ -111,8 +114,9 @@ public class Main {
 			swapPanel(defaultLogin);
 			break;
 		case SALES_PERSON:
-			defaultLogin = new DefaultLoginGUI();
-			swapPanel(defaultLogin);
+			menu.openTab(itemTab);
+		//	defaultLogin = new DefaultLoginGUI();
+			//swapPanel(defaultLogin);
 			break;
 		default:
 			break;

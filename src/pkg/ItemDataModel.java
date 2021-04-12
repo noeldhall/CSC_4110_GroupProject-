@@ -1,6 +1,8 @@
 package pkg;
 
 import java.util.Date;
+import java.util.Vector;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
@@ -10,7 +12,7 @@ public class ItemDataModel extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8368348238846303420L;
-	DatabaseII<Item> itemData;
+	static DatabaseII<Item> itemData;
 	private final String[] columnNames = new String[] { 
 			"itemID", "item Name", "vendorID", "Sell Price", "Item Type",
 			"Expiration Date", "Unit Price", "Unit Of Measurement", "Balance On Hand"
@@ -67,5 +69,15 @@ public class ItemDataModel extends AbstractTableModel {
 			default:
 				return null;
 		}
+	}
+	
+	public static void printItems() {
+		//prints a list of vendors from our vector - test purposes only
+		for(Item ip : getDatabase()) {
+			System.out.println(ip.toString());
+		}
+	}
+	public static Vector<Item> getDatabase() {
+		return itemData.getData();
 	}
 }

@@ -71,4 +71,19 @@ public class Item implements Data {
 	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
+	
+	public String toString() {
+		String data = "";
+		data += itemID + "\t";
+		data += itemName+"\t";
+		data += sellPrice+"\t";
+		data += itemType + "\t";
+		data += expires.toString() + "\t";
+		data+=unitPrice+"\t";
+		data+=unitOfMeasure+"\t";
+		data+=quantity+"\t";
+		return data;
+	}
+	
+	
 }

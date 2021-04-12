@@ -4,3 +4,4 @@ Gloomis	Brett	gw1712	bravo1	PURCHASER	true
 Groat	Tyler	gw1234	alpha1	INVENTORY_MANAGER	true
 Hall	Noel	gg2345	zulu1	ACCOUNTANT	true
 Smith	Will	hu2331	charle1	ADMIN	true
+Lester	Crest	gh9021	foxtrot1	SALES_PERSON	true
