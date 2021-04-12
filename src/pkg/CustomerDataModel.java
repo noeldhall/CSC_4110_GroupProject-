@@ -37,7 +37,6 @@ public class CustomerDataModel extends AbstractTableModel {
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		CustomerProfile cp = customerData.getData().get(rowIndex);
 		switch(columnIndex) {
 			case 0:
