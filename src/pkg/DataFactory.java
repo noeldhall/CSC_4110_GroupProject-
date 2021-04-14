@@ -13,6 +13,10 @@ public class DataFactory {
 		else if(type.equals("UserProfile")) {
 			return new UserProfile(data);
 		}
+		else if(type.equals("Item"))
+		{
+			return new Item(data);
+		}
 		else {
 			return null;
 		}

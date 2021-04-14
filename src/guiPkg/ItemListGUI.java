@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.GroupLayout;
@@ -48,8 +50,18 @@ public class ItemListGUI extends JPanel {
 		table.setRowSorter(sorter);
 		
 		scrollPane.getViewport().setBackground(Color.gray);
-		add(scrollPane);
+		
+		JButton Logoutbtn = new JButton("Log out");
+		Logoutbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
+		add(Logoutbtn);
 
+		add(scrollPane);
+		
+		
 	}
 
 

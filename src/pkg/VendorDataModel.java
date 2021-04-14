@@ -95,6 +95,11 @@ public class VendorDataModel extends AbstractTableModel{
 		}
 	}
 	
+	@Override
+    public String getColumnName(int index) {
+        return columnNames[index];
+	}
+	
 	public static int generateVendorID() {
 		int uniInt = 1;
 		for(VendorProfile vp: vendorData.getData()) {

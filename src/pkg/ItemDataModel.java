@@ -44,6 +44,10 @@ public class ItemDataModel extends AbstractTableModel {
 	}
 
 	@Override
+    public String getColumnName(int index) {
+        return columnNames[index];
+    }
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		//gets the value of a particular cell in our table
 		Item item = itemData.getData().get(rowIndex);

@@ -17,6 +17,19 @@ public class Item implements Data {
 	String unitOfMeasure;
 	double quantity;
 	
+	public Item(String[] data) {
+		itemID=data[0];
+		itemName=data[1];
+		vendorID=data[2];
+		sellPrice=Double.parseDouble(data[3]);
+		itemType=ItemCategory.valueOf(data[4]);
+		expires=new Date(data[5]);
+		unitPrice=Double.parseDouble(data[6]);
+		unitOfMeasure=data[7];
+		quantity=Double.parseDouble(data[8]);
+		
+	}
+	
 	public String getItemID() {
 		return itemID;
 	}

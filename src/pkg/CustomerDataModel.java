@@ -36,6 +36,11 @@ public class CustomerDataModel extends AbstractTableModel {
 	}
 	
 	@Override
+    public String getColumnName(int index) {
+        return columnNames[index];
+    }
+	
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		CustomerProfile cp = customerData.getData().get(rowIndex);
 		switch(columnIndex) {

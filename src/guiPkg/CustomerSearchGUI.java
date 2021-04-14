@@ -13,8 +13,10 @@ import pkg.Main;
 import pkg.CustomerDataModel;
 import pkg.CustomerInfo;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.HeadlessException;
 
 @SuppressWarnings("serial")
 public class CustomerSearchGUI extends JPanel {
@@ -94,11 +96,16 @@ public class CustomerSearchGUI extends JPanel {
 		
 		deleteCustomerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(subPanel.getProfile() != null) {
-					CustomerDataModel.deleteCustomer(subPanel.getProfile());
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Error - Must have a profile selected to delete. Please note only customers with a balance of $0.00 are eligible for deletion.", "Deletion Error", JOptionPane.OK_OPTION);
+				try {
+					if(subPanel.getProfile() != null) {
+						CustomerDataModel.deleteCustomer(subPanel.getProfile());
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Error - Must have a profile selected to delete. Please note only customers with a balance of $0.00 are eligible for deletion.", "Deletion Error", JOptionPane.OK_OPTION);
+					}
+				} catch (HeadlessException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});

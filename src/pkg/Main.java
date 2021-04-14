@@ -44,13 +44,15 @@ public class Main {
 		initialize();
 		db = new Database();
 		System.out.println("finprint");
-		vendorTab = new VendorListGUI(Database.vendors);
-		customerTab=new CustomerListGUI(Database.customers);
-		itemTab=new ItemListGUI(itemDAO.getDatabase());
+		//vendorTab = new VendorListGUI(Database.vendors);
+		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
+		//customerTab=new CustomerListGUI(Database.customers);
+		customerTab=new CustomerListGUI(CustomerDataModel.getDatabase());
+		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
 		Database.printVendors();
 		Database.printUsers();
 		Database.printCustomers();
-//		itemDAO.printItems();
+		ItemDataModel.printItems();
 	}
 
 	private void initialize() {
@@ -115,7 +117,7 @@ public class Main {
 			break;
 		case SALES_PERSON:
 			menu.openTab(itemTab);
-		//	defaultLogin = new DefaultLoginGUI();
+			//defaultLogin = new DefaultLoginGUI();
 			//swapPanel(defaultLogin);
 			break;
 		default:
