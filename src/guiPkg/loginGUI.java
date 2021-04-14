@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 
-import pkg.Database;
+
 import pkg.Main;
 import pkg.UserDataModel;
 import pkg.UserProfile;

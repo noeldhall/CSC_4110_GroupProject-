@@ -8,8 +8,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import pkg.Database;
 import pkg.Main;
+import pkg.UserDataModel;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -27,7 +27,7 @@ public class DefaultLoginGUI extends JPanel {
 		JLabel lblNewLabel = new JLabel("Logged in as: ");
 		
 		textField = new JTextField();
-		textField.setText(Database.currentUser.getUserRole().toString());
+		textField.setText(UserDataModel.currentUser.getUserRole().toString());
 		textField.setEditable(false);
 		textField.setColumns(10);
 		

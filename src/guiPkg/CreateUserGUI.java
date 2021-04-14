@@ -10,7 +10,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-import pkg.Database;
 import pkg.Roles;
 import pkg.UserDataModel;
 import pkg.UserProfile;
@@ -56,7 +55,7 @@ public class CreateUserGUI extends JPanel {
 		
 		final JComboBox RolecomboBox = new JComboBox();
 		RolecomboBox.setModel(new DefaultComboBoxModel(Roles.values()));
-		if(Database.currentUser.getUserRole() == Roles.ADMIN)
+		if(UserDataModel.currentUser.getUserRole() == Roles.ADMIN)
 		{
 			RolecomboBox.removeItemAt(1);
 			RolecomboBox.removeItemAt(1);
@@ -82,7 +81,7 @@ public class CreateUserGUI extends JPanel {
 				}
 				else
 				{
-					Database.users.add(newUser);
+					UserDataModel.getDatabase().add(newUser);
 					JOptionPane.showMessageDialog(null, "User profile has been created.");
 				}
 			}
