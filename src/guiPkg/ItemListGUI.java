@@ -4,12 +4,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.Vector;
 
 import javax.swing.GroupLayout;
@@ -24,14 +30,18 @@ import pkg.VendorProfile;
 
 public class ItemListGUI extends JPanel {
 	private static final long serialVersionUID = 8777161324173056561L;
+	private JTextField searchField;
 
 	private JTable table;
 	private TableRowSorter<ItemDataModel> sorter;
 
 	/**
-	 * TODO: functionality of displaying all items in inventory.
+	 *
 	 */
 	public ItemListGUI(Vector<Item> data) {
+		setName("Inventory");
+
+		
 		//Variables
 		ItemDataModel model=Main.itemDAO;
 		JScrollPane scrollPane = new JScrollPane();
@@ -42,14 +52,40 @@ public class ItemListGUI extends JPanel {
 		//JButton btnNewButton_1 = new JButton("New button");
 		
 		//JButton btnNewButton_2 = new JButton("New button");
+		searchField = new JTextField();
+		searchField.setColumns(10);
 		setLayout(new FlowLayout(FlowLayout.CENTER,5,5));
 		table.setAutoCreateRowSorter(true);
 		scrollPane.setViewportView(table);
 		table.setBorder(new EmptyBorder(3,3,3,3));
 		table.setFillsViewportHeight(true);
 		table.setRowSorter(sorter);
+		table.setBackground(Color.LIGHT_GRAY);
 		
 		scrollPane.getViewport().setBackground(Color.gray);
+		
+      searchField.getDocument().addDocumentListener(new DocumentListener() {
+					@Override
+					public void insertUpdate(DocumentEvent e) {
+						newFilter();
+					}
+					@Override
+					public void removeUpdate(DocumentEvent e) {
+						newFilter();
+					}
+					@Override
+					public void changedUpdate(DocumentEvent e) {
+						newFilter();
+					}
+      });
+      
+		searchField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				table.clearSelection();
+				searchField.setText("");
+			}
+		});
 		
 		JButton Logoutbtn = new JButton("Log out");
 		Logoutbtn.addActionListener(new ActionListener() {
@@ -58,11 +94,21 @@ public class ItemListGUI extends JPanel {
 			}
 		});
 		add(Logoutbtn);
+		add(searchField);
 
 		add(scrollPane);
 		
 		
 	}
 
-
+	private void newFilter() {
+    RowFilter<ItemDataModel, Object> rf = null;
+    //If current expression doesn't parse, do't update.
+    try {
+        rf = RowFilter.regexFilter("(?i).*" + searchField.getText() +".*", 1);
+    } catch (java.util.regex.PatternSyntaxException e) {
+        return;
+    }
+    sorter.setRowFilter(rf);
+}
 }

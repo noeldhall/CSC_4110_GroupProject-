@@ -21,9 +21,11 @@ public class Main {
 	private static ManagerGUI manager;
 	private static VendorSearchGUI supplierTab;
 	private static DefaultLoginGUI defaultLogin;
-	private static CustomerListGUI customerTab;
+	private static OwnerCustomerListGUI customerTab;
+	private static CustomerListGUI customerListTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
+	public static CustomerOrderItemListGUI customerOrderItemTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,8 +49,12 @@ public class Main {
 		//vendorTab = new VendorListGUI(Database.vendors);
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
 		//customerTab=new CustomerListGUI(Database.customers);
-		customerTab=new CustomerListGUI(CustomerDataModel.getDatabase());
+		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
+		//testing parent customer list class
+		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
+		
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
+		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
 		Database.printVendors();
 		Database.printUsers();
 		Database.printCustomers();
@@ -99,6 +105,7 @@ public class Main {
 			menu.openTab(manager);
 			menu.openTab(vendorTab);
 			menu.openTab(customerTab);
+		//	menu.openTab(customerListTab);
 			menu.openTab(customerSearchTab);
 			break;
 		case ADMIN:
@@ -116,9 +123,9 @@ public class Main {
 			swapPanel(defaultLogin);
 			break;
 		case SALES_PERSON:
-			menu.openTab(itemTab);
-			//defaultLogin = new DefaultLoginGUI();
-			//swapPanel(defaultLogin);
+		//	menu.openTab(itemTab);
+			menu.openTab(customerOrderItemTab);
+			
 			break;
 		default:
 			break;

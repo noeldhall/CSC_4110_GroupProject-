@@ -9,10 +9,10 @@ import java.util.Date;
  * @author Noel Hall
  *
  */
-public class OrderItem {
+public class OrderItem extends Item{
 	
-	public OrderItem() {
-		
+	public OrderItem(String[] item,Date needByDate, Date orderDate,int quantity) {
+		super(item);
 	}
 	
 	public double calculateSubtotal() {
@@ -22,7 +22,6 @@ public class OrderItem {
 	private Date needByDate;
 	private Date orderDate;
 	private int quantity;
-	private Item item;
 	private double subtotal;
 	public Date getNeedByDate() {
 		return needByDate;
@@ -40,7 +39,7 @@ public class OrderItem {
 		this.orderDate = orderDate;
 	}
 
-	public int getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
 
@@ -48,13 +47,6 @@ public class OrderItem {
 		this.quantity = quantity;
 	}
 
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
 
 	public double getSubtotal() {
 		return subtotal;
