@@ -15,7 +15,7 @@ public class Item implements Data {
 	Date expires;
 	double unitPrice;
 	String unitOfMeasure;
-	double quantity;
+	double balanceOnHand;
 	
 	public Item(String[] data) {
 		itemID=data[0];
@@ -26,7 +26,7 @@ public class Item implements Data {
 		expires=new Date(data[5]);
 		unitPrice=Double.parseDouble(data[6]);
 		unitOfMeasure=data[7];
-		quantity=Double.parseDouble(data[8]);
+		balanceOnHand=Double.parseDouble(data[8]);
 		
 	}
 	
@@ -78,11 +78,11 @@ public class Item implements Data {
 	public void setUnitOfMeasure(String unitOfMeasure) {
 		this.unitOfMeasure = unitOfMeasure;
 	}
-	public double getQuantity() {
-		return quantity;
+	public double getBalanceOnHand() {
+		return balanceOnHand;
 	}
-	public void setQuantity(double quantity) {
-		this.quantity = quantity;
+	public void setBalanceOnHand(double quantity) {
+		this.balanceOnHand = quantity;
 	}
 	
 	public String toString() {
@@ -94,7 +94,7 @@ public class Item implements Data {
 		data += expires.toString() + "\t";
 		data+=unitPrice+"\t";
 		data+=unitOfMeasure+"\t";
-		data+=quantity+"\t";
+		data+=balanceOnHand+"\t";
 		return data;
 	}
 	

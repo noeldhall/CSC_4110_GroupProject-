@@ -16,13 +16,13 @@ public class OrderItem extends Item{
 	}
 	
 	public double calculateSubtotal() {
-		return subtotal;
+		return quantity * unitPrice;
 	}
 	
 	private Date needByDate;
 	private Date orderDate;
 	private int quantity;
-	private double subtotal;
+	
 	public Date getNeedByDate() {
 		return needByDate;
 	}
@@ -45,14 +45,5 @@ public class OrderItem extends Item{
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-
-	public double getSubtotal() {
-		return subtotal;
-	}
-
-	public void setSubtotal(double subtotal) {
-		this.subtotal = subtotal;
 	}
 }

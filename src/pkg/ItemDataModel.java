@@ -69,7 +69,7 @@ public class ItemDataModel extends AbstractTableModel {
 			case 7:
 				return item.getUnitOfMeasure();
 			case 8:
-				return item.getQuantity();
+				return item.getBalanceOnHand();
 			default:
 				return null;
 		}
