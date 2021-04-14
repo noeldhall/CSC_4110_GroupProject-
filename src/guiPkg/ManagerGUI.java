@@ -57,7 +57,7 @@ public class ManagerGUI extends JPanel{
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UserTableGUI UserTab = new UserTableGUI(Database.users);
+				UserTableGUI UserTab = new UserTableGUI(UserDataModel.getDatabase());
 				JOptionPane.showMessageDialog(null, UserTab,"User Data Table",JOptionPane.PLAIN_MESSAGE);
 			}
 		});

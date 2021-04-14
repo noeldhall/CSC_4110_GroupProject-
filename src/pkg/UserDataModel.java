@@ -111,5 +111,8 @@ public class UserDataModel extends AbstractTableModel {
 		return false;
 	}
 	
+	public static Vector<UserProfile> getDatabase() {
+		return userList.getData();
+	}
 	
 }

@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
 public class Main {
-	private Database db;
 	public static final VendorDataModel vendorDAO = new VendorDataModel(VendorProfile.class, "data\\Feature3_dummyData.txt");
 	public static final UserDataModel userDAO = new UserDataModel(UserProfile.class, "data\\Login_and_Logout_User_Data.txt");
 	public static final ItemDataModel itemDAO = new ItemDataModel(Item.class, "data\\Items_profile_dummy_data.txt");
@@ -44,7 +43,6 @@ public class Main {
 
 	public Main() {		
 		initialize();
-		db = new Database();
 		System.out.println("finprint");
 		//vendorTab = new VendorListGUI(Database.vendors);
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
@@ -55,9 +53,6 @@ public class Main {
 		
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
 		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
-		Database.printVendors();
-		Database.printUsers();
-		Database.printCustomers();
 		ItemDataModel.printItems();
 	}
 
@@ -142,6 +137,6 @@ public class Main {
 		layeredPane.repaint();
 		layeredPane.revalidate();
 		
-		Database.currentUser = null;
+		UserDataModel.currentUser = null;
 	}
 }
