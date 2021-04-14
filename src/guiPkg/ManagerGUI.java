@@ -14,7 +14,6 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-import pkg.Database;
 import pkg.Main;
 import pkg.PersonalInformation;
 import pkg.Roles;
@@ -73,12 +72,12 @@ public class ManagerGUI extends JPanel{
 		JButton btnNewButton_3 = new JButton("Update User Profile");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Database.currentUser.getUserRole() == Roles.ADMIN && UserDataModel.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
+				if(UserDataModel.currentUser.getUserRole() == Roles.ADMIN && UserDataModel.findUser(UserIDtxtField.getText()).getUserRole() != Roles.OWNER)
 				{
 					UpdateUserGUI updateUserProfilePanel = new UpdateUserGUI(UserIDtxtField);
 					JOptionPane.showMessageDialog(null, updateUserProfilePanel, "Update User Profile", JOptionPane.CLOSED_OPTION);
 				}
-				else if(Database.currentUser.getUserRole() == Roles.OWNER)
+				else if(UserDataModel.currentUser.getUserRole() == Roles.OWNER)
 				{
 					UpdateUserGUI updateUserProfilePanel = new UpdateUserGUI(UserIDtxtField);
 					JOptionPane.showMessageDialog(null, updateUserProfilePanel, "Update User Profile", JOptionPane.CLOSED_OPTION);

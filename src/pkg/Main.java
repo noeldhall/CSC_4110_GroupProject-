@@ -12,6 +12,7 @@ public class Main {
 	public static final UserDataModel userDAO = new UserDataModel(UserProfile.class, "data\\Login_and_Logout_User_Data.txt");
 	public static final ItemDataModel itemDAO = new ItemDataModel(Item.class, "data\\Items_profile_dummy_data.txt");
 	public static final CustomerDataModel customerDAO=new CustomerDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
+	public static final InvoiceDataModel customerInvoiceDAO=new InvoiceDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	private JFrame frame;
 	private static loginGUI login;
 	private static MainMenu menu;
@@ -25,6 +26,7 @@ public class Main {
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
 	public static CustomerOrderItemListGUI customerOrderItemTab;
+	private static InvoiceMainGUI invoiceTab;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -50,6 +52,8 @@ public class Main {
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
 		//testing parent customer list class
 		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
+		
+		invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
 		
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
 		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
@@ -102,6 +106,7 @@ public class Main {
 			menu.openTab(customerTab);
 		//	menu.openTab(customerListTab);
 			menu.openTab(customerSearchTab);
+			menu.openTab(invoiceTab);
 			break;
 		case ADMIN:
 			menu.openTab(manager);
@@ -114,8 +119,7 @@ public class Main {
 			menu.openTab(supplierTab);
 			break;
 		case ACCOUNTANT:
-			defaultLogin = new DefaultLoginGUI();
-			swapPanel(defaultLogin);
+			menu.openTab(invoiceTab);
 			break;
 		case SALES_PERSON:
 		//	menu.openTab(itemTab);
