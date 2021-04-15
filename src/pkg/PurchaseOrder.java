@@ -7,7 +7,6 @@ public class PurchaseOrder {
 	Vector<OrderItem> items;
 	int orderId;
 	Date needByDate;
-	int quantity;
 	VendorProfile vendor;
 
 	//------------GETS-------------
@@ -23,6 +22,11 @@ public class PurchaseOrder {
 		return needByDate;
 	}
 	
+	public int getItemCount() {
+		//returns the number of items in the order
+		return items.size();
+	}
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -32,10 +36,23 @@ public class PurchaseOrder {
 	}
 	
 	//------------SETS-------------
-	public void setItem(OrderItem item) {
-		items.add(item);
+	public void addItem(OrderItem item) throws IllegalArgumentException {
+		if(getItemCount() < 5) {
+			items.add(item);
+		}
+		else {
+			throw new IllegalArgumentException("maximum of five items on an order!");
+		}
 	}
 	
+	public void removeItem(int val) throws IllegalArgumentException {
+		if(val <= getItemCount()) {
+			items.remove(val);
+		}
+		else {
+			throws new IllegalArgumentException("Item out of order range");
+		}
+	}
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
@@ -44,17 +61,16 @@ public class PurchaseOrder {
 		this.needByDate = needByDate;
 	}
 	
-	public void setQuantity(int quantity) throws IllegalArgumentException {
-		if(quantity > 0) {
-			this.quantity = quantity;
-		}
-		else {
-			throw new IllegalArgumentException("Quantity of an orderItem must be greater than 0");
-		}
-	}
-	
 	public void setVendor(VendorProfile vendor) {
 		this.vendor = vendor;
 	}
 	
+	//----------utility functions------------
+	public double calcTotal() {
+		double total = 0.00;
+		for(OrderItem item : items) {
+			total += item.calculateSubtotal();
+		}
+		return total;
+	}
 }
