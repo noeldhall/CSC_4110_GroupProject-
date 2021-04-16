@@ -1,5 +1,7 @@
 package pkg;
 
+import java.text.ParseException;
+
 //Authored by Nicholas Foster
 
 public class DataFactory {
@@ -21,7 +23,11 @@ public class DataFactory {
 			return new PurchaseOrder(data);
 		}
 		else if(type.equals("CustomerOrder")) {
-			return new CustomerOrder(data);
+			try {
+				return new CustomerOrder(data);
+			} catch (ParseException e) {
+				return null;
+			}
 		}
 		else {
 			return null;

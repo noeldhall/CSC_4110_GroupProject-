@@ -1,16 +1,44 @@
 package pkg;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
 public class CustomerOrder implements Data{
-
+	private Date needByDate;
+	private Date orderDate;
+	private CustomerProfile customer;
+	private int customerOrderId;
+	private Vector<OrderItem> orderItems=new Vector<OrderItem>();
+	private double totalCost=0;
 	public CustomerOrder() {
 		
 	}
 	
-	public CustomerOrder(String[] data) {
-		// TODO Auto-generated constructor stub
+	public CustomerOrder(String[] data) throws ParseException {
+		customerOrderId=Integer.parseInt(data[0]);
+		customer=CustomerDataModel.searchCustomerID(data[1]);
+		DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+         orderDate = dF.parse(data[2]);
+         needByDate=dF.parse(data[3]);
+         
+         String itemString;
+         for(int i=4;i<=12;i+=2 )
+         {
+        	 itemString=data[i];
+        	 if(itemString.equals("null")==false)
+        	 {
+        		 Item item=ItemDataModel.searchItemID(data[i]);
+        		 if (item!=null)
+        		 {
+        			 orderItems.add(new OrderItem(item,Integer.parseInt(data[i+1])));
+        		 }
+        	 }
+        	 
+         }
+         
 	}
 
 	public void subtractQuantities() {
@@ -38,11 +66,11 @@ public class CustomerOrder implements Data{
 	}
 
 	public int getCustomerOrderid() {
-		return customerOrderid;
+		return customerOrderId;
 	}
 
 	public void setCustomerOrderid(int customerOrderid) {
-		this.customerOrderid = customerOrderid;
+		this.customerOrderId = customerOrderid;
 	}
 
 	public double getTotalCost() {
@@ -58,13 +86,11 @@ public class CustomerOrder implements Data{
 	}
 
 	public double calculateTotalCost(){
+		totalCost=0;
+		for(OrderItem oi:orderItems)
+			totalCost+=oi.getQuantity()*oi.getSellPrice();
 		return totalCost;
 	}
 	
-	private Date needByDate;
-	private Date orderDate;
-	private CustomerProfile customer;
-	private int customerOrderid;
-	private Vector<OrderItem> orderItems;
-	private double totalCost=0;
+	
 }

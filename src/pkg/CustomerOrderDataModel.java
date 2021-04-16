@@ -13,17 +13,24 @@ import javax.swing.table.AbstractTableModel;
  *
  */
 public class CustomerOrderDataModel extends AbstractTableModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3302157226851315559L;
 	static DatabaseII<CustomerOrder> customerOrderData;
 	private final String[] columnNames = new String[] { 
-			"Order Id","Customer Name","Need By Date","Order Date"
+			"Order Id","Customer Name","Order Date","Need By Date"
 	};
 	@SuppressWarnings("rawtypes")
 	private final Class[] columnClass = new Class[] { 
 			String.class, String.class, Date.class,Date.class
 	};
+	
+	public CustomerOrderDataModel(Class<CustomerOrder> dt,String s) {
+		customerOrderData=new DatabaseII<CustomerOrder>(dt,s);
+	}
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
 		return customerOrderData.getData().size();
 	}
 
@@ -42,9 +49,9 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		case 1:
 			return customerOrder.getCustomer().getCustomerInfo().getCustomerName();
 		case 2: 
-			return customerOrder.getNeedByDate();
-		case 3:
 			return customerOrder.getOrderDate();
+		case 3:
+			return customerOrder.getNeedByDate();
 		default:
 			return null;
 			

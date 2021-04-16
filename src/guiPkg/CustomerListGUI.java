@@ -45,7 +45,7 @@ public class CustomerListGUI extends JPanel {
 	JScrollPane scrollPane;
 
 	public CustomerListGUI(Vector<CustomerProfile> data) {
-		setName("Customer");
+		setName("Customers");
 
 		
 		scrollPane = new JScrollPane();

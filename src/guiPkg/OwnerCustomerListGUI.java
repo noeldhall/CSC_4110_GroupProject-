@@ -38,7 +38,7 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 		super(data);
 
 		//---basic settings---
-		setName("Customer(Owner View)");
+		setName("Customers");
 		
 		//VARIABLE DECLARATION AND INITIALIZATION
 	//	final CustomerDataModel model = Main.customerDAO;
@@ -88,28 +88,6 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 			}
 		});
 		
-//        searchField.getDocument().addDocumentListener(new DocumentListener() {
-//					@Override
-//					public void insertUpdate(DocumentEvent e) {
-//						newFilter();
-//					}
-//					@Override
-//					public void removeUpdate(DocumentEvent e) {
-//						newFilter();
-//					}
-//					@Override
-//					public void changedUpdate(DocumentEvent e) {
-//						newFilter();
-//					}
-//        });
-        
-//		searchField.addFocusListener(new FocusAdapter() {
-//			@Override
-//			public void focusGained(FocusEvent e) {
-//				table.clearSelection();
-//				searchField.setText("");
-//			}
-//		});
         
         getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -144,13 +122,7 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 			}
         });
 		
-//		JButton Logoutbtn = new JButton("Log out");
-//		Logoutbtn.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Main.swapToLogin();
-//			}
-//		});
-//		add(Logoutbtn);
+
 		
 		add(addCustomerBtn);
 		add(deleteCustomerBtn);
@@ -160,16 +132,7 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 	
 
 	
-//	private void newFilter() {
-//	    RowFilter<CustomerDataModel, Object> rf = null;
-//	    //If current expression doesn't parse, don't update.
-//	    try {
-//	        rf = RowFilter.regexFilter("(?i).*" + searchField.getText() +".*", 0);
-//	    } catch (java.util.regex.PatternSyntaxException e) {
-//	        return;
-//	    }
-//	    sorter.setRowFilter(rf);
-//	}
+
 	
 	private boolean checkUpdateInputs(CustomerProfile c,String s,String s2) throws ParseException {
 

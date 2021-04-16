@@ -13,6 +13,8 @@ public class Main {
 	public static final ItemDataModel itemDAO = new ItemDataModel(Item.class, "data\\Items_profile_dummy_data.txt");
 	public static final CustomerDataModel customerDAO=new CustomerDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final InvoiceDataModel customerInvoiceDAO=new InvoiceDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
+	public static final CustomerOrderDataModel customerOrderDAO=new CustomerOrderDataModel(CustomerOrder.class,"data\\Customer_order_dummyData.txt");
+	
 	private JFrame frame;
 	private static loginGUI login;
 	private static MainMenu menu;
@@ -22,6 +24,7 @@ public class Main {
 	private static VendorSearchGUI supplierTab;
 	private static DefaultLoginGUI defaultLogin;
 	private static OwnerCustomerListGUI customerTab;
+	private static SalesCustomerListGUI salesCustomerTab;
 	private static CustomerListGUI customerListTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
@@ -50,6 +53,7 @@ public class Main {
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
 		//customerTab=new CustomerListGUI(Database.customers);
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
+		salesCustomerTab=new SalesCustomerListGUI(CustomerDataModel.getDatabase());
 		//testing parent customer list class
 		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
 		
@@ -75,8 +79,8 @@ public class Main {
 		login = new loginGUI();
 		layeredPane.add(login, "1");
 		
-		menu = new MainMenu();
-		layeredPane.add(menu, "2");
+		setMenu(new MainMenu());
+		layeredPane.add(getMenu(), "2");
 		
 		manager = new ManagerGUI();
 		supplierTab = new VendorSearchGUI();
@@ -94,36 +98,39 @@ public class Main {
 
 	public static void swapToMain(Roles role) {
 		manager = new ManagerGUI();
-		menu = new MainMenu();
+		setMenu(new MainMenu());
 		login = new loginGUI();
 		layeredPane.removeAll();
-		layeredPane.add(menu);
+		layeredPane.add(getMenu());
 		
 		switch(role) {
 		case OWNER:
-			menu.openTab(manager);
-			menu.openTab(vendorTab);
-			menu.openTab(customerTab);
+			getMenu().openTab(manager);
+			getMenu().openTab(vendorTab);
+			getMenu().openTab(customerTab);
 		//	menu.openTab(customerListTab);
-			menu.openTab(customerSearchTab);
-			menu.openTab(invoiceTab);
+			getMenu().openTab(customerSearchTab);
+			getMenu().openTab(invoiceTab);
 			break;
 		case ADMIN:
-			menu.openTab(manager);
+			getMenu().openTab(manager);
 			break;
 		case INVENTORY_MANAGER:
 			defaultLogin = new DefaultLoginGUI();
 			swapPanel(defaultLogin);
 			break;
 		case PURCHASER:
-			menu.openTab(supplierTab);
+			getMenu().openTab(supplierTab);
 			break;
 		case ACCOUNTANT:
-			menu.openTab(invoiceTab);
+			getMenu().openTab(invoiceTab);
 			break;
 		case SALES_PERSON:
 		//	menu.openTab(itemTab);
-			menu.openTab(customerOrderItemTab);
+			
+			//menu.openTab(customerOrderItemTab);
+			getMenu().openTab(salesCustomerTab);
+			
 			
 			break;
 		default:
@@ -135,12 +142,20 @@ public class Main {
 	}
 	
 	public static void swapToLogin() {
-		menu.clearTabs();
+		getMenu().clearTabs();
 		layeredPane.removeAll();
 		layeredPane.add(login);
 		layeredPane.repaint();
 		layeredPane.revalidate();
 		
 		UserDataModel.currentUser = null;
+	}
+
+	public static MainMenu getMenu() {
+		return menu;
+	}
+
+	public static void setMenu(MainMenu menu) {
+		Main.menu = menu;
 	}
 }
