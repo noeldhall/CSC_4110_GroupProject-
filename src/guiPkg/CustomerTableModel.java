@@ -7,10 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import java.util.Date;
 import java.util.Vector;
-
-
 import pkg.CustomerProfile;
-import pkg.Database;
 
 /**
  * @author Noel Hall

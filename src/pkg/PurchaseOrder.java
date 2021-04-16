@@ -3,19 +3,36 @@ package pkg;
 import java.util.Date;
 import java.util.Vector;
 
-public class PurchaseOrder {
-	Vector<OrderItem> items;
+public class PurchaseOrder implements Data {
 	int orderId;
-	Date needByDate;
 	VendorProfile vendor;
+	Date needByDate;
+	Vector<OrderItem> items;
 
+	PurchaseOrder(String[] data){
+		setOrderId(Integer.parseInt(data[0]));
+		setVendor(VendorDataModel.searchVendorID(data[1]));
+		setNeedByDate(new Date(data[2]));
+		for(int x = 3; x < data.length; x+=2) {
+			if(!data[x].equals("null")) {
+				addItem(ItemDataModel.searchItemID(data[x]), Integer.parseInt(data[x+1]));
+			}
+			else {
+				break;
+			}
+		}
+	}
+	
 	//------------GETS-------------
 	public int getOrderId() {
 		return orderId;
 	}
 	
-	public Item getItem(int val) {
-		return items.elementAt(val);
+	public OrderItem getItem(int index) {
+		if(index <= items.size() && index > -1) {
+			return items.elementAt(index);
+		}
+		return null;
 	}
 	
 	public Date getNeedByDate() {
@@ -27,38 +44,36 @@ public class PurchaseOrder {
 		return items.size();
 	}
 	
-	public int getQuantity() {
-		return quantity;
-	}
-	
 	public VendorProfile getVendor() {
 		return vendor;
 	}
 	
 	//------------SETS-------------
-	public void addItem(OrderItem item) throws IllegalArgumentException {
+	public void addItem(Item it, int quant) throws IllegalArgumentException {
 		if(getItemCount() < 5) {
-			items.add(item);
+			if(it.getExpires().after(new Date())) {
+				items.add(new OrderItem(it, quant));
+			}
+			else {
+				throw new IllegalArgumentException("The Item you are trying to order is expired.");
+			}
 		}
 		else {
 			throw new IllegalArgumentException("maximum of five items on an order!");
 		}
 	}
 	
-	public void removeItem(int val) throws IllegalArgumentException {
-		if(val <= getItemCount()) {
-			items.remove(val);
-		}
-		else {
-			throws new IllegalArgumentException("Item out of order range");
-		}
-	}
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 	
-	public void setNeedByDate(Date needByDate) {
-		this.needByDate = needByDate;
+	public void setNeedByDate(Date needByDate) throws IllegalArgumentException {
+		if(needByDate.after(new Date())) {
+			this.needByDate = needByDate;
+		}
+		else {
+			throw new IllegalArgumentException("Need By Date has already passed.");
+		}
 	}
 	
 	public void setVendor(VendorProfile vendor) {
@@ -66,6 +81,15 @@ public class PurchaseOrder {
 	}
 	
 	//----------utility functions------------
+	public void removeItem(int val) throws IllegalArgumentException {
+		if(val <= getItemCount()) {
+			items.remove(val);
+		}
+		else {
+			throw new IllegalArgumentException("Item out of order range");
+		}
+	}
+	
 	public double calcTotal() {
 		double total = 0.00;
 		for(OrderItem item : items) {

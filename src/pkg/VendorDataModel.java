@@ -38,12 +38,13 @@ public class VendorDataModel extends AbstractTableModel{
 	}
 	
 	public VendorProfile getRow(int rowIndex) {
+		//get an individual vendor profile via row selection
 		return vendorData.getData().get(rowIndex);
 	}
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
+		// explains to our model how to fill our table
 		VendorProfile vp = vendorData.getData().get(rowIndex);
 		switch(columnIndex) {
 			case 0:
@@ -106,11 +107,8 @@ public class VendorDataModel extends AbstractTableModel{
 			if(uniInt == Integer.parseInt(vp.getVendorID())) {
 				uniInt++;
 			}
-			else {
-				return uniInt;
-			}
 		}
-		return 0;
+		return uniInt;
 	}
 	
 	public static VendorProfile searchVendorID(String id) {

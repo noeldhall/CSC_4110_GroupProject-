@@ -17,6 +17,9 @@ public class DataFactory {
 		{
 			return new Item(data);
 		}
+		else if(type.equals("PurchaseOrder")) {
+			return new PurchaseOrder(data);
+		}
 		else {
 			return null;
 		}

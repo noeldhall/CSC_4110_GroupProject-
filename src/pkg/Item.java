@@ -2,7 +2,7 @@ package pkg;
 
 import java.util.Date;
 
-public class Item implements Data {
+public class Item implements Data, Comparable<Item> {
 	//Disclaimer:
 	//Feature 4 was never fully implemented, we did features 1-3 in sprint 1 because we only have 3 team members
 	//because of this, this is not fully featured per the documentation, it is merely a skeleton class to be utilized by
@@ -28,6 +28,18 @@ public class Item implements Data {
 		unitOfMeasure=data[7];
 		balanceOnHand=Double.parseDouble(data[8]);
 		
+	}
+	public Item(Item it) {
+		//simple copy constructor
+		itemID = it.itemID;
+		itemName = it.itemName;
+		vendorID = it.vendorID;
+		sellPrice = it.sellPrice;
+		itemType = it.itemType;
+		expires = it.expires;
+		unitPrice = it.unitPrice;
+		unitOfMeasure = it.unitOfMeasure;
+		balanceOnHand = it.balanceOnHand;
 	}
 	
 	public String getItemID() {
@@ -96,6 +108,13 @@ public class Item implements Data {
 		data+=unitOfMeasure+"\t";
 		data+=balanceOnHand+"\t";
 		return data;
+	}
+	@Override
+	public int compareTo(Item o) {
+		//itemID's are stored as strings but are numeric in nature.
+		//by making itemID a primary key of sorts, we can subtract itemID's
+		//if 0, they are equivalent objects. if <0, o.itemID is larger. If >0, o.itemID is smaller.
+		return Integer.parseInt(o.itemID) - Integer.parseInt(itemID);
 	}
 	
 	

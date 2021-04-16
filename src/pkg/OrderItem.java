@@ -14,6 +14,12 @@ public class OrderItem extends Item{
 	
 	public OrderItem(String[] item,int quantity) {
 		super(item);
+		this.quantity = quantity;
+	}
+	
+	public OrderItem(Item it, int quantity) {
+		super(it);
+		this.quantity = quantity;
 	}
 	
 	public double calculateSubtotal() {

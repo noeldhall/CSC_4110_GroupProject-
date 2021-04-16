@@ -81,7 +81,17 @@ public class ItemDataModel extends AbstractTableModel {
 			System.out.println(ip.toString());
 		}
 	}
+	
 	public static Vector<Item> getDatabase() {
 		return itemData.getData();
+	}
+	
+	public static Item searchItemID(String itemID) {
+		for(Item ip : getDatabase()) {
+			if(ip.itemID.equals(itemID)) {
+				return ip;
+			}
+		}
+		return null;
 	}
 }
