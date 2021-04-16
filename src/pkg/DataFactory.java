@@ -20,6 +20,9 @@ public class DataFactory {
 		else if(type.equals("PurchaseOrder")) {
 			return new PurchaseOrder(data);
 		}
+		else if(type.equals("CustomerOrder")) {
+			return new CustomerOrder(data);
+		}
 		else {
 			return null;
 		}

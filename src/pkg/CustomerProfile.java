@@ -26,7 +26,7 @@ public class CustomerProfile implements Comparable<CustomerProfile>, Data{
 		this.lastOrderDate=customer.getLastOrderDate();
 	}
 	public CustomerProfile(CustomerInfo customer) {
-		customerId = formatID(Database.generateCustomerID());
+		customerId = formatID(CustomerDataModel.generateCustomerID());
 		this.customerInfo = customer;
 		customerAccount = new CustomerAccount();
 		lastOrderDate = null;

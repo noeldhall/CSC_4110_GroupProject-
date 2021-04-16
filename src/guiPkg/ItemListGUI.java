@@ -47,11 +47,7 @@ public class ItemListGUI extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		table = new JTable(model);
 		sorter=new TableRowSorter<ItemDataModel>(model);
-		//JButton btnNewButton = new JButton("New button");
 		
-		//JButton btnNewButton_1 = new JButton("New button");
-		
-		//JButton btnNewButton_2 = new JButton("New button");
 		searchField = new JTextField();
 		searchField.setColumns(10);
 		setLayout(new FlowLayout(FlowLayout.CENTER,5,5));
