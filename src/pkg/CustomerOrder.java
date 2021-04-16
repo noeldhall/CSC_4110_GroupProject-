@@ -17,6 +17,14 @@ public class CustomerOrder implements Data{
 		
 	}
 	
+	public Vector<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(Vector<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
 	public CustomerOrder(String[] data) throws ParseException {
 		customerOrderId=Integer.parseInt(data[0]);
 		customer=CustomerDataModel.searchCustomerID(data[1]);
@@ -88,8 +96,8 @@ public class CustomerOrder implements Data{
 	public double calculateTotalCost(){
 		totalCost=0;
 		for(OrderItem oi:orderItems)
-			totalCost+=oi.getQuantity()*oi.getSellPrice();
-		return totalCost;
+		totalCost+=	oi.calculateSubtotal();
+			return totalCost;
 	}
 	
 	

@@ -59,17 +59,12 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 	}
 	
  public Vector<CustomerOrder> getOrders(String customerName){
-	//	declare a return vector here
 		Vector<CustomerOrder> cov=new Vector<CustomerOrder>();
-		//for each customer in datamodel
 		for(CustomerOrder co: getDatabase()) {
-		//if(customerid == customerid
 		if(co.getCustomer().getCustomerInfo().getCustomerName().equals(customerName))
 			cov.add(co);
-		//	add to return vector
 
 		}
-//	return the vector
 		return cov;
 	}
  

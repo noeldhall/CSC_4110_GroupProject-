@@ -23,7 +23,7 @@ public class OrderItem extends Item{
 	}
 	
 	public double calculateSubtotal() {
-		return quantity * unitPrice;
+		return quantity * sellPrice;
 	}
 
 	public double getQuantity() {
