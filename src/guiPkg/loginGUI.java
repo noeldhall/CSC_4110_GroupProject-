@@ -1,5 +1,6 @@
 package guiPkg;
 
+//Authored by Brett Gloomis
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;

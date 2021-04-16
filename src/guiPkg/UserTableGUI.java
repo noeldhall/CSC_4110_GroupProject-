@@ -1,5 +1,7 @@
 package guiPkg;
 
+//Authored by Brett Gloomis
+
 import java.util.Vector;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;

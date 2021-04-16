@@ -1,4 +1,7 @@
 package pkg;
+
+//Authored by Brett Gloomis
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

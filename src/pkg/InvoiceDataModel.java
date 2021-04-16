@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Brett Gloomis
+
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -9,7 +11,7 @@ public class InvoiceDataModel extends AbstractTableModel {
 	private static final long serialVersionUID = 985637898177670210L;
 
 	static DatabaseII<CustomerProfile> customerData;
-	private final String[] columnNames = new String[] { "Name"};
+	private final String[] columnNames = new String[] { "Customer Name"};
 	private final Class[] columnClass = new Class[] { String.class};
 
 	public InvoiceDataModel(Class<CustomerProfile> dt, String s) {
@@ -33,6 +35,12 @@ public class InvoiceDataModel extends AbstractTableModel {
 		if(insertCustomer(p)) {
 			this.fireTableDataChanged();
 		}
+	}
+	
+	@Override
+	public String getColumnName(int index)
+	{
+		return columnNames[index];
 	}
 	
 	@Override

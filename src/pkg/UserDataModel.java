@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Brett Gloomis
+
 import java.util.Iterator;
 import java.util.Vector;
 
