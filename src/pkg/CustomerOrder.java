@@ -27,7 +27,7 @@ public class CustomerOrder implements Data{
 
 	public CustomerOrder(String[] data) throws ParseException {
 		customerOrderId=Integer.parseInt(data[0]);
-		customer=CustomerDataModel.searchCustomerID(data[1]);
+		customer=CustomerDataModel.searchCustomerName(data[1]);
 		DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
          orderDate = dF.parse(data[2]);
          needByDate=dF.parse(data[3]);
@@ -36,12 +36,13 @@ public class CustomerOrder implements Data{
          for(int i=4;i<=12;i+=2 )
          {
         	 itemString=data[i];
-        	 if(itemString.equals("null")==false)
+        	 if(!itemString.equals("null"))
         	 {
         		 Item item=ItemDataModel.searchItemID(data[i]);
         		 if (item!=null)
         		 {
         			 orderItems.add(new OrderItem(item,Integer.parseInt(data[i+1])));
+        			 
         		 }
         	 }
         	 
@@ -100,5 +101,20 @@ public class CustomerOrder implements Data{
 			return totalCost;
 	}
 	
+	public String printItems()
+	{
+		String yes = "";
+		yes += "Item Name:\tQuantity:\tSell Price:\n" ; 
+		for(OrderItem items : orderItems)
+		{
+			yes += items.toString() + "\n";
+		}
+		return yes;
+	} 
 	
+	public String toString()
+	{
+		return Integer.toString(customerOrderId);
+		
+	}
 }

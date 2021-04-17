@@ -63,7 +63,6 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		for(CustomerOrder co: getDatabase()) {
 		if(co.getCustomer().getCustomerInfo().getCustomerName().equals(customerName))
 			cov.add(co);
-
 		}
 		return cov;
 	}

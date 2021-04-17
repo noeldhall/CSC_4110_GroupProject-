@@ -49,6 +49,7 @@ public class Main {
 	public Main() {		
 		initialize();
 		System.out.println("finprint");
+		
 		//vendorTab = new VendorListGUI(Database.vendors);
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
 		//customerTab=new CustomerListGUI(Database.customers);

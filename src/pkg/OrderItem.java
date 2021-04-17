@@ -38,4 +38,15 @@ public class OrderItem extends Item{
 			throw new IllegalArgumentException("Quantity of an orderItem must be greater than 0");
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		String yes = "";
+		
+		
+		yes += super.itemName + "\t" + quantity + "\t$" + super.sellPrice;
+		
+		return yes;
+	}
 }

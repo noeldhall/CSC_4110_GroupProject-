@@ -12,16 +12,24 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import pkg.InvoiceDataModel;
+import pkg.Main;
+
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class InvoiceGeneratorGUI extends JPanel {
-	private JTable table;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField InvoiceDatetxtField;
 	private JTextField OrderDatetxtField;
 	private JTextField OrderNumbertxtField;
 	private JTextField TotaltxtField;
 	private JTextField InvoiceIDtxtField;
-
+	public JTextArea orderdItemsList;
 	/**
 	 * Create the panel.
 	 */
@@ -56,6 +64,7 @@ public class InvoiceGeneratorGUI extends JPanel {
 		TotaltxtField.setEditable(false);
 		TotaltxtField.setColumns(10);
 		
+		//final CustomerOrderDataModel model = Main.customerOrderDAO;
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JLabel lblNewLabel_5 = new JLabel("Invoice ID:");
@@ -121,11 +130,10 @@ public class InvoiceGeneratorGUI extends JPanel {
 					.addContainerGap())
 		);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFillsViewportHeight(true);
+		orderdItemsList = new JTextArea();
+		orderdItemsList.setEditable(false);
+		scrollPane.setViewportView(orderdItemsList);
 		setLayout(groupLayout);
 
 	}
-
 }

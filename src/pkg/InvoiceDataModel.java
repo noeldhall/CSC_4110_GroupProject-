@@ -31,12 +31,6 @@ public class InvoiceDataModel extends AbstractTableModel {
 		return customerData.getData().get(rowIndex);
 	}
 	
-	public void addRow(CustomerProfile p) {
-		if(insertCustomer(p)) {
-			this.fireTableDataChanged();
-		}
-	}
-	
 	@Override
 	public String getColumnName(int index)
 	{
@@ -54,47 +48,6 @@ public class InvoiceDataModel extends AbstractTableModel {
 		}
 
 	}
-
-//	public static int generateCustomerID() {
-//		int uniInt = 1;
-//		
-//		for (CustomerProfile cp:customerData.getData())
-//		{
-//			if(uniInt==Integer.parseInt(cp.getCustomerId())) {
-//				uniInt++;
-//			}
-//			else 
-//				return uniInt;
-//		}
-//		return 0;
-//	}
-	
-	public void removeRow(int index) {
-		//TODO need to make sure only delete where balance is 0
-		if(index != -1) {
-			if(customerData.getData().elementAt(index).getCustomerAccount().getBalance() == 0) {
-				if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a customer will also delete all invoices associated with that customer. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
-					customerData.getData().remove(index);
-					this.fireTableDataChanged();
-				}
-			}
-			else {
-				JOptionPane.showMessageDialog(null, "Error - Account has a remaining balance. Cannot delete if non-zero.", "Deletion Error", JOptionPane.OK_OPTION);
-			}
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Error - must select an account with a balance of 0 for deletion operation", "Deletion Error", JOptionPane.OK_OPTION);
-		}
-	}
-	
-	public static CustomerProfile searchCustomerID(String id) {
-		for(CustomerProfile cp : customerData.getData()) {
-			if(cp.customerId.equals(id)) {
-				return cp;
-			}
-		}
-		return null;
-	}
 	
 	public static CustomerProfile searchCustomerName(String name) {
 		for(CustomerProfile cp : customerData.getData()) {
@@ -103,38 +56,6 @@ public class InvoiceDataModel extends AbstractTableModel {
 			}
 		}
 		return null;
-	}
-	
-	public static boolean insertCustomer(CustomerProfile p) {
-		if(searchCustomerName(p.getCustomerInfo().getCustomerName()) == null) {
-			customerData.getData().add(p);
-			return true;
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Integrity Constraint Violation - Duplicate Customer Name - row rejected", "insert Error", JOptionPane.OK_OPTION);
-			return false;
-		}
-	}
-	
-	public static boolean deleteCustomer(CustomerProfile p) {
-		//find and delete a vendor profile based on a passed in vendor profile
-		if(p.getCustomerAccount().getBalance() == 0) {
-			for(CustomerProfile profile: customerData.getData()) {
-				if(p.compareTo(profile) == 0) {
-					if(0 == JOptionPane.showConfirmDialog(null, "Warning: deleting a customer will also delete all invoices associated with that vendor. Would you like to proceed with deletion?", "Confirm Delete?", JOptionPane.OK_CANCEL_OPTION)){
-						customerData.getData().remove(profile);
-						return true;
-					}
-					else {
-						break;
-					}
-				}
-			}
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Error - Account has a remaining balance. Cannot delete if non-zero.", "Deletion Error", JOptionPane.OK_OPTION);
-		}
-		return false;
 	}
 	
 	public static Vector<CustomerProfile> getDatabase(){
