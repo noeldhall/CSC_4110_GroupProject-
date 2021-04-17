@@ -14,6 +14,7 @@ public class Main {
 	public static final CustomerDataModel customerDAO=new CustomerDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final InvoiceDataModel customerInvoiceDAO=new InvoiceDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final CustomerOrderDataModel customerOrderDAO=new CustomerOrderDataModel(CustomerOrder.class,"data\\Customer_order_dummyData.txt");
+	public static final PurchaseOrderDataModel purchaseOrderDAO = new PurchaseOrderDataModel(PurchaseOrder.class, "data\\PurchaseOrderDummyData.txt");
 	public static final CustomerInvoice newInvoice = new CustomerInvoice();
 	
 	private JFrame frame;
@@ -29,6 +30,7 @@ public class Main {
 	private static CustomerListGUI customerListTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
+	private static PurchaserGUI purchaserTab;
 	public static CustomerOrderItemListGUI customerOrderItemTab;
 	private static InvoiceMainGUI invoiceTab;
 	
@@ -50,18 +52,14 @@ public class Main {
 	public Main() {		
 		initialize();
 		System.out.println("finprint");
-		
-		//vendorTab = new VendorListGUI(Database.vendors);
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
-		//customerTab=new CustomerListGUI(Database.customers);
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
 		salesCustomerTab=new SalesCustomerListGUI(CustomerDataModel.getDatabase());
 		//testing parent customer list class
 		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
-		
 		invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
-		
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
+		purchaserTab = new PurchaserGUI();
 		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
 		ItemDataModel.printItems();
 	}
@@ -122,6 +120,7 @@ public class Main {
 			swapPanel(defaultLogin);
 			break;
 		case PURCHASER:
+			getMenu().openTab(purchaserTab);
 			getMenu().openTab(supplierTab);
 			break;
 		case ACCOUNTANT:

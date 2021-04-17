@@ -10,17 +10,24 @@ public class PurchaseOrder implements Data {
 	Vector<OrderItem> items;
 
 	PurchaseOrder(String[] data){
+		items = new Vector<OrderItem>();
 		setOrderId(Integer.parseInt(data[0]));
 		setVendor(VendorDataModel.searchVendorID(data[1]));
 		setNeedByDate(new Date(data[2]));
 		for(int x = 3; x < data.length; x+=2) {
 			if(!data[x].equals("null")) {
-				addItem(ItemDataModel.searchItemID(data[x]), Integer.parseInt(data[x+1]));
+				items.add(new OrderItem(ItemDataModel.searchItemID(data[x]), Integer.parseInt(data[x+1])));
 			}
 			else {
 				break;
 			}
 		}
+	}
+	
+	public PurchaseOrder(){
+		//this default constructor will be used with PurchaseOrderGUI to construct a new purchase order
+		items = new Vector<OrderItem>();
+		
 	}
 	
 	//------------GETS-------------
@@ -33,6 +40,10 @@ public class PurchaseOrder implements Data {
 			return items.elementAt(index);
 		}
 		return null;
+	}
+	
+	public Vector<OrderItem> getItemsVec(){
+		return items;
 	}
 	
 	public Date getNeedByDate() {
@@ -96,5 +107,10 @@ public class PurchaseOrder implements Data {
 			total += item.calculateSubtotal();
 		}
 		return total;
+	}
+	
+	@Override
+	public String toString() {
+		return "PO#" + Integer.toString(orderId);
 	}
 }

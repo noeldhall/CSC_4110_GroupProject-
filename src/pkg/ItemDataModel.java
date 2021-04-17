@@ -94,4 +94,14 @@ public class ItemDataModel extends AbstractTableModel {
 		}
 		return null;
 	}
+	
+	public static Vector<Item> searchVendorItemsByID(String vendorID){
+		Vector<Item> items = new Vector<Item>();
+		for(Item ip : getDatabase()) {
+			if(ip.getVendorID().trim().equals(vendorID)) {
+				items.add(ip);
+			}
+		}
+		return items;
+	}
 }
