@@ -104,7 +104,9 @@ public class CustomerOrder implements Data{
 	public String printItems()
 	{
 		String yes = "";
-		yes += "Item Name:\tQuantity:\tSell Price:\n" ; 
+		
+		yes += "Item Name:\tQuantity:\tSell Price:\n";
+		
 		for(OrderItem items : orderItems)
 		{
 			yes += items.toString() + "\n";

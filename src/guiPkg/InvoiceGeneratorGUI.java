@@ -24,19 +24,20 @@ public class InvoiceGeneratorGUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField InvoiceDatetxtField;
-	private JTextField OrderDatetxtField;
-	private JTextField OrderNumbertxtField;
-	private JTextField TotaltxtField;
-	private JTextField InvoiceIDtxtField;
+	public JTextField InvoiceDatetxtField;
+	public JTextField OrderDatetxtField;
+	public JTextField OrderNumbertxtField;
+	public JTextField TotaltxtField;
+	public JTextField InvoiceIDtxtField;
 	public JTextArea orderdItemsList;
+	public int invoiceID;
 	/**
 	 * Create the panel.
 	 */
 	public InvoiceGeneratorGUI() {
 		Random rand = new Random();
 		int upperbound = 999999;
-		int invoiceID = rand.nextInt(upperbound);
+		invoiceID = rand.nextInt(upperbound);
 		
 		JLabel lblNewLabel = new JLabel("Invoice Date:");
 		
@@ -59,6 +60,7 @@ public class InvoiceGeneratorGUI extends JPanel {
 		OrderNumbertxtField = new JTextField();
 		OrderNumbertxtField.setEditable(false);
 		OrderNumbertxtField.setColumns(10);
+		
 		
 		TotaltxtField = new JTextField();
 		TotaltxtField.setEditable(false);

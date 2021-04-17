@@ -14,6 +14,7 @@ public class Main {
 	public static final CustomerDataModel customerDAO=new CustomerDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final InvoiceDataModel customerInvoiceDAO=new InvoiceDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final CustomerOrderDataModel customerOrderDAO=new CustomerOrderDataModel(CustomerOrder.class,"data\\Customer_order_dummyData.txt");
+	public static final CustomerInvoice newInvoice = new CustomerInvoice();
 	
 	private JFrame frame;
 	private static loginGUI login;

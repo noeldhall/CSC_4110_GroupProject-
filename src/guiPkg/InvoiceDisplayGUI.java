@@ -10,15 +10,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class InvoiceDisplayGUI extends JPanel {
-	private JTable table;
-	private JTextField InvoiceDatetxtField;
-	private JTextField OrderDatetxtField;
-	private JTextField OrderNumbertxtField;
-	private JTextField TotaltxtField;
-	private JTextField InvoiceIDtxtField;
-
+	public JTextField InvoiceDatetxtField;
+	public JTextField OrderDatetxtField;
+	public JTextField OrderNumbertxtField;
+	public JTextField TotaltxtField;
+	public JTextField InvoiceIDtxtField;
+	public JTextArea ItemsListArea;
 	/**
 	 * Create the panel.
 	 */
@@ -114,11 +114,10 @@ public class InvoiceDisplayGUI extends JPanel {
 					.addContainerGap())
 		);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFillsViewportHeight(true);
+		ItemsListArea = new JTextArea();
+		ItemsListArea.setEditable(false);
+		scrollPane.setViewportView(ItemsListArea);
 		setLayout(groupLayout);
 
 	}
-
 }
