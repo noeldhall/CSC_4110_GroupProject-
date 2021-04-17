@@ -29,7 +29,7 @@ public class Main {
 	private static CustomerListGUI customerListTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
-	public static CustomerOrderItemListGUI customerOrderItemTab;
+	private static CustomerOrderItemListGUI customerOrderItemTab;
 	private static InvoiceMainGUI invoiceTab;
 	
 	public static void main(String[] args) {
@@ -55,14 +55,16 @@ public class Main {
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
 		//customerTab=new CustomerListGUI(Database.customers);
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
-		salesCustomerTab=new SalesCustomerListGUI(CustomerDataModel.getDatabase());
+		setSalesCustomerTab(new SalesCustomerListGUI(CustomerDataModel.getDatabase()));
 		//testing parent customer list class
 		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
 		
 		invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
 		
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
-		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
+		setCustomerOrderItemTab(new CustomerOrderItemListGUI(ItemDataModel.getDatabase()));
+		getSalesCustomerTab().attach(customerOrderItemTab);
+
 		ItemDataModel.printItems();
 	}
 
@@ -159,5 +161,21 @@ public class Main {
 
 	public static void setMenu(MainMenu menu) {
 		Main.menu = menu;
+	}
+
+	public static SalesCustomerListGUI getSalesCustomerTab() {
+		return salesCustomerTab;
+	}
+
+	public static void setSalesCustomerTab(SalesCustomerListGUI salesCustomerTab) {
+		Main.salesCustomerTab = salesCustomerTab;
+	}
+
+	public static CustomerOrderItemListGUI getCustomerOrderItemTab() {
+		return customerOrderItemTab;
+	}
+
+	public static void setCustomerOrderItemTab(CustomerOrderItemListGUI customerOrderItemTab) {
+		Main.customerOrderItemTab = customerOrderItemTab;
 	}
 }
