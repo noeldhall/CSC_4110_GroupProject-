@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -20,6 +21,7 @@ import pkg.VendorProfile;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
@@ -30,9 +32,11 @@ public class PurchaseOrderGUI extends JPanel{
 	private static final long serialVersionUID = -5647187456393468684L;
 	private JTextField quantityTxt;
 	private JTextField needByTxt;
-	
+	PurchaseOrder orderObj;
 	public PurchaseOrderGUI(VendorProfile vp) {
-		PurchaseOrder orderObj = new PurchaseOrder();
+		orderObj = new PurchaseOrder();
+		orderObj.setVendor(vp);
+		
 		JLabel itemLbl = new JLabel("Item:");
 		JLabel quantityLbl = new JLabel("Quantity:");
 		JLabel needByLbl = new JLabel("Need By Date:");
@@ -60,15 +64,29 @@ public class PurchaseOrderGUI extends JPanel{
 		//Button Functionality
 		addToOrderBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement add new item
+				//TODO Format the add so its not ugly
+				try {
+					orderModel.addElement(new OrderItem(itemModel.getElementAt(itemBox.getSelectedIndex()), Integer.parseInt(quantityTxt.getText())));
+					orderObj.addItem(itemModel.getElementAt(itemBox.getSelectedIndex()), Integer.parseInt(quantityTxt.getText()));
+				}
+				catch(NumberFormatException err) {
+					JOptionPane.showMessageDialog(null, "Must set quantity to a non-zero positive value", "Data error", JOptionPane.OK_OPTION);
+				}
+				catch(IllegalArgumentException err) {
+					JOptionPane.showMessageDialog(null, err.getMessage(), "Data error", JOptionPane.OK_OPTION);
+				}
 				System.out.println("add button pushed");
 			}
 		});
 		
 		removeItemBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement remove selected jlist item
-				System.out.println("remove button pushed");
+				try {
+					orderModel.removeElementAt(orderItemList.getSelectedIndex());
+				}
+				catch(ArrayIndexOutOfBoundsException err) {
+					//we catch this error so if no element is select, simply nothing happens. No reason to have a popup for this.
+				}
 			}
 		});
 		
@@ -130,5 +148,15 @@ public class PurchaseOrderGUI extends JPanel{
 					.addContainerGap(45, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
+	}
+	
+	public PurchaseOrder createPurchaseOrder() throws IllegalArgumentException {
+		//attempt to return the constructed orderObj
+		//vendor set in constructor
+		orderObj.setNeedByDate(needByTxt.getText());
+		if(orderObj.getItemCount() == 0) {
+			throw new IllegalArgumentException("Must have at least 1 and at most 5 item types in an order");
+		}
+		return orderObj;
 	}
 }

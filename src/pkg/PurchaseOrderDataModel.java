@@ -70,6 +70,10 @@ public class PurchaseOrderDataModel extends AbstractTableModel {
 		}
 	}
 	
+	public static boolean addPurchaseOrder(PurchaseOrder po) {
+		return purchaseOrderData.getData().add(po);
+	}
+	
 	public static int generateID() {
 		//generates a unique purchaseOrderID by picking the next sequential number in order.
 		int uniInt = purchaseOrderData.getData().lastElement().getOrderId() + 1;

@@ -47,7 +47,9 @@ public class PurchaserGUI extends JPanel {
 					PurchaseOrderGUI newOrder = new PurchaseOrderGUI(currentVendor);
 					if(JOptionPane.showConfirmDialog(null, newOrder, "New Purchase Order", JOptionPane.OK_CANCEL_OPTION) == 0 ){
 						try {
-							
+							PurchaseOrder po = newOrder.createPurchaseOrder();
+							model.addElement(po);
+							PurchaseOrderDataModel.addPurchaseOrder(po);
 						}
 						catch(IllegalArgumentException err) {
 							JOptionPane.showMessageDialog(null, err.getMessage(), "Data error", JOptionPane.OK_OPTION);
@@ -106,8 +108,5 @@ public class PurchaserGUI extends JPanel {
 					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-
-		//button functionality
-
 	}
 }
