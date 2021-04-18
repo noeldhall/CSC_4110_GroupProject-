@@ -85,7 +85,7 @@ public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserv
 		txtNeedByDate = new JTextField();
 		add(txtNeedByDate);
 		txtNeedByDate.setColumns(10);
-		JLabel lblTotalCost= new JLabel("Total cost:");
+		JLabel lblTotalCost= new JLabel("Total cost ($):");
 		add(lblTotalCost);
 		
 		txtTotalCost = new JTextField();
@@ -97,6 +97,7 @@ public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserv
 		add(lblOrderSummary);
 		
 		 txtrOrderSummary = new JTextArea();
+		 txtrOrderSummary.setEnabled(false);
 		txtrOrderSummary.setRows(5);
 		txtrOrderSummary.setColumns(20);
 		add(txtrOrderSummary);
@@ -132,8 +133,8 @@ public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserv
 	public void update(String currentOrderId) {
 		currentCustomerOrder=CustomerOrderDataModel.searchCustomerOrderID(currentOrderId);
 		txtTotalCost.setText(String.valueOf(currentCustomerOrder.getTotalCost()));
-		expiredCheck();
-
+		txtrOrderSummary.setText("");
+		txtNeedByDate.setText("");
 	}
 
 	

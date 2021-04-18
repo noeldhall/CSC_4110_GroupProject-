@@ -62,7 +62,6 @@ public class Main {
 		purchaserTab = new PurchaserGUI();
 		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
 		salesCustomerTab.attach(customerOrderItemTab);
-		ItemDataModel.printItems();
 	}
 
 	private void initialize() {
@@ -128,7 +127,7 @@ public class Main {
 			break;
 		case SALES_PERSON:
 			getMenu().openTab(salesCustomerTab);
-			
+			customerOrderItemTab.expiredCheck();
 			
 			break;
 		default:

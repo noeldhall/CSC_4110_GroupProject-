@@ -87,10 +87,9 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 			if(uniInt==co.getCustomerOrderId()) {
 				uniInt++;
 			}
-			else 
-				return uniInt;
+			
 		}
-		return 0;
+		return uniInt;
 	}
 
 }

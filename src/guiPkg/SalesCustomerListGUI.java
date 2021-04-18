@@ -42,7 +42,6 @@ public class SalesCustomerListGUI extends CustomerListGUI implements OrderSubjec
 						if(JOptionPane.showConfirmDialog(null,"Create new order for this customer?" , "Customer Profile", JOptionPane.YES_NO_OPTION) == 0) {
 							CustomerOrder co=new CustomerOrder(cp);
 							CustomerOrderDataModel.getDatabase().add(co);
-							
 							notifyUpdate(String.valueOf(co.getCustomerOrderid()));
 							Main.getMenu().clearTabs();
 							Main.getMenu().openTab(Main.getCustomerOrderItemTab());	
