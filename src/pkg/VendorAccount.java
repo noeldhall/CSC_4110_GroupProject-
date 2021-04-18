@@ -39,6 +39,12 @@ public class VendorAccount implements Comparable<VendorAccount>{
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+	
+	public void updateBalance(double balance) {
+		lastPaidAmount = balance;
+		this.balance -= balance;
+		
+	}
 
 	public double getLastPaidAmount() {
 		return lastPaidAmount;

@@ -75,7 +75,6 @@ public class PurchaseOrderGUI extends JPanel{
 				catch(IllegalArgumentException err) {
 					JOptionPane.showMessageDialog(null, err.getMessage(), "Data error", JOptionPane.OK_OPTION);
 				}
-				System.out.println("add button pushed");
 			}
 		});
 		

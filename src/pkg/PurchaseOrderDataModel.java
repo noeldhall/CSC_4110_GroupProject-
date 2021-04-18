@@ -71,7 +71,9 @@ public class PurchaseOrderDataModel extends AbstractTableModel {
 	}
 	
 	public static boolean addPurchaseOrder(PurchaseOrder po) {
+		po.updateVendorAccount();
 		return purchaseOrderData.getData().add(po);
+		
 	}
 	
 	public static int generateID() {

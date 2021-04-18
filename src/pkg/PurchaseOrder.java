@@ -133,6 +133,11 @@ public class PurchaseOrder implements Data {
 	public String toString() {
 		return "PO#" + Integer.toString(orderId);
 	}
+
+	public void updateVendorAccount() {
+		vendor.vAccount.balance -= calcTotal();
+		
+	}
 	
 	
 }
