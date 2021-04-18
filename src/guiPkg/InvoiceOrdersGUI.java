@@ -57,11 +57,11 @@ public class InvoiceOrdersGUI extends JPanel {
 		CustomerNametextField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		CustomerNametextField.setEditable(false);
 		CustomerNametextField.setColumns(10);
-		String w = InvoiceDataModel.getDatabase().elementAt(InvoiceMainGUI.table.getSelectedRow()).getCustomerInfo().getCustomerName();
+		final String w = InvoiceDataModel.getDatabase().elementAt(InvoiceMainGUI.table.getSelectedRow()).getCustomerInfo().getCustomerName();
 		CustomerNametextField.setText(w);
 		
-		Vector<CustomerOrder> co = Main.customerOrderDAO.getOrders(w);
-		JComboBox<CustomerOrder> comboBox = new JComboBox<CustomerOrder>(co);
+		final Vector<CustomerOrder> co = Main.customerOrderDAO.getOrders(w);
+		final JComboBox<CustomerOrder> comboBox = new JComboBox<CustomerOrder>(co);
 		
 		JButton NewInvoicebtn = new JButton("Generate Invoice");
 		NewInvoicebtn.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class InvoiceOrdersGUI extends JPanel {
 				InvoiceGeneratorGUI invoiceGeneratorPanel = new InvoiceGeneratorGUI();
 				String itemsList = co.elementAt(comboBox.getSelectedIndex()).printItems();
 				invoiceGeneratorPanel.orderdItemsList.setText(itemsList);
-				invoiceGeneratorPanel.OrderNumbertxtField.setText(Integer.toString(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid()));
+				invoiceGeneratorPanel.OrderNumbertxtField.setText(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid());
 				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 				String strDate = dateFormat.format(co.elementAt(comboBox.getSelectedIndex()).getOrderDate());
 				invoiceGeneratorPanel.OrderDatetxtField.setText(strDate);
@@ -90,7 +90,7 @@ public class InvoiceOrdersGUI extends JPanel {
 					newInvoice.setInvoiceTotal(co.elementAt(comboBox.getSelectedIndex()).calculateTotalCost());
 					newInvoice.setOrderDate(strDate);
 					newInvoice.setOrderedItems(itemsList);
-					newInvoice.setOrderNumber(Integer.toString(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid()));
+					newInvoice.setOrderNumber(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid());
 					Main.newInvoice.addCustomerInvoice(newInvoice);
 					
 				}

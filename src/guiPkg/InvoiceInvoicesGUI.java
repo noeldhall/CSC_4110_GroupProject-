@@ -48,8 +48,8 @@ public class InvoiceInvoicesGUI extends JPanel {
 		
 
 		
-		Vector<CustomerInvoice> ci = Main.newInvoice.getCustomerInvoice(w);
-		JComboBox<CustomerInvoice> comboBox = new JComboBox<CustomerInvoice>(ci);
+		final Vector<CustomerInvoice> ci = Main.newInvoice.getCustomerInvoice(w);
+		final JComboBox<CustomerInvoice> comboBox = new JComboBox<CustomerInvoice>(ci);
 		
 
 		
