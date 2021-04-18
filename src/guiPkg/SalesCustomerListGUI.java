@@ -40,12 +40,9 @@ public class SalesCustomerListGUI extends CustomerListGUI implements OrderSubjec
 					if(cp != null) {
 						
 						if(JOptionPane.showConfirmDialog(null,"Create new order for this customer?" , "Customer Profile", JOptionPane.YES_NO_OPTION) == 0) {
-							System.out.println("\n Yes sir, right away sir");
 							CustomerOrder co=new CustomerOrder(cp);
 							CustomerOrderDataModel.getDatabase().add(co);
-							System.out.println("\nCurrent order id: "+co.getCustomerOrderid());
-							System.out.println("\ncurrent order date: "+co.getOrderDate().toString());
-							System.out.println("The lucky customer is .... "+co.getCustomer().getCustomerInfo().getCustomerName());
+							
 							notifyUpdate(String.valueOf(co.getCustomerOrderid()));
 							Main.getMenu().clearTabs();
 							Main.getMenu().openTab(Main.getCustomerOrderItemTab());	
