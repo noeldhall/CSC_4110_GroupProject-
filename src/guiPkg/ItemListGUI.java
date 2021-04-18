@@ -27,6 +27,7 @@ import pkg.ItemDataModel;
 import pkg.Main;
 import pkg.VendorDataModel;
 import pkg.VendorProfile;
+import javax.swing.JLabel;
 
 public class ItemListGUI extends JPanel {
 	private static final long serialVersionUID = 8777161324173056561L;
@@ -34,6 +35,8 @@ public class ItemListGUI extends JPanel {
 
 	private JTable table;
 	private TableRowSorter<ItemDataModel> sorter;
+	JScrollPane scrollPane ;
+	JButton Logoutbtn;
 
 	/**
 	 *
@@ -44,7 +47,7 @@ public class ItemListGUI extends JPanel {
 		
 		//Variables
 		ItemDataModel model=Main.itemDAO;
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		table = new JTable(model);
 		sorter=new TableRowSorter<ItemDataModel>(model);
 		
@@ -83,23 +86,30 @@ public class ItemListGUI extends JPanel {
 			}
 		});
 		
-		JButton Logoutbtn = new JButton("Log out");
+		Logoutbtn = new JButton("Log out");
 		Logoutbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.swapToLogin();
 			}
 		});
 		add(Logoutbtn);
+		
+		JLabel lblSearchField = new JLabel("Search item:");
+		add(lblSearchField);
 		add(searchField);
 
-		add(scrollPane);
+		//add(scrollPane);
 		
 		
+	}
+	
+	public JTable getTable() {
+		return table;
 	}
 
 	private void newFilter() {
     RowFilter<ItemDataModel, Object> rf = null;
-    //If current expression doesn't parse, do't update.
+    //If current expression doesn't parse, don't update.
     try {
         rf = RowFilter.regexFilter("(?i).*" + searchField.getText() +".*", 1);
     } catch (java.util.regex.PatternSyntaxException e) {
@@ -107,4 +117,6 @@ public class ItemListGUI extends JPanel {
     }
     sorter.setRowFilter(rf);
 }
+	
+	
 }

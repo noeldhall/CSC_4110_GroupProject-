@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package pkg;
 
 import java.util.Date;

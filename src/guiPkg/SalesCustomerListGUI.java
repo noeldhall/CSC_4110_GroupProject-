@@ -12,14 +12,20 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import pkg.CustomerDataModel;
+import pkg.CustomerOrder;
+import pkg.CustomerOrderDataModel;
 import pkg.CustomerProfile;
 import pkg.Main;
+import pkg.OrderObserver;
+import pkg.OrderSubject;
 
 /**
  * @author Noel Hall
  *
  */
-public class SalesCustomerListGUI extends CustomerListGUI {
+public class SalesCustomerListGUI extends CustomerListGUI implements OrderSubject{
+		private static final long serialVersionUID = 8225824411303341872L;
+		private OrderObserver observer;
 	public SalesCustomerListGUI(Vector<CustomerProfile> data) {
 		super(data);
 		
@@ -27,19 +33,23 @@ public class SalesCustomerListGUI extends CustomerListGUI {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if(!e.getValueIsAdjusting() && getTable().getSelectedRow() != -1) {
-				//	System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
+				
 					CustomerProfile cp = CustomerDataModel.getDatabase().elementAt(getTable().getSelectedRow());
-					SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
-					String currentOrderDate=null;
-					if (cp.getLastOrderDate()!=null)
- 					 currentOrderDate=dateFormat.format(cp.getLastOrderDate());
+					
+				
 					if(cp != null) {
-						CustomerProfileGUI profile = new CustomerProfileGUI();
 						
-						profile.setFields(cp);
 						if(JOptionPane.showConfirmDialog(null,"Create new order for this customer?" , "Customer Profile", JOptionPane.YES_NO_OPTION) == 0) {
 							System.out.println("\n Yes sir, right away sir");
-							Main.getMenu().openTab(Main.customerOrderItemTab);	
+							CustomerOrder co=new CustomerOrder(cp);
+							CustomerOrderDataModel.getDatabase().add(co);
+							System.out.println("\nCurrent order id: "+co.getCustomerOrderid());
+							System.out.println("\ncurrent order date: "+co.getOrderDate().toString());
+							System.out.println("The lucky customer is .... "+co.getCustomer().getCustomerInfo().getCustomerName());
+							notifyUpdate(String.valueOf(co.getCustomerOrderid()));
+							Main.getMenu().clearTabs();
+							Main.getMenu().openTab(Main.getCustomerOrderItemTab());	
+						
 							model.fireTableDataChanged();
 						
 							//table.setSelectedRow();
@@ -52,5 +62,20 @@ public class SalesCustomerListGUI extends CustomerListGUI {
 		
 		add(scrollPane);
 
+	}
+
+	@Override
+	public void attach(OrderObserver o) {
+		observer=o;
+	}
+
+	@Override
+	public void detach(OrderObserver o) {
+		observer=null;
+	}
+
+	@Override
+	public void notifyUpdate(String currentOrderId) {
+		observer.update(currentOrderId);
 	}
 }

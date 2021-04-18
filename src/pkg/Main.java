@@ -26,7 +26,6 @@ public class Main {
 	private static DefaultLoginGUI defaultLogin;
 	private static OwnerCustomerListGUI customerTab;
 	private static SalesCustomerListGUI salesCustomerTab;
-	private static CustomerListGUI customerListTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
 	private static CustomerOrderItemListGUI customerOrderItemTab;
@@ -51,15 +50,10 @@ public class Main {
 		initialize();
 		System.out.println("finprint");
 		
-		//vendorTab = new VendorListGUI(Database.vendors);
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
-		//customerTab=new CustomerListGUI(Database.customers);
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
 		setSalesCustomerTab(new SalesCustomerListGUI(CustomerDataModel.getDatabase()));
-		//testing parent customer list class
-		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
-		
-		invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
+				invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
 		
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
 		setCustomerOrderItemTab(new CustomerOrderItemListGUI(ItemDataModel.getDatabase()));
@@ -112,7 +106,6 @@ public class Main {
 			getMenu().openTab(manager);
 			getMenu().openTab(vendorTab);
 			getMenu().openTab(customerTab);
-		//	menu.openTab(customerListTab);
 			getMenu().openTab(customerSearchTab);
 			getMenu().openTab(invoiceTab);
 			break;
@@ -130,9 +123,6 @@ public class Main {
 			getMenu().openTab(invoiceTab);
 			break;
 		case SALES_PERSON:
-		//	menu.openTab(itemTab);
-			
-			//menu.openTab(customerOrderItemTab);
 			getMenu().openTab(salesCustomerTab);
 			
 			

@@ -1,5 +1,6 @@
 /**
- * 
+ * @author Noel Hall
+ *
  */
 package guiPkg;
 
@@ -25,14 +26,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-/**
- *
- */
+
 public class OwnerCustomerListGUI extends CustomerListGUI {
 	private static final long serialVersionUID = 7727161324173086580L;
-	//private JTable table;
-	//private JTextField searchField;
-	//private TableRowSorter<CustomerDataModel> sorter;
+	
 	
 	public OwnerCustomerListGUI(Vector<CustomerProfile> data) {
 		super(data);
@@ -41,25 +38,10 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 		setName("Customers");
 		
 		//VARIABLE DECLARATION AND INITIALIZATION
-	//	final CustomerDataModel model = Main.customerDAO;
-		//JScrollPane scrollPane = new JScrollPane();
+	
 		JButton addCustomerBtn = new JButton("New Customer");
 		JButton deleteCustomerBtn = new JButton("Delete Customer");
-	//	sorter = new TableRowSorter<CustomerDataModel>(model);
-	//	table = new JTable(model);
-		
-		//setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		//search field
-		//searchField = new JTextField();
-		//searchField.setColumns(10);
-		
-		//make table
-//		table.setAutoCreateRowSorter(true);
-//		scrollPane.setViewportView(table);
-//		table.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		table.setFillsViewportHeight(true);
-//		table.setRowSorter(sorter);
+	
 		addCustomerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddCustomerGUI makeCustomerPanel = new AddCustomerGUI();
@@ -92,8 +74,7 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
         getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if(!e.getValueIsAdjusting() && getTable().getSelectedRow() != -1) {
-				//	System.out.println((String)table.getValueAt(table.getSelectedRow(), 0));
+				if(!e.getValueIsAdjusting() && getTable().getSelectedRow()!= -1) {
 					CustomerProfile cp = CustomerDataModel.getDatabase().elementAt(getTable().getSelectedRow());
 					SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
 					String currentOrderDate=null;
@@ -115,7 +96,6 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 							} catch (ParseException e1) {
 								e1.printStackTrace();
 							}
-							//table.setSelectedRow();
 						}
 					}
 				}
@@ -126,7 +106,6 @@ public class OwnerCustomerListGUI extends CustomerListGUI {
 		
 		add(addCustomerBtn);
 		add(deleteCustomerBtn);
-	//	add(searchField);
 		add(scrollPane);
 	}
 	

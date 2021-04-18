@@ -13,8 +13,18 @@ public class CustomerOrder implements Data{
 	private int customerOrderId;
 	private Vector<OrderItem> orderItems=new Vector<OrderItem>();
 	private double totalCost=0;
-	public CustomerOrder() {
-		
+	public CustomerOrder(CustomerProfile cp) {
+		customer=cp;
+		customerOrderId=formatId(CustomerOrderDataModel.generateCustomerID());
+		 orderDate=new Date();
+	        DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+        SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
+			String currentDateString=dateFormat.format(orderDate);
+			try {
+				orderDate=dF.parse(currentDateString);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public Vector<OrderItem> getOrderItems() {
@@ -26,7 +36,7 @@ public class CustomerOrder implements Data{
 	}
 
 	public CustomerOrder(String[] data) throws ParseException {
-		customerOrderId=Integer.parseInt(data[0]);
+		setCustomerOrderId(Integer.parseInt(data[0]));
 		customer=CustomerDataModel.searchCustomerName(data[1]);
 		DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
          orderDate = dF.parse(data[2]);
@@ -49,9 +59,25 @@ public class CustomerOrder implements Data{
          }
          
 	}
+	
+	private int formatId(int val) {
+		String id = Integer.toString(val);
+		for(int x = id.length(); x < 6; x++) {
+			id = "0" + id;
+		}
+		return Integer.parseInt(id);
+	}
 
+	
 	public void subtractQuantities() {
-		
+		for (OrderItem oi: orderItems)
+		{
+				for(Item i:ItemDataModel.getDatabase())
+				{
+					if(oi.getItemID().equals(i.getItemID()))
+						i.setBalanceOnHand(i.getBalanceOnHand()-oi.getQuantity());
+				}
+		}
 	}
 	
 	public CustomerProfile getCustomer() {
@@ -75,11 +101,11 @@ public class CustomerOrder implements Data{
 	}
 
 	public int getCustomerOrderid() {
-		return customerOrderId;
+		return getCustomerOrderId();
 	}
 
 	public void setCustomerOrderid(int customerOrderid) {
-		this.customerOrderId = customerOrderid;
+		this.setCustomerOrderId(customerOrderid);
 	}
 
 	public double getTotalCost() {
@@ -116,7 +142,15 @@ public class CustomerOrder implements Data{
 	
 	public String toString()
 	{
-		return Integer.toString(customerOrderId);
+		return Integer.toString(getCustomerOrderId());
 		
+	}
+
+	public int getCustomerOrderId() {
+		return customerOrderId;
+	}
+
+	public void setCustomerOrderId(int customerOrderId) {
+		this.customerOrderId = customerOrderId;
 	}
 }
