@@ -10,12 +10,13 @@ public class CustomerOrder implements Data{
 	private Date needByDate;
 	private Date orderDate;
 	private CustomerProfile customer;
-	private int customerOrderId;
+	private String customerOrderId;
 	private Vector<OrderItem> orderItems=new Vector<OrderItem>();
 	private double totalCost=0;
 	public CustomerOrder(CustomerProfile cp) {
 		customer=cp;
-		customerOrderId=formatId(CustomerOrderDataModel.generateCustomerID());
+		customerOrderId= String.format("%06d", CustomerOrderDataModel.generateCustomerID());
+
 		 orderDate=new Date();
 	        DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
         SimpleDateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
@@ -36,7 +37,7 @@ public class CustomerOrder implements Data{
 	}
 
 	public CustomerOrder(String[] data) throws ParseException {
-		setCustomerOrderId(Integer.parseInt(data[0]));
+		setCustomerOrderId(data[0]);
 		customer=CustomerDataModel.searchCustomerName(data[1]);
 		DateFormat dF = new SimpleDateFormat("MM/dd/yyyy");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
          orderDate = dF.parse(data[2]);
@@ -60,13 +61,7 @@ public class CustomerOrder implements Data{
          
 	}
 	
-	private int formatId(int val) {
-		String id = Integer.toString(val);
-		for(int x = id.length(); x < 6; x++) {
-			id = "0" + id;
-		}
-		return Integer.parseInt(id);
-	}
+	
 
 	
 	public void subtractQuantities() {
@@ -100,11 +95,11 @@ public class CustomerOrder implements Data{
 		this.orderDate = orderDate;
 	}
 
-	public int getCustomerOrderid() {
+	public String getCustomerOrderid() {
 		return getCustomerOrderId();
 	}
 
-	public void setCustomerOrderid(int customerOrderid) {
+	public void setCustomerOrderid(String customerOrderid) {
 		this.setCustomerOrderId(customerOrderid);
 	}
 
@@ -142,15 +137,15 @@ public class CustomerOrder implements Data{
 	
 	public String toString()
 	{
-		return Integer.toString(getCustomerOrderId());
+		return customerOrderId;
 		
 	}
 
-	public int getCustomerOrderId() {
+	public String getCustomerOrderId() {
 		return customerOrderId;
 	}
 
-	public void setCustomerOrderId(int customerOrderId) {
+	public void setCustomerOrderId(String customerOrderId) {
 		this.customerOrderId = customerOrderId;
 	}
 }

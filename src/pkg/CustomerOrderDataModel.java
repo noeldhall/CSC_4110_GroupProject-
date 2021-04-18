@@ -58,7 +58,7 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 	
 	public static CustomerOrder searchCustomerOrderID(String id) {
 		for(CustomerOrder co : customerOrderData.getData()) {
-			if(co.getCustomerOrderId()==Integer.parseInt(id)) {
+			if(co.getCustomerOrderId()==id) {
 				return co;
 			}
 		}
@@ -84,7 +84,7 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		
 		for (CustomerOrder co:customerOrderData.getData())
 		{
-			if(uniInt==co.getCustomerOrderId()) {
+			if(uniInt==Integer.parseInt(co.getCustomerOrderId())) {
 				uniInt++;
 			}
 			

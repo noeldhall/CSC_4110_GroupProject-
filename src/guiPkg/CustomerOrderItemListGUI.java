@@ -110,6 +110,7 @@ public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserv
 				if(JOptionPane.showConfirmDialog(null,"Submit order?" , "Submit", JOptionPane.YES_NO_OPTION) == 0) {
 					if(checkNeedByDate()==true) {
 						if(currentCustomerOrder.getOrderItems().size()>0) {
+						
 							Main.getMenu().clearTabs();
 							Main.getMenu().openTab(Main.getSalesCustomerTab());
 							currentCustomerOrder.subtractQuantities();
