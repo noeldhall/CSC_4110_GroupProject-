@@ -14,6 +14,7 @@ public class Main {
 	public static final CustomerDataModel customerDAO=new CustomerDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final InvoiceDataModel customerInvoiceDAO=new InvoiceDataModel(CustomerProfile.class,"data\\Customer Profiles Data.txt");
 	public static final CustomerOrderDataModel customerOrderDAO=new CustomerOrderDataModel(CustomerOrder.class,"data\\Customer_order_dummyData.txt");
+	public static final PurchaseOrderDataModel purchaseOrderDAO = new PurchaseOrderDataModel(PurchaseOrder.class, "data\\PurchaseOrderDummyData.txt");
 	public static final CustomerInvoice newInvoice = new CustomerInvoice();
 	
 	private JFrame frame;
@@ -28,7 +29,8 @@ public class Main {
 	private static SalesCustomerListGUI salesCustomerTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
-	private static CustomerOrderItemListGUI customerOrderItemTab;
+	private static PurchaserGUI purchaserTab;
+	public static CustomerOrderItemListGUI customerOrderItemTab;
 	private static InvoiceMainGUI invoiceTab;
 	
 	public static void main(String[] args) {
@@ -49,16 +51,17 @@ public class Main {
 	public Main() {		
 		initialize();
 		System.out.println("finprint");
-		
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
 		setSalesCustomerTab(new SalesCustomerListGUI(CustomerDataModel.getDatabase()));
+		salesCustomerTab.attach(customerOrderItemTab);
 				invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
-		
+				
+		invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
-		setCustomerOrderItemTab(new CustomerOrderItemListGUI(ItemDataModel.getDatabase()));
-		getSalesCustomerTab().attach(customerOrderItemTab);
-
+		purchaserTab = new PurchaserGUI();
+		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
+		salesCustomerTab.attach(customerOrderItemTab);
 		ItemDataModel.printItems();
 	}
 
@@ -117,6 +120,7 @@ public class Main {
 			swapPanel(defaultLogin);
 			break;
 		case PURCHASER:
+			getMenu().openTab(purchaserTab);
 			getMenu().openTab(supplierTab);
 			break;
 		case ACCOUNTANT:

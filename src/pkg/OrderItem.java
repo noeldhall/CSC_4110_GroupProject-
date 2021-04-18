@@ -1,8 +1,6 @@
 
 package pkg;
 
-import java.util.Date;
-
 /**
  * @author Noel Hall
  *
@@ -17,7 +15,7 @@ public class OrderItem extends Item{
 	
 	public OrderItem(Item it, int quantity) {
 		super(it);
-		this.quantity = quantity;
+		setQuantity(quantity);
 	}
 	
 	public double calculateSubtotal() {

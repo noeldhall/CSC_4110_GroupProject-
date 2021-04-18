@@ -10,17 +10,32 @@ public class PurchaseOrder implements Data {
 	Vector<OrderItem> items;
 
 	PurchaseOrder(String[] data){
+		items = new Vector<OrderItem>();
 		setOrderId(Integer.parseInt(data[0]));
 		setVendor(VendorDataModel.searchVendorID(data[1]));
 		setNeedByDate(new Date(data[2]));
 		for(int x = 3; x < data.length; x+=2) {
 			if(!data[x].equals("null")) {
-				addItem(ItemDataModel.searchItemID(data[x]), Integer.parseInt(data[x+1]));
+				items.add(new OrderItem(ItemDataModel.searchItemID(data[x]), Integer.parseInt(data[x+1])));
 			}
 			else {
 				break;
 			}
 		}
+	}
+	
+	public PurchaseOrder(){
+		//this default constructor will be used with PurchaseOrderGUI to construct a new purchase order
+		orderId = PurchaseOrderDataModel.generateID();
+		items = new Vector<OrderItem>();
+		
+	}
+	
+	public PurchaseOrder(VendorProfile vp, Date nbd, Vector<OrderItem> items) {
+		orderId = PurchaseOrderDataModel.generateID();
+		setVendor(vp);
+		setNeedByDate(nbd);
+		this.items = items;
 	}
 	
 	//------------GETS-------------
@@ -33,6 +48,10 @@ public class PurchaseOrder implements Data {
 			return items.elementAt(index);
 		}
 		return null;
+	}
+	
+	public Vector<OrderItem> getItemsVec(){
+		return items;
 	}
 	
 	public Date getNeedByDate() {
@@ -76,6 +95,18 @@ public class PurchaseOrder implements Data {
 		}
 	}
 	
+	public void setNeedByDate(String s) throws IllegalArgumentException {
+		if(!s.matches("[0-9][0-9]\\/[0-9][0-9]\\/[0-9][0-9][0-9][0-9]")) {
+			throw new IllegalArgumentException("NeedByDate must be in a valid format [MM/DD/YYYY]");
+		}
+		Date d = new Date(s);
+		if(!d.after(new Date())) {
+			throw new IllegalArgumentException("the given Need by date has already passed");
+		}
+		this.needByDate = d;
+		
+	}
+	
 	public void setVendor(VendorProfile vendor) {
 		this.vendor = vendor;
 	}
@@ -97,4 +128,16 @@ public class PurchaseOrder implements Data {
 		}
 		return total;
 	}
+	
+	@Override
+	public String toString() {
+		return "PO#" + Integer.toString(orderId);
+	}
+
+	public void updateVendorAccount() {
+		vendor.vAccount.balance -= calcTotal();
+		
+	}
+	
+	
 }

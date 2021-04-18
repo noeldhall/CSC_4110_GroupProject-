@@ -3,6 +3,7 @@ package pkg;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 public class PurchaseOrderDataModel extends AbstractTableModel {
@@ -69,17 +70,23 @@ public class PurchaseOrderDataModel extends AbstractTableModel {
 		}
 	}
 	
+	public static boolean addPurchaseOrder(PurchaseOrder po) {
+		po.updateVendorAccount();
+		return purchaseOrderData.getData().add(po);
+		
+	}
+	
 	public static int generateID() {
 		//generates a unique purchaseOrderID by picking the next sequential number in order.
 		int uniInt = purchaseOrderData.getData().lastElement().getOrderId() + 1;
 		return uniInt;
 	}
 	
-	public Vector<PurchaseOrder> searchByVendor(String vendorID){
+	public static Vector<PurchaseOrder> searchByVendor(String vendName){
 		//collect all purchase orders for a given vendor and return them in a container.
 		Vector<PurchaseOrder> returnVec = new Vector<PurchaseOrder>();
 		for(PurchaseOrder po : purchaseOrderData.getData()) {
-			if(po.getVendor().getVendorID().equals(vendorID)) {
+			if(po.getVendor().getPersonal().getFullName().trim().equalsIgnoreCase(vendName)) {
 				returnVec.add(po);
 			}
 		}
