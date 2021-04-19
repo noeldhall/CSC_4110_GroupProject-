@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Brett Gloomis
+
 import java.util.Vector;
 
 public class CustomerInvoice implements Data{

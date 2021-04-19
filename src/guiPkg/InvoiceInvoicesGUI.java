@@ -56,15 +56,23 @@ public class InvoiceInvoicesGUI extends JPanel {
 		JButton ViewInvoicebtn = new JButton("View Invoice");
 		ViewInvoicebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InvoiceDisplayGUI invoiceDisplayPanel = new InvoiceDisplayGUI();
+				if(comboBox.getItemCount() != 0)
+				{
+					InvoiceDisplayGUI invoiceDisplayPanel = new InvoiceDisplayGUI();
+					
+					invoiceDisplayPanel.InvoiceDatetxtField.setText(ci.elementAt(comboBox.getSelectedIndex()).getInvoiceDate());
+					invoiceDisplayPanel.InvoiceIDtxtField.setText(Integer.toString(ci.elementAt(comboBox.getSelectedIndex()).getInvoiceNumber()));
+					invoiceDisplayPanel.ItemsListArea.setText(ci.elementAt(comboBox.getSelectedIndex()).getOrderedItems());
+					invoiceDisplayPanel.OrderDatetxtField.setText(ci.elementAt(comboBox.getSelectedIndex()).getOrderDate());
+					invoiceDisplayPanel.OrderNumbertxtField.setText(ci.elementAt(comboBox.getSelectedIndex()).getOrderNumber());
+					invoiceDisplayPanel.TotaltxtField.setText("$" + Double.toString(ci.elementAt(comboBox.getSelectedIndex()).getInvoiceTotal()));
+					JOptionPane.showConfirmDialog(null, invoiceDisplayPanel, "Customer Invoice Display", JOptionPane.DEFAULT_OPTION);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "There are no invoices for this customer.");
+				}
 				
-				invoiceDisplayPanel.InvoiceDatetxtField.setText(ci.elementAt(comboBox.getSelectedIndex()).getInvoiceDate());
-				invoiceDisplayPanel.InvoiceIDtxtField.setText(Integer.toString(ci.elementAt(comboBox.getSelectedIndex()).getInvoiceNumber()));
-				invoiceDisplayPanel.ItemsListArea.setText(ci.elementAt(comboBox.getSelectedIndex()).getOrderedItems());
-				invoiceDisplayPanel.OrderDatetxtField.setText(ci.elementAt(comboBox.getSelectedIndex()).getOrderDate());
-				invoiceDisplayPanel.OrderNumbertxtField.setText(ci.elementAt(comboBox.getSelectedIndex()).getOrderNumber());
-				invoiceDisplayPanel.TotaltxtField.setText("$" + Double.toString(ci.elementAt(comboBox.getSelectedIndex()).getInvoiceTotal()));
-				JOptionPane.showConfirmDialog(null, invoiceDisplayPanel, "Customer Invoice Display", JOptionPane.DEFAULT_OPTION);
 			}
 		});		
 		JLabel lblNewLabel_1 = new JLabel("Customer Invoice Number");

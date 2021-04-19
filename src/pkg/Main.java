@@ -111,6 +111,8 @@ public class Main {
 		//	menu.openTab(customerListTab);
 			getMenu().openTab(customerSearchTab);
 			getMenu().openTab(invoiceTab);
+			getMenu().openTab(purchaserTab);
+			getMenu().openTab(supplierTab);
 			break;
 		case ADMIN:
 			getMenu().openTab(manager);

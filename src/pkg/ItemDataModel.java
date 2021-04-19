@@ -12,6 +12,7 @@ public class ItemDataModel extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8368348238846303420L;
+	
 	static DatabaseII<Item> itemData;
 	private final String[] columnNames = new String[] { 
 			"itemID", "item Name", "vendorID", "Sell Price", "Item Type",
