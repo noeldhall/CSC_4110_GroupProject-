@@ -27,7 +27,6 @@ public class Main {
 	private static DefaultLoginGUI defaultLogin;
 	private static OwnerCustomerListGUI customerTab;
 	private static SalesCustomerListGUI salesCustomerTab;
-	private static CustomerListGUI customerListTab;
 	private static CustomerSearchGUI customerSearchTab;
 	private static ItemListGUI itemTab;
 	private static PurchaserGUI purchaserTab;
@@ -54,14 +53,15 @@ public class Main {
 		System.out.println("finprint");
 		vendorTab=new VendorListGUI(VendorDataModel.getDatabase());
 		customerTab=new OwnerCustomerListGUI(CustomerDataModel.getDatabase());
-		salesCustomerTab=new SalesCustomerListGUI(CustomerDataModel.getDatabase());
-		//testing parent customer list class
-		customerListTab=new CustomerListGUI(CustomerDataModel.getDatabase());
+		setSalesCustomerTab(new SalesCustomerListGUI(CustomerDataModel.getDatabase()));
+		salesCustomerTab.attach(customerOrderItemTab);
+				invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
+				
 		invoiceTab = new InvoiceMainGUI(CustomerDataModel.getDatabase());
 		itemTab=new ItemListGUI(ItemDataModel.getDatabase());
 		purchaserTab = new PurchaserGUI();
 		customerOrderItemTab=new CustomerOrderItemListGUI(ItemDataModel.getDatabase());
-		ItemDataModel.printItems();
+		salesCustomerTab.attach(customerOrderItemTab);
 	}
 
 	private void initialize() {
@@ -108,7 +108,6 @@ public class Main {
 			getMenu().openTab(manager);
 			getMenu().openTab(vendorTab);
 			getMenu().openTab(customerTab);
-		//	menu.openTab(customerListTab);
 			getMenu().openTab(customerSearchTab);
 			getMenu().openTab(invoiceTab);
 			getMenu().openTab(purchaserTab);
@@ -129,11 +128,8 @@ public class Main {
 			getMenu().openTab(invoiceTab);
 			break;
 		case SALES_PERSON:
-		//	menu.openTab(itemTab);
-			
-			//menu.openTab(customerOrderItemTab);
 			getMenu().openTab(salesCustomerTab);
-			
+			customerOrderItemTab.expiredCheck();
 			
 			break;
 		default:
@@ -160,5 +156,21 @@ public class Main {
 
 	public static void setMenu(MainMenu menu) {
 		Main.menu = menu;
+	}
+
+	public static SalesCustomerListGUI getSalesCustomerTab() {
+		return salesCustomerTab;
+	}
+
+	public static void setSalesCustomerTab(SalesCustomerListGUI salesCustomerTab) {
+		Main.salesCustomerTab = salesCustomerTab;
+	}
+
+	public static CustomerOrderItemListGUI getCustomerOrderItemTab() {
+		return customerOrderItemTab;
+	}
+
+	public static void setCustomerOrderItemTab(CustomerOrderItemListGUI customerOrderItemTab) {
+		Main.customerOrderItemTab = customerOrderItemTab;
 	}
 }

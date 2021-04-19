@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PurchaserGUI extends JPanel {
 	/**
@@ -73,6 +75,16 @@ public class PurchaserGUI extends JPanel {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Vendor " + searchTxt.getText() + " Not Found.", "Failed to find", JOptionPane.CANCEL_OPTION);
+				}
+			}
+		});
+		
+		orderList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2) {
+					PurchaseOrderGUI newOrder = new PurchaseOrderGUI(orderList.getSelectedValue());
+					JOptionPane.showConfirmDialog(null, newOrder, "New Purchase Order", JOptionPane.OK_OPTION);
 				}
 			}
 		});

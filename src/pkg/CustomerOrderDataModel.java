@@ -13,9 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  */
 public class CustomerOrderDataModel extends AbstractTableModel {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 3302157226851315559L;
 	static DatabaseII<CustomerOrder> customerOrderData;
 	private final String[] columnNames = new String[] { 
@@ -58,6 +56,16 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		}
 	}
 	
+	public static CustomerOrder searchCustomerOrderID(String id) {
+		for(CustomerOrder co : customerOrderData.getData()) {
+			if(co.getCustomerOrderId()==id) {
+				return co;
+			}
+		}
+		return null;
+	}
+	
+	
  public Vector<CustomerOrder> getOrders(String customerName){
 		Vector<CustomerOrder> cov=new Vector<CustomerOrder>();
 		for(CustomerOrder co: getDatabase()) {
@@ -70,5 +78,18 @@ public class CustomerOrderDataModel extends AbstractTableModel {
  	public static Vector<CustomerOrder> getDatabase(){
  		return customerOrderData.getData();
  	}
+ 	
+ 	public static int generateCustomerID() {
+		int uniInt = 1;
+		
+		for (CustomerOrder co:customerOrderData.getData())
+		{
+			if(uniInt==Integer.parseInt(co.getCustomerOrderId())) {
+				uniInt++;
+			}
+			
+		}
+		return uniInt;
+	}
 
 }

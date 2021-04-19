@@ -32,6 +32,7 @@ import java.awt.event.FocusEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javax.swing.JLabel;
 
 public class CustomerListGUI extends JPanel {
 	/**
@@ -43,6 +44,7 @@ public class CustomerListGUI extends JPanel {
 	private TableRowSorter<CustomerDataModel> sorter;
 	final CustomerDataModel model = Main.customerDAO;
 	JScrollPane scrollPane;
+	private JLabel lblSearchLabel;
 
 	public CustomerListGUI(Vector<CustomerProfile> data) {
 		setName("Customers");
@@ -96,6 +98,9 @@ searchField.addFocusListener(new FocusAdapter() {
 	}
 });
 	add(Logoutbtn);
+	
+	lblSearchLabel = new JLabel("Search name:");
+	add(lblSearchLabel);
 	add(searchField);
 	add(scrollPane);
 	
