@@ -3,7 +3,9 @@ package pkg;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 public class CustomerOrder implements Data{
@@ -13,6 +15,7 @@ public class CustomerOrder implements Data{
 	private String customerOrderId;
 	private Vector<OrderItem> orderItems=new Vector<OrderItem>();
 	private double totalCost=0;
+
 	public CustomerOrder(CustomerProfile cp) {
 		customer=cp;
 		customerOrderId= String.format("%06d", CustomerOrderDataModel.generateCustomerID());
@@ -60,9 +63,6 @@ public class CustomerOrder implements Data{
          }
          
 	}
-	
-	
-
 	
 	public void subtractQuantities() {
 		for (OrderItem oi: orderItems)
@@ -148,4 +148,6 @@ public class CustomerOrder implements Data{
 	public void setCustomerOrderId(String customerOrderId) {
 		this.customerOrderId = customerOrderId;
 	}
+	
+
 }

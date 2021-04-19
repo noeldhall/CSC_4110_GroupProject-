@@ -3,7 +3,9 @@
  */
 package pkg;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
@@ -14,7 +16,12 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CustomerOrderDataModel extends AbstractTableModel {
 	
-	private static final long serialVersionUID = 3302157226851315559L;
+	private static final long serialVersionUID = 3302157226851315559L;	
+	
+	
+	private static List<OrdersObserver> observers = new ArrayList<OrdersObserver>();
+	private static int state = 0;
+
 	static DatabaseII<CustomerOrder> customerOrderData;
 	private final String[] columnNames = new String[] { 
 			"Order Id","Customer Name","Order Date","Need By Date"
@@ -70,7 +77,14 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		Vector<CustomerOrder> cov=new Vector<CustomerOrder>();
 		for(CustomerOrder co: getDatabase()) {
 		if(co.getCustomer().getCustomerInfo().getCustomerName().equals(customerName))
+		{
 			cov.add(co);
+			if (getDatabase().size() > 2)
+			{
+				CustomerOrderDataModel.setState(1);
+			}
+		}
+		
 		}
 		return cov;
 	}
@@ -91,5 +105,22 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		}
 		return uniInt;
 	}
+ 	
+	//observer for Customer Invoice Feature - By Brett Gloomis
+	public int getState() {
+		return state;
+	}
+	public static void setState(int state) {
+		CustomerOrderDataModel.state += state;
+		notifyAllObservers();
+	}	
+	public static void attach(OrdersObserver observer){
+		observers.add(observer);		
+	}
 
+	public static void notifyAllObservers(){
+		for (OrdersObserver observer : observers) {
+			observer.update();
+			}
+	}
 }

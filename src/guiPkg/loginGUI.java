@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 
+import pkg.CustomerOrderDataModel;
 import pkg.Item;
 import pkg.ItemDataModel;
 import pkg.Main;
@@ -45,6 +46,7 @@ public class loginGUI extends JPanel {
             		}
             		Main.swapToMain(up.getUserRole());
             		ItemDataModel.notifyAllObservers();
+            		CustomerOrderDataModel.notifyAllObservers();
             	}
             	else {
             		JOptionPane.showMessageDialog(null, "Please enter a valid username and password.","Invalid Login",JOptionPane.PLAIN_MESSAGE);
