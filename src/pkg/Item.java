@@ -2,6 +2,8 @@ package pkg;
 
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 public class Item implements Data, Comparable<Item> {
 	//Disclaimer:
 	//Feature 4 was never fully implemented, we did features 1-3 in sprint 1 because we only have 3 team members
@@ -16,7 +18,12 @@ public class Item implements Data, Comparable<Item> {
 	double unitPrice;
 	String unitOfMeasure;
 	double balanceOnHand;
+	int check = 0;
 	
+	public Item()
+	{
+		
+	}
 	public Item(String[] data) {
 		itemID=data[0];
 		itemName=data[1];
@@ -94,8 +101,27 @@ public class Item implements Data, Comparable<Item> {
 		return balanceOnHand;
 	}
 	public void setBalanceOnHand(double quantity) {
+		
 		this.balanceOnHand = quantity;
+		
+		if (balanceOnHand <= 0)
+		{
+			ItemDataModel.setState(1);
+		}
+
 	}
+//	public void update()
+//	{
+//		if (balanceOnHand <= 0)
+//		{
+//			check++;
+//			if(check > 2 && UserDataModel.currentUser.getUserRole() == Roles.PURCHASER)
+//			{
+//				JOptionPane.showMessageDialog(null, "More than two items are out of stock.");
+//			}
+//		}
+//	}
+
 	
 	public String toString() {
 		String data = "";

@@ -9,13 +9,6 @@ public class PurchaseOrder implements Data {
 	Date needByDate;
 	Vector<OrderItem> items;
 	
-	public void update()
-	{
-		
-	}
-	
-	
-	
 	PurchaseOrder(String[] data){
 		items = new Vector<OrderItem>();
 		setOrderId(Integer.parseInt(data[0]));

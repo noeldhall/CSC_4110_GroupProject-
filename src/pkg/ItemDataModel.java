@@ -1,10 +1,12 @@
 package pkg;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
-
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
+
 
 public class ItemDataModel extends AbstractTableModel {
 	
@@ -12,6 +14,9 @@ public class ItemDataModel extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8368348238846303420L;
+	
+	private static List<ItemsObserver> observers = new ArrayList<ItemsObserver>();
+	private static int state = 0;
 	
 	static DatabaseII<Item> itemData;
 	private final String[] columnNames = new String[] { 
@@ -104,5 +109,23 @@ public class ItemDataModel extends AbstractTableModel {
 			}
 		}
 		return items;
+	}
+	
+	//observer functions
+	public int getState() {
+		return state;
+	}
+	public static void setState(int state) {
+		ItemDataModel.state += state;
+		notifyAllObservers();
+	}	
+	public static void attach(ItemsObserver observer){
+		observers.add(observer);		
+	}
+
+	public static void notifyAllObservers(){
+		for (ItemsObserver observer : observers) {
+			observer.update();
+			}
 	}
 }

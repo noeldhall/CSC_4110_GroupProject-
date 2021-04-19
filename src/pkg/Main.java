@@ -85,7 +85,7 @@ public class Main {
 		manager = new ManagerGUI();
 		supplierTab = new VendorSearchGUI();
 		customerSearchTab=new CustomerSearchGUI(); 
-
+		ItemDataModel.attach(new ItemsObserver());
 	
 	}
 	
@@ -112,6 +112,8 @@ public class Main {
 			getMenu().openTab(invoiceTab);
 			getMenu().openTab(purchaserTab);
 			getMenu().openTab(supplierTab);
+			getMenu().openTab(salesCustomerTab);
+			customerOrderItemTab.expiredCheck();
 			break;
 		case ADMIN:
 			getMenu().openTab(manager);

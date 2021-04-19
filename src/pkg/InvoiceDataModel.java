@@ -1,5 +1,8 @@
 package pkg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Authored by Brett Gloomis
 
 import java.util.Vector;
@@ -8,8 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 public class InvoiceDataModel extends AbstractTableModel {
+	
 	private static final long serialVersionUID = 985637898177670210L;
 
+	private static List<ItemsObserver> observers = new ArrayList<ItemsObserver>();
+	private static int state = 0;
+	
 	static DatabaseII<CustomerProfile> customerData;
 	private final String[] columnNames = new String[] { "Customer Name"};
 	private final Class[] columnClass = new Class[] { String.class};
@@ -58,7 +65,25 @@ public class InvoiceDataModel extends AbstractTableModel {
 		return null;
 	}
 	
+	//observer
 	public static Vector<CustomerProfile> getDatabase(){
 		return customerData.getData();
+	}
+	
+	public int getState() {
+		return state;
+	}
+	public static void setState(int state) {
+		//ItemDataModel.state += state;
+		notifyAllObservers();
+	}	
+	public static void attach(ItemsObserver observer){
+		observers.add(observer);		
+	}
+
+	public static void notifyAllObservers(){
+		for (ItemsObserver observer : observers) {
+			observer.update();
+			}
 	}
 }

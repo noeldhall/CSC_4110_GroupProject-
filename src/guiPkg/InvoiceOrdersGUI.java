@@ -61,7 +61,7 @@ public class InvoiceOrdersGUI extends JPanel {
 						InvoiceGeneratorGUI invoiceGeneratorPanel = new InvoiceGeneratorGUI();
 						String itemsList = co.elementAt(comboBox.getSelectedIndex()).printItems();
 						invoiceGeneratorPanel.orderdItemsList.setText(itemsList);
-						invoiceGeneratorPanel.OrderNumbertxtField.setText(Integer.toString(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid()));
+						invoiceGeneratorPanel.OrderNumbertxtField.setText(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid());
 						DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 						String strDate = dateFormat.format(co.elementAt(comboBox.getSelectedIndex()).getOrderDate());
 						invoiceGeneratorPanel.OrderDatetxtField.setText(strDate);
@@ -86,7 +86,7 @@ public class InvoiceOrdersGUI extends JPanel {
 							newInvoice.setInvoiceTotal(total);
 							newInvoice.setOrderDate(strDate);
 							newInvoice.setOrderedItems(itemsList);
-							newInvoice.setOrderNumber(Integer.toString(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid()));
+							newInvoice.setOrderNumber(co.elementAt(comboBox.getSelectedIndex()).getCustomerOrderid());
 							Main.newInvoice.addCustomerInvoice(newInvoice);
 							
 						}
