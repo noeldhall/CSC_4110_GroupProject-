@@ -33,10 +33,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JLabel;
-/**
- * @author Noel Hall
- *
- */
+
 public class CustomerListGUI extends JPanel {
 	/**
 	 * 

@@ -26,10 +26,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-/**
- * @author Noel Hall
- *
- */
+
 public class OwnerCustomerListGUI extends CustomerListGUI {
 	private static final long serialVersionUID = 7727161324173086580L;
 	
