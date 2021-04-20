@@ -17,7 +17,10 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.HeadlessException;
-
+/**
+ * @author Noel Hall
+ *
+ */
 @SuppressWarnings("serial")
 public class CustomerSearchGUI extends JPanel {
 
@@ -30,6 +33,12 @@ public class CustomerSearchGUI extends JPanel {
 		JButton searchIDBtn = new JButton("Search by ID");
 		JButton searchNameBtn = new JButton("Search by Name");
 		final CustomerProfileGUI subPanel = new CustomerProfileGUI();
+		subPanel.getOrderDateTxtBox().setEnabled(false);
+		subPanel.getLastPaidTxtBox().setEnabled(false);
+		subPanel.getBalanceTxtBox().setEnabled(false);
+		subPanel.getCityTxtBox().setEnabled(false);
+		subPanel.getStreetTxtBox().setEnabled(false);
+		subPanel.getNameTxtBox().setEnabled(false);
 		
 		JButton btnNewButton = new JButton("Log out");
 		btnNewButton.addActionListener(new ActionListener() {

@@ -111,10 +111,7 @@ public class Main {
 			getMenu().openTab(customerTab);
 			getMenu().openTab(customerSearchTab);
 			getMenu().openTab(invoiceTab);
-			getMenu().openTab(purchaserTab);
 			getMenu().openTab(supplierTab);
-			getMenu().openTab(salesCustomerTab);
-			customerOrderItemTab.expiredCheck();
 			break;
 		case ADMIN:
 			getMenu().openTab(manager);

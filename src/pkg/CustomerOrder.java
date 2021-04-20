@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-
+/**
+ * @author Noel Hall
+ *
+ */
 public class CustomerOrder implements Data{
 	private Date needByDate;
 	private Date orderDate;
