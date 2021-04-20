@@ -75,12 +75,14 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 	
  public Vector<CustomerOrder> getOrders(String customerName){
 		Vector<CustomerOrder> cov=new Vector<CustomerOrder>();
+		boolean set = true;
 		for(CustomerOrder co: getDatabase()) {
 		if(co.getCustomer().getCustomerInfo().getCustomerName().equals(customerName))
 		{
 			cov.add(co);
-			if (getDatabase().size() > 2)
+			if (getDatabase().size() > 2 && set)
 			{
+				set = false;
 				CustomerOrderDataModel.setState(1);
 			}
 		}

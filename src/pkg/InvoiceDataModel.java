@@ -14,7 +14,7 @@ public class InvoiceDataModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 985637898177670210L;
 
-	private static List<ItemsObserver> observers = new ArrayList<ItemsObserver>();
+	private static List<OrdersObserver> observers = new ArrayList<OrdersObserver>();
 	private static int state = 0;
 	
 	static DatabaseII<CustomerProfile> customerData;
@@ -65,24 +65,24 @@ public class InvoiceDataModel extends AbstractTableModel {
 		return null;
 	}
 	
-	//observer
+	
 	public static Vector<CustomerProfile> getDatabase(){
 		return customerData.getData();
 	}
 	
+	//observer
 	public int getState() {
 		return state;
 	}
 	public static void setState(int state) {
-		//ItemDataModel.state += state;
 		notifyAllObservers();
 	}	
-	public static void attach(ItemsObserver observer){
+	public static void attach(OrdersObserver observer){
 		observers.add(observer);		
 	}
 
 	public static void notifyAllObservers(){
-		for (ItemsObserver observer : observers) {
+		for (OrdersObserver observer : observers) {
 			observer.update();
 			}
 	}

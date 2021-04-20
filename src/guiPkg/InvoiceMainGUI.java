@@ -38,6 +38,7 @@ public class InvoiceMainGUI extends JPanel {
 	private JTextField SearchtxtField;
 	static JTable table;
 	private TableRowSorter<InvoiceDataModel> sorter;
+	final InvoiceDataModel model = Main.customerInvoiceDAO;
 	/**
 	 * Create the panel.
 	 */
@@ -45,7 +46,7 @@ public class InvoiceMainGUI extends JPanel {
 		setBackground(Color.CYAN);
 		setName("Accountant");
 		JLabel lblNewLabel = new JLabel("Search:");
-		final InvoiceDataModel model = Main.customerInvoiceDAO;
+		
 		JScrollPane scrollPane = new JScrollPane();
 		SearchtxtField = new JTextField();
 		SearchtxtField.setColumns(10);

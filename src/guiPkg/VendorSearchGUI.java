@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import pkg.Main;
 import pkg.PersonalInformation;
 import pkg.VendorDataModel;
 import pkg.VendorProfile;
@@ -28,6 +30,13 @@ public class VendorSearchGUI extends JPanel {
 		JButton searchNameBtn = new JButton("Search by Name");
 		final VendorProfileGUI subPanel = new VendorProfileGUI();
 		
+		JButton btnNewButton = new JButton("Log Out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -35,21 +44,24 @@ public class VendorSearchGUI extends JPanel {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(vendorLbl, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(searchNameBtn, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(addVendorBtn, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(deleteVendorBtn, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(searchIDBtn, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)))
-							.addGap(30))
+									.addComponent(searchIDBtn, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnNewButton)))
+							.addGap(2))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(subPanel, GroupLayout.PREFERRED_SIZE, 372, Short.MAX_VALUE)
-							.addGap(4))))
+							.addComponent(subPanel, GroupLayout.PREFERRED_SIZE, 436, Short.MAX_VALUE)
+							.addGap(4)))
+					.addGap(71))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -58,13 +70,14 @@ public class VendorSearchGUI extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(addVendorBtn, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(deleteVendorBtn, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-						.addComponent(searchIDBtn, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+						.addComponent(searchIDBtn, GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+						.addComponent(btnNewButton))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(vendorLbl, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 						.addComponent(searchNameBtn))
 					.addGap(14)
-					.addComponent(subPanel, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+					.addComponent(subPanel, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		setLayout(groupLayout);

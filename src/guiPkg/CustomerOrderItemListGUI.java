@@ -16,11 +16,13 @@ import javax.swing.JOptionPane;
 
 import pkg.CustomerOrder;
 import pkg.CustomerOrderDataModel;
+import pkg.CustomerProfile;
+import pkg.InvoiceDataModel;
 import pkg.Item;
 import pkg.ItemDataModel;
 import pkg.Main;
 import pkg.OrderItem;
-import pkg.OrderObserver;
+import pkg.InvoiceOrderObserver;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -31,7 +33,7 @@ import javax.swing.JTextArea;
  * @author Noel Hall
  *
  */
-public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserver {
+public class CustomerOrderItemListGUI extends ItemListGUI implements InvoiceOrderObserver {
 
 	/**
 	 * 
@@ -41,7 +43,6 @@ public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserv
 	private JTextField txtTotalCost;
 	private JTextField txtNeedByDate;
 	JTextArea txtrOrderSummary ;
-
 	public CustomerOrderItemListGUI(Vector<Item> data) {
 		super(data);
 		setName("New Customer Order");

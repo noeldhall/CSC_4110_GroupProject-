@@ -16,7 +16,7 @@ import pkg.CustomerOrder;
 import pkg.CustomerOrderDataModel;
 import pkg.CustomerProfile;
 import pkg.Main;
-import pkg.OrderObserver;
+import pkg.InvoiceOrderObserver;
 import pkg.OrderSubject;
 
 /**
@@ -25,7 +25,7 @@ import pkg.OrderSubject;
  */
 public class SalesCustomerListGUI extends CustomerListGUI implements OrderSubject{
 		private static final long serialVersionUID = 8225824411303341872L;
-		private OrderObserver observer;
+		private InvoiceOrderObserver observer;
 	public SalesCustomerListGUI(Vector<CustomerProfile> data) {
 		super(data);
 		
@@ -61,12 +61,12 @@ public class SalesCustomerListGUI extends CustomerListGUI implements OrderSubjec
 	}
 
 	@Override
-	public void attach(OrderObserver o) {
+	public void attach(InvoiceOrderObserver o) {
 		observer=o;
 	}
 
 	@Override
-	public void detach(OrderObserver o) {
+	public void detach(InvoiceOrderObserver o) {
 		observer=null;
 	}
 

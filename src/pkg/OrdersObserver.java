@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Brett Gloomis
+
 import javax.swing.JOptionPane;
 
 public class OrdersObserver {

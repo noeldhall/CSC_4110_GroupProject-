@@ -9,6 +9,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import pkg.Main;
 import pkg.PurchaseOrder;
 import pkg.PurchaseOrderDataModel;
 import pkg.VendorDataModel;
@@ -89,20 +90,30 @@ public class PurchaserGUI extends JPanel {
 			}
 		});
 		
+		JButton btnNewButton = new JButton("Log Out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.swapToLogin();
+			}
+		});
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(vendorLbl)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(searchTxt, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(searchBtn, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-						.addComponent(orderList, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-						.addComponent(orderBtn, Alignment.TRAILING))
+							.addComponent(searchBtn, GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
+						.addComponent(orderList, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton)
+							.addPreferredGap(ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+							.addComponent(orderBtn)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -116,7 +127,9 @@ public class PurchaserGUI extends JPanel {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(orderList, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(orderBtn)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(orderBtn)
+						.addComponent(btnNewButton))
 					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
