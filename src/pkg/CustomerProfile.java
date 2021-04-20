@@ -1,10 +1,7 @@
 package pkg;
 
 import java.util.Date;
-/**
- * @author Noel Hall
- *
- */
+
 public class CustomerProfile implements Comparable<CustomerProfile>, Data{
 	String customerId;
 	Date lastOrderDate;

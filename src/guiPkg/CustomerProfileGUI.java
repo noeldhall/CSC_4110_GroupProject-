@@ -19,12 +19,11 @@ import pkg.CustomerInfo;
 import pkg.CustomerProfile;
 import pkg.States;
 
-/**
- * @author Noel Hall
- *
- */
+
 public class CustomerProfileGUI extends JPanel {
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -517349445900714487L;
 	private CustomerProfile profile;
 	private JTextField nameTxtBox;

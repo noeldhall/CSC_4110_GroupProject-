@@ -1,8 +1,5 @@
 package pkg;
-/**
- * @author Noel Hall
- *
- */
+
 public class CustomerInfo implements Comparable<CustomerInfo>{
 	 String customerName;
 	private String streetAddress;
