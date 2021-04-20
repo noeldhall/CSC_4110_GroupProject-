@@ -33,12 +33,12 @@ public class PurchaserGUI extends JPanel {
 	private VendorProfile currentVendor;
 	
 	public PurchaserGUI() {
-		DefaultListModel<PurchaseOrder> model = new DefaultListModel<PurchaseOrder>();
+		final DefaultListModel<PurchaseOrder> model = new DefaultListModel<PurchaseOrder>();
 		setName("Purchaser");
 		searchTxt = new JTextField();
 		searchTxt.setColumns(10);
 		JButton searchBtn = new JButton("Search Orders");
-		JList<PurchaseOrder> orderList = new JList<PurchaseOrder>();
+		final JList<PurchaseOrder> orderList = new JList<PurchaseOrder>();
 		JLabel vendorLbl = new JLabel("Vendor Name:");
 		JButton orderBtn = new JButton("New Purchase Order");
 		

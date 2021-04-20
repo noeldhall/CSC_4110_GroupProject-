@@ -17,7 +17,10 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.HeadlessException;
-
+/**
+ * @author Noel Hall
+ *
+ */
 @SuppressWarnings("serial")
 public class CustomerSearchGUI extends JPanel {
 

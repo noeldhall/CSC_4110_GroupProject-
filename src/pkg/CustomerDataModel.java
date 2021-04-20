@@ -4,7 +4,10 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-
+/**
+ * @author Noel Hall
+ *
+ */
 public class CustomerDataModel extends AbstractTableModel {
 	private static final long serialVersionUID = 985637898177670210L;
 

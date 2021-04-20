@@ -28,7 +28,10 @@ import pkg.Main;
 import pkg.VendorDataModel;
 import pkg.VendorProfile;
 import javax.swing.JLabel;
-
+/**
+ * @author Noel Hall
+ *
+ */
 public class ItemListGUI extends JPanel {
 	private static final long serialVersionUID = 8777161324173056561L;
 	private JTextField searchField;

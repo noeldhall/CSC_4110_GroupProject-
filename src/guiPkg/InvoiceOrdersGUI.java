@@ -45,11 +45,11 @@ public class InvoiceOrdersGUI extends JPanel {
 		CustomerNametextField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		CustomerNametextField.setEditable(false);
 		CustomerNametextField.setColumns(10);
-		String w = InvoiceDataModel.getDatabase().elementAt(InvoiceMainGUI.table.getSelectedRow()).getCustomerInfo().getCustomerName();
+		final String w = InvoiceDataModel.getDatabase().elementAt(InvoiceMainGUI.table.getSelectedRow()).getCustomerInfo().getCustomerName();
 		CustomerNametextField.setText(w);
 		
-		Vector<CustomerOrder> co = Main.customerOrderDAO.getOrders(w);
-		JComboBox<CustomerOrder> comboBox = new JComboBox<CustomerOrder>(co);
+		final Vector<CustomerOrder> co = Main.customerOrderDAO.getOrders(w);
+		final JComboBox<CustomerOrder> comboBox = new JComboBox<CustomerOrder>(co);
 		JButton NewInvoicebtn = new JButton("Generate Invoice");
 		NewInvoicebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
