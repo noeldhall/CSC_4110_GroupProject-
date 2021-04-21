@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Nicholas Foster
+
 public class PersonalInformation implements Comparable<PersonalInformation> {
 	String fullName;
 	String streetAddress;
