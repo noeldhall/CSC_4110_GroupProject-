@@ -22,7 +22,7 @@ import pkg.Item;
 import pkg.ItemDataModel;
 import pkg.Main;
 import pkg.OrderItem;
-import pkg.InvoiceOrderObserver;
+import pkg.OrderObserver;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -33,7 +33,7 @@ import javax.swing.JTextArea;
  * @author Noel Hall
  *
  */
-public class CustomerOrderItemListGUI extends ItemListGUI implements InvoiceOrderObserver {
+public class CustomerOrderItemListGUI extends ItemListGUI implements OrderObserver {
 
 	/**
 	 * 

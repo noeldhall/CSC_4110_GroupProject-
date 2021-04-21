@@ -10,8 +10,8 @@ import java.util.Observer;
  *
  */
 public interface OrderSubject {
-    public void attach(InvoiceOrderObserver o);
-    public void detach(InvoiceOrderObserver o);
+    public void attach(OrderObserver o);
+    public void detach(OrderObserver o);
     public void notifyUpdate(String currentOrderId);
     
 }

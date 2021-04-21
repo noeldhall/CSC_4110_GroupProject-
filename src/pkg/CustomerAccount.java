@@ -1,5 +1,8 @@
 package pkg;
-
+/**
+ * @author Noel Hall
+ *
+ */
 public class CustomerAccount  implements Comparable<CustomerAccount>{
 	private double balance;
 	private double lastPaidAmount;

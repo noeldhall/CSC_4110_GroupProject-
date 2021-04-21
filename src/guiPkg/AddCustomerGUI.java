@@ -10,7 +10,10 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import pkg.States;
-
+/**
+ * @author Noel Hall
+ *
+ */
 public class AddCustomerGUI extends JPanel {
 	private JTextField nameTxtBox;
 	private JTextField streetTxtBox;

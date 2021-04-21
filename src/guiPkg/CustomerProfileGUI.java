@@ -19,7 +19,10 @@ import pkg.CustomerInfo;
 import pkg.CustomerProfile;
 import pkg.States;
 
-
+/**
+ * @author Noel Hall
+ *
+ */
 public class CustomerProfileGUI extends JPanel {
 	/**
 	 * 

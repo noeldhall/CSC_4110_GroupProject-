@@ -7,6 +7,6 @@ package pkg;
  * @author Noel Hall
  *
  */
-public interface InvoiceOrderObserver {
+public interface OrderObserver {
 	public void update(String currentOrderId);
 }
