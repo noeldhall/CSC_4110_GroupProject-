@@ -55,7 +55,7 @@ public class PurchaserGUI extends JPanel {
 							PurchaseOrderDataModel.addPurchaseOrder(po);
 						}
 						catch(IllegalArgumentException err) {
-							JOptionPane.showMessageDialog(null, err.getMessage(), "Data error", JOptionPane.OK_OPTION);
+							JOptionPane.showMessageDialog(null, err.getMessage(), "Data error", JOptionPane.OK_OPTION); 
 						}
 					}
 				}
