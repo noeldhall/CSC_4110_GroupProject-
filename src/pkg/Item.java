@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Nicholas Foster
+
 import java.util.Date;
 
 import javax.swing.JOptionPane;

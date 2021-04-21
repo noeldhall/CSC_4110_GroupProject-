@@ -19,7 +19,7 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 	private static final long serialVersionUID = 3302157226851315559L;	
 	
 	
-	private static List<OrdersObserver> observers = new ArrayList<OrdersObserver>();
+	private static List<InvoiceOrdersObserver> observers = new ArrayList<InvoiceOrdersObserver>();
 	private static int state = 0;
 
 	static DatabaseII<CustomerOrder> customerOrderData;
@@ -116,12 +116,12 @@ public class CustomerOrderDataModel extends AbstractTableModel {
 		CustomerOrderDataModel.state += state;
 		notifyAllObservers();
 	}	
-	public static void attach(OrdersObserver observer){
+	public static void attach(InvoiceOrdersObserver observer){
 		observers.add(observer);		
 	}
 
 	public static void notifyAllObservers(){
-		for (OrdersObserver observer : observers) {
+		for (InvoiceOrdersObserver observer : observers) {
 			observer.update();
 			}
 	}

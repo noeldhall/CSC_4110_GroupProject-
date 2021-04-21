@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Brett Gloomis
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class InvoiceDataModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 985637898177670210L;
 
-	private static List<OrdersObserver> observers = new ArrayList<OrdersObserver>();
+	private static List<InvoiceOrdersObserver> observers = new ArrayList<InvoiceOrdersObserver>();
 	private static int state = 0;
 	
 	static DatabaseII<CustomerProfile> customerData;
@@ -77,12 +79,12 @@ public class InvoiceDataModel extends AbstractTableModel {
 	public static void setState(int state) {
 		notifyAllObservers();
 	}	
-	public static void attach(OrdersObserver observer){
+	public static void attach(InvoiceOrdersObserver observer){
 		observers.add(observer);		
 	}
 
 	public static void notifyAllObservers(){
-		for (OrdersObserver observer : observers) {
+		for (InvoiceOrdersObserver observer : observers) {
 			observer.update();
 			}
 	}

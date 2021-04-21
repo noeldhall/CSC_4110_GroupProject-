@@ -86,7 +86,7 @@ public class Main {
 		supplierTab = new VendorSearchGUI();
 		customerSearchTab=new CustomerSearchGUI(); 
 		ItemDataModel.attach(new ItemsObserver());
-		CustomerOrderDataModel.attach(new OrdersObserver());
+		CustomerOrderDataModel.attach(new InvoiceOrdersObserver());
 	
 	}
 	

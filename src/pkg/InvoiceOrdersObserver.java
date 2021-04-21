@@ -4,7 +4,7 @@ package pkg;
 
 import javax.swing.JOptionPane;
 
-public class OrdersObserver {
+public class InvoiceOrdersObserver {
 	protected static CustomerOrderDataModel orderModel = Main.customerOrderDAO;
 	
 	public void update()

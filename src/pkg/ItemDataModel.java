@@ -1,5 +1,7 @@
 package pkg;
 
+//Authored by Nicholas Foster
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;

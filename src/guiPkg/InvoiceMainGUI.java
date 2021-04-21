@@ -14,12 +14,10 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
-import pkg.CustomerDataModel;
 import pkg.CustomerProfile;
 import pkg.InvoiceDataModel;
 import pkg.Main;
 
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.border.EmptyBorder;
@@ -37,7 +35,6 @@ public class InvoiceMainGUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField SearchtxtField;
 	static JTable table;
-	private TableRowSorter<InvoiceDataModel> sorter;
 	final InvoiceDataModel model = Main.customerInvoiceDAO;
 	/**
 	 * Create the panel.
